@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.DragDrop.DragDropItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uib="clr-namespace:SofthinkCore.UI.Base;assembly=SofthinkCore"
+             xmlns:local="clr-namespace:SofthinkCoreShowCase.Demos.DragDrop"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             xmlns:g="http://SofthinkCore/Gesture"
+             xmlns:dd="clr-namespace:SofthinkCore.UI.DragDrop;assembly=SofthinkCore"
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="control">
+    <UserControl.Resources>
+        <!-- Convert Start Drag Drop EventArg to PostitViewModel -->
+        <local:DragStartConverter x:Key="DragConv1" />
+        <!-- Convert Drop EventArg to PostitViewModel with new Coordinates-->
+        <local:DropConverter x:Key="DropConv1" VisualReference="{ Binding ElementName=control}"/>
+        
+        <local:CancelConverter x:Key="cancelConv" />
+    </UserControl.Resources>
+    
+    <i:Interaction.Triggers>
+        <!-- Start Drag Action : Call RemovePostitCommand -->
+        <uib:RoutedEventTrigger Event="dd:DragAndDrop.DragStarted" >
+            <uib:CommandAction Command="{Binding RemovePostitCommand}" Converter="{StaticResource DragConv1}"  />
+        </uib:RoutedEventTrigger>
+        <!-- Drop Action : Call CreatePostitCommand -->
+        <uib:RoutedEventTrigger Event="dd:DragAndDrop.Drop" >
+            <uib:CommandAction Command="{Binding CreatePostitCommand}" Converter="{StaticResource DropConv1}"  />
+        </uib:RoutedEventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid>
+        <ItemsControl  ItemsSource="{Binding}" x:Name="items" Grid.Column="0" Grid.Row="0"  >
+         
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Background="Transparent" >
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style >
+                    <Setter Property="Canvas.Top" Value="{Binding Position.Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Position.X}" />                   
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
+        </ItemsControl>
+    </Grid>
+</UserControl>

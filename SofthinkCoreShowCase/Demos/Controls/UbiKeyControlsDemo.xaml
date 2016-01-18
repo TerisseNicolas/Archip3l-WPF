@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.Controls.UbiKeyControlsDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ui="http://SofthinkCore/UI"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" >
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="TouchButton" Margin="20" />
+                <ui:TouchButton Margin="20" >
+                    Tap Me!!
+                </ui:TouchButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="UbiToggleButton" Margin="20" />
+                <ui:UbiToggleButton Margin="20" >Toggle me!!</ui:UbiToggleButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="UbiComboBox"  Margin="20"/>
+                <ui:UbiComboBox Margin="20" >
+                    <sys:String>Select me!!</sys:String>
+                    <sys:String>No! Me!</sys:String>
+                    <sys:String>Me! Me!</sys:String>
+                </ui:UbiComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="UbiTextBox"  Margin="20"/>
+                <ui:UbiTextBox AutomaticKeyboard="True" xml:space="preserve" FontSize="25" MaxHeight="200" MaxWidth="400" AcceptsReturn="True" >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+Cras elementum ultrices diam.</ui:UbiTextBox>
+
+            </StackPanel>            
+        </StackPanel>
+    </Grid>
+</UserControl>

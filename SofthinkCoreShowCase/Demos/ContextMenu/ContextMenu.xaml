@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.ContextMenu.ContextMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"
+             xmlns:cmm="clr-namespace:DemoCommon.Model"
+             xmlns:bh="clr-namespace:SofthinkCore.UI.Base.BehaviorUtils;assembly=SofthinkCore"
+             xmlns:menu="clr-namespace:SofthinkCore.UI.ContextMenu;assembly=SofthinkCore"
+             xmlns:g="clr-namespace:SofthinkCore.Gestures;assembly=SofthinkCore"
+             xmlns:gp="clr-namespace:SofthinkCore.Gestures.Processor;assembly=SofthinkCore"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+
+        <menu:UbiMenuTemplate x:Key="menuTemplate" >
+            <menu:UbiMenu x:Name="menu"  >
+                <menu:UbiMenu.ItemTemplate>
+                    <DataTemplate>
+                        <Border  Background="LightSalmon"  BorderThickness="1" BorderBrush="Black"  >
+                            <TextBlock Text="{Binding Caption}" FontSize="20" Margin="10" />
+                        </Border>
+                    </DataTemplate>
+                </menu:UbiMenu.ItemTemplate>
+            </menu:UbiMenu>
+
+        </menu:UbiMenuTemplate>
+
+        <menu:UbiMenuTemplate x:Key="menububble" >
+            <menu:UbiMenuBuble >
+                <menu:UbiMenuBuble.ItemTemplate>
+                    <DataTemplate >
+                        <Border BorderBrush="Black" CornerRadius="5" BorderThickness="3" >
+                            <TextBlock Text="{ Binding Caption }" Background="BlanchedAlmond" 
+                                       FontSize="15" Padding="10" TextWrapping="WrapWithOverflow" 
+                                       MaxWidth="100" MaxHeight="100" Panel.ZIndex="1" IsHitTestVisible="False" />
+                        </Border>
+                    </DataTemplate>
+                </menu:UbiMenuBuble.ItemTemplate>
+            </menu:UbiMenuBuble>
+
+        </menu:UbiMenuTemplate>
+
+        <DataTemplate x:Key="infopanel">
+            <StackPanel  Orientation="Vertical" Background="WhiteSmoke" Opacity="0.8">
+                <TextBlock Text="Placement" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ElementName=postit , Path=(menu:UbiContextMenu.ContextMenu).Placement}" FontSize="15" />
+                <TextBlock Text="FollowTarget" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ElementName=postit , Path=(menu:UbiContextMenu.ContextMenu).FollowTarget}" FontSize="15"/>
+                <TextBlock Text="CloseOnTargetMove" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ElementName=postit , Path=(menu:UbiContextMenu.ContextMenu).CloseOnTargetMove}" FontSize="15"/>
+                <TextBlock Text="Orientation" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ElementName=postit , Path=(menu:UbiContextMenu.ContextMenu).Orientation}" FontSize="15"/>
+            </StackPanel>
+        </DataTemplate>
+
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <ItemsControl ItemsSource="{Binding Postits}">
+
+            <ItemsControl.Resources>
+
+                <!-- Yellow Postit -->
+                <!-- MenuItems setted in ContextMenu by binding-->
+                <DataTemplate DataType="{x:Type cmm:PostitViewModelA}">
+                    <StackPanel Orientation="Horizontal">
+                        <cmc:Postit  Text="{Binding Text}" Background="{Binding Color}" x:Name="postit" >
+                            <g:Gesture.Collection>
+                                <gp:TapProcessor/>
+                            </g:Gesture.Collection>
+
+                            <menu:UbiContextMenu.ContextMenu >
+                                <menu:UbiContextMenu OpeningEvent="gp:TapProcessor.TapBubble" 
+                                                  Placement="TopRight" 
+                                                  MenuItems="{Binding MenuItems}"
+                                                  FollowTarget="True"
+                                                  Orientation="Target">
+
+                                    <menu:UbiMenuTemplate>
+
+                                        <menu:UbiMenu  x:Name="menu"  >
+                                            <menu:UbiMenu.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border  Background="YellowGreen"  BorderThickness="1" BorderBrush="Black" >
+                                                        <TextBlock Text="{Binding Caption}" FontSize="20" Margin="10" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </menu:UbiMenu.ItemTemplate>
+                                        </menu:UbiMenu>
+
+                                    </menu:UbiMenuTemplate>
+                                </menu:UbiContextMenu>
+                            </menu:UbiContextMenu.ContextMenu>
+
+                        </cmc:Postit>
+                        <ContentControl Content="{Binding}" ContentTemplate="{StaticResource infopanel}" />
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Pink Postit -->
+                <!-- MenuItems setted in ContextMenu by binding-->
+                <DataTemplate DataType="{x:Type cmm:PostitViewModelB}">
+                    <StackPanel Orientation="Horizontal">
+                        <cmc:Postit  Text="{Binding Text}" Background="{ Binding Color}" x:Name="postit" >
+                            <g:Gesture.Collection>
+                                <gp:TapProcessor/>
+                            </g:Gesture.Collection>
+
+                            <menu:UbiContextMenu.ContextMenu >
+                                <menu:UbiContextMenu OpeningEvent="gp:TapProcessor.TapBubble" 
+                                                  Placement="BottomLeft" 
+                                                  Template="{ StaticResource menuTemplate}" 
+                                                  MenuItems="{Binding MenuItems}"
+                                                  CloseOnTargetMove="True" 
+                                                  Orientation="Target" />
+                            </menu:UbiContextMenu.ContextMenu>
+
+                        </cmc:Postit>
+                        <ContentControl Content="{Binding}" ContentTemplate="{StaticResource infopanel}" />
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Green Postit -->
+                <!-- MenuItems setted in XAML -->
+                <DataTemplate DataType="{x:Type cmm:PostitViewModelC}">
+                    <StackPanel Orientation="Horizontal">
+                        <cmc:Postit  Text="{Binding Text}" Background="{Binding Color}"  x:Name="postit">
+                            <g:Gesture.Collection>
+                                <gp:TapProcessor/>
+                            </g:Gesture.Collection>
+
+                            <menu:UbiContextMenu.ContextMenu >
+                                <menu:UbiContextMenu OpeningEvent="gp:TapProcessor.TapBubble" 
+                                                  Template="{ StaticResource menububble}" 
+                                                  FollowTarget="True" 
+                                                  Orientation="Auto" >
+                                    <menu:UbiContextMenu.MenuItems>
+                                        <menu:MenuItemCollection>
+                                            <menu:UbiMenuItem Caption="Change Text" Command="{Binding TextCommand}"/>
+                                            <menu:UbiMenuItem Caption="Change Color" Command="{Binding ColorCommand}"/>
+                                            <menu:UbiMenuItem Caption="Change Text" Command="{Binding TextCommand}"/>
+                                        </menu:MenuItemCollection>
+                                    </menu:UbiContextMenu.MenuItems>
+                                </menu:UbiContextMenu>
+                            </menu:UbiContextMenu.ContextMenu>
+
+                        </cmc:Postit>
+                        <ContentControl Content="{Binding}" ContentTemplate="{StaticResource infopanel}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.Resources>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="canvas" Background="AliceBlue">
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Top" Value="{Binding Position.Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Position.X}" />
+                    <Setter Property="bh:InteractivityAsRessource.Behaviors">
+                        <Setter.Value>
+                            <bh:Behaviors>
+                                <bh:ManipulateRenderTransformBehavior Reference="{Binding }"/>
+                            </bh:Behaviors>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
+        </ItemsControl>
+
+    </Grid>
+</UserControl>

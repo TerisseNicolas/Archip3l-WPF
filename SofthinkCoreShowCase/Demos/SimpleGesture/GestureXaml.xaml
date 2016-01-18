@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="SimpleGesture.GestureXaml"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleGesture"
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"            
+             xmlns:g="http://SofthinkCore/Gesture"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <Grid>
+        <StackPanel Margin="30" x:Name="stack">
+            
+            <cmc:Postit Text="Tap to Change Color" Margin="30">
+                <g:Gesture.Collection>
+                    <g:TapProcessor Tap="TapProcessor_Tap" />
+                </g:Gesture.Collection>
+            </cmc:Postit>
+
+            <cmc:Postit Text="Hold to Change Color" Margin="30">
+                <g:Gesture.Collection>
+                    <g:HoldProcessor Hold="HoldProcessor_Hold" />
+                </g:Gesture.Collection>
+            </cmc:Postit>
+
+            <cmc:Postit Text="Manipulate" Margin="30">
+                <g:Gesture.Collection>
+                    <g:ManipulationProcessor ManipulationUpdate="ManipulationProcessor_ManipulationUpdate" />
+                </g:Gesture.Collection>
+            </cmc:Postit>
+
+            <cmc:Postit Text="Tap, Hold or Manipulate" Margin="30">
+                <g:Gesture.Collection>
+                    <g:TapProcessor Tap="TapProcessor_Tap" />
+                    <g:HoldProcessor Hold="HoldProcessor_Hold" />
+                    <g:ManipulationProcessor ManipulationUpdate="ManipulationProcessor_ManipulationUpdate" />
+                </g:Gesture.Collection>
+            </cmc:Postit>
+
+        </StackPanel>         
+    </Grid>
+</UserControl>

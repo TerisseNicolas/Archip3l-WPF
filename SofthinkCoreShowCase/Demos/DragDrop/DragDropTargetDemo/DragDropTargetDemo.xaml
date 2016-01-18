@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.DragDrop.DragDropTargetDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"
+             xmlns:g="http://SofthinkCore/Gesture"
+             xmlns:dd="clr-namespace:SofthinkCore.UI.DragDrop;assembly=SofthinkCore"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             xmlns:uib="clr-namespace:SofthinkCore.UI.Base;assembly=SofthinkCore"
+             xmlns:local="clr-namespace:SofthinkCoreShowCase.Demos.DragDrop"
+             xmlns:dmmd="clr-namespace:DemoCommon.Model"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <local:CancelConverter x:Key="cancelConv" />
+        <DataTemplate x:Key="datatemplate">
+
+            <Grid>
+                <UIElement.Effect>
+                    <DropShadowEffect x:Name="shadow" BlurRadius ="0" ShadowDepth = "30" Color="#CC000000" Opacity="0.4" />
+                </UIElement.Effect>          
+                <!--Visual copy of the dragged element -->
+                <dd:VisualCopy/>
+                <!--Feedback for dropable status -->
+                <Canvas HorizontalAlignment="Right"  VerticalAlignment="Top" Panel.ZIndex="1" Width="0" Height="0" Margin="0,0,50,0">
+                    <Ellipse x:Name="ellipse" Width="50" Height="50" StrokeThickness="3"  />
+                </Canvas>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dd:DragAndDrop.Context).Status}" Value="Dropable" >
+                    <Setter TargetName="ellipse" Property="Fill" Value="Green" />
+                    <Setter TargetName="ellipse" Property="Stroke" Value="LightGreen" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dd:DragAndDrop.Context).Status}" Value="None" >
+                    <Setter TargetName="ellipse" Property="Fill" Value="Red" />
+                    <Setter TargetName="ellipse" Property="Stroke" Value="LightSalmon" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        
+        <DataTemplate DataType="{x:Type dmmd:PostitViewModelA}">
+            <cmc:Postit  Text="{Binding Text}" x:Name="postit"   >
+                <g:Gesture.Collection>
+                    <g:DragProcessor/>
+                </g:Gesture.Collection>
+
+                <dd:DragAndDrop.DragDropParameters>
+                    <dd:DragDropParameters  x:Name="param" Data="{Binding}"  StartEvent="g:DragProcessor.DragStart" Template="{StaticResource datatemplate}" >
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Cancel" >
+                                <uib:CommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DragDropItemControl}} ,Path=DataContext.CreatePostitCommand}" Converter="{StaticResource cancelConv}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </dd:DragDropParameters>
+                </dd:DragAndDrop.DragDropParameters>
+
+            </cmc:Postit>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type dmmd:PostitViewModelB}">
+            <DataTemplate.Resources>
+                <ControlTemplate x:Key="templateB" TargetType="{x:Type cmc:Postit}">
+                    <Grid  Width="150" Height="150" >
+                        <Grid.Clip>
+                            <EllipseGeometry Center="75,75" RadiusX="75" RadiusY="75"/>
+                        </Grid.Clip>
+                        <Ellipse Height="150" Width="150" Fill="{TemplateBinding Background}" Stroke="Black" StrokeThickness="3"/>
+                        <TextBlock Text="{TemplateBinding Text}" Margin="10" FontSize="20"  TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </DataTemplate.Resources>
+            <cmc:Postit  Text="{Binding Text}" x:Name="postit" Template="{StaticResource templateB}">
+                <g:Gesture.Collection>
+                    <g:DragProcessor/>
+                </g:Gesture.Collection>
+
+                <dd:DragAndDrop.DragDropParameters>
+                    <dd:DragDropParameters  x:Name="param" Data="{Binding}"  StartEvent="g:DragProcessor.DragStart" Template="{StaticResource datatemplate}" >
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Cancel" >
+                                <uib:CommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DragDropItemControl}} ,Path=DataContext.CreatePostitCommand}" Converter="{StaticResource cancelConv}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </dd:DragDropParameters>
+                </dd:DragAndDrop.DragDropParameters>
+            </cmc:Postit>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type dmmd:PostitViewModelC}">
+            <DataTemplate.Resources>
+                <RotateTransform x:Key="rotate" Angle="45" CenterX="75" CenterY="75"/>
+                <ControlTemplate x:Key="templateC" TargetType="{x:Type cmc:Postit}">
+                    <Grid  Width="150" Height="150" >
+                        <Grid.Clip>
+                            <RectangleGeometry  Rect="0,0,150,150" Transform="{StaticResource rotate}"/>
+                        </Grid.Clip>
+                        <Rectangle Height="150" Width="150" Fill="{TemplateBinding Background}" Stroke="Black" StrokeThickness="3" RenderTransform="{StaticResource rotate}"/>
+                        <TextBlock Text="{TemplateBinding Text}" Margin="10" FontSize="20" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </DataTemplate.Resources>
+            <cmc:Postit  Text="{Binding Text}" x:Name="postit"  Template="{StaticResource templateC}" >             
+                <g:Gesture.Collection>
+                    <g:DragProcessor/>
+                </g:Gesture.Collection>
+
+                <dd:DragAndDrop.DragDropParameters>
+                    <dd:DragDropParameters  x:Name="param" Data="{Binding}"  StartEvent="g:DragProcessor.DragStart" Template="{StaticResource datatemplate}" >
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Cancel" >
+                                <uib:CommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:DragDropItemControl}} ,Path=DataContext.CreatePostitCommand}" Converter="{StaticResource cancelConv}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </dd:DragDropParameters>
+                </dd:DragAndDrop.DragDropParameters>
+            </cmc:Postit>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="0" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#44000000">
+            <TextBlock Text="Allowed" VerticalAlignment="Center" FontSize="25"/>
+            <Rectangle Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10"/>
+            <Ellipse Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10"/>
+        </StackPanel>
+        <local:DragDropItemControl x:Name="items" DataContext="{Binding Postits1}" Background="#7F7CFF" Grid.Column="0" Grid.Row="0" dd:DragAndDrop.AllowDrop="True">
+            <dd:DragAndDrop.DropFilter>
+                <local:DropFilter AllowedDataList="A,B" />
+            </dd:DragAndDrop.DropFilter>           
+        </local:DragDropItemControl>      
+
+        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="0" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#44000000" >
+            <TextBlock Text="Allowed" VerticalAlignment="Center" FontSize="25"/>
+            <Rectangle Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10" >
+                <Rectangle.LayoutTransform>
+                    <RotateTransform CenterX="25" CenterY="25" Angle="45"/>
+                </Rectangle.LayoutTransform>
+            </Rectangle>
+            <Ellipse Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10"/>
+        </StackPanel>
+        <local:DragDropItemControl x:Name="items2" DataContext="{Binding Postits2}" Background="GreenYellow" Grid.Column="1" Grid.Row="0" dd:DragAndDrop.AllowDrop="True">
+            <dd:DragAndDrop.DropFilter>
+                <local:DropFilter AllowedDataList="C,B" />
+            </dd:DragAndDrop.DropFilter>
+        </local:DragDropItemControl>
+
+
+        <StackPanel Orientation="Horizontal"   Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#44000000">
+            <TextBlock Text="Allowed" VerticalAlignment="Center" FontSize="25"/>
+            <Rectangle Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10" >
+                <Rectangle.LayoutTransform>
+                    <RotateTransform CenterX="25" CenterY="25" Angle="45"/>
+                </Rectangle.LayoutTransform>
+            </Rectangle>
+            <Rectangle Width="50" Height="50" Fill="Orange" StrokeThickness="1" Stroke="Black" Margin="10" />
+        </StackPanel>
+        <local:DragDropItemControl x:Name="items3" DataContext="{Binding Postits3}" Background="#FFA893" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" dd:DragAndDrop.AllowDrop="True">
+            <dd:DragAndDrop.DropFilter>
+                <local:DropFilter AllowedDataList="A,C" />
+            </dd:DragAndDrop.DropFilter>
+        </local:DragDropItemControl>
+               
+    
+    </Grid>
+</UserControl>
