@@ -39,3 +39,6 @@ C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.csprojRe
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\NLog.dll
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\NLog.xml
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\FarseerPhysics.dll
+C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\bin\x86\Debug\Archip3l.exe.config
+C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\Archip3l.exe
+C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\Archip3l.pdb
