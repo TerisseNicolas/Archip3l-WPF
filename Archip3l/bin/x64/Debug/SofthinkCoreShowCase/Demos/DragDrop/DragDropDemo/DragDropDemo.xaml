@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.DragDrop.DragDropDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"
+             xmlns:g="http://SofthinkCore/Gesture"
+             xmlns:dd="clr-namespace:SofthinkCore.UI.DragDrop;assembly=SofthinkCore"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             xmlns:uib="clr-namespace:SofthinkCore.UI.Base;assembly=SofthinkCore"
+             xmlns:local="clr-namespace:SofthinkCoreShowCase.Demos.DragDrop"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Postits}" x:Name="items"  >
+            <ItemsControl.Resources>
+                <!-- Convert Start Drag Drop EventArg to PostitViewModel -->
+                <local:DragStartConverter x:Key="DragConv" />
+                <!-- Convert Drop EventArg to PostitViewModel with new Coordinates-->
+                <local:DropConverter x:Key="DropConv" VisualReference="{ Binding ElementName=items}" />
+                <uib:BindingProxy x:Key="proxyCreateCommand" Data="{ Binding Postits.CreatePostitCommand }"/>
+                <local:CancelConverter x:Key="cancelConv" />
+            </ItemsControl.Resources>
+
+            <i:Interaction.Triggers>
+                <!-- Start Drag Action : Call RemovePostitCommand -->
+                <uib:RoutedEventTrigger Event="dd:DragAndDrop.DragStarted" >
+                    <uib:CommandAction Command="{Binding Postits.RemovePostitCommand}" Converter="{StaticResource DragConv}"  />
+                </uib:RoutedEventTrigger>
+                <!-- Drop Action : Call CreatePostitCommand -->
+                <uib:RoutedEventTrigger Event="dd:DragAndDrop.Drop" >
+                    <uib:CommandAction Command="{Binding Postits.CreatePostitCommand}" Converter="{StaticResource DropConv}"  />
+                </uib:RoutedEventTrigger>
+            </i:Interaction.Triggers>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="canvas" Background="AliceBlue" dd:DragAndDrop.AllowDrop="True" dd:DragAndDrop.CanDrop="items_CanDrop">                      
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Top" Value="{Binding Position.Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Position.X}" />                    
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <cmc:Postit  Text="{Binding Text}" x:Name="postit" >
+                                              
+                        <g:Gesture.Collection>
+                            <g:DragProcessor/>
+                        </g:Gesture.Collection>
+
+                        <dd:DragAndDrop.DragDropParameters>
+                            <dd:DragDropParameters x:Name="param" Data="{Binding}"  StartEvent="g:DragProcessor.DragStart">
+                                <dd:DragDropParameters.Template>
+                                    <DataTemplate>
+                                        <cmc:Postit  Text="{Binding Text}" Opacity="0.7" >
+                                            <cmc:Postit.Effect>
+                                                <DropShadowEffect BlurRadius ="0" ShadowDepth = "30" Color="#CC000000" Opacity="0.4" />
+                                            </cmc:Postit.Effect>
+                                        </cmc:Postit>
+                                    </DataTemplate>
+                                </dd:DragDropParameters.Template>
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Cancel"  >
+                                        <uib:CommandAction Command="{ Binding Source={StaticResource proxyCreateCommand }, Path=Data }" Converter="{ StaticResource cancelConv}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </dd:DragDropParameters>
+                        </dd:DragAndDrop.DragDropParameters>
+
+                    </cmc:Postit>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+    </Grid>    
+</UserControl>

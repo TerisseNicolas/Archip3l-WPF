@@ -21,6 +21,7 @@ namespace Archip3l
     /// </summary>
     public partial class MainWindow : SofthinkWindow
     {
+
         public MainWindow()
         {
             InitializeComponent();

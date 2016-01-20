@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.Physic.PhysicDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ui="http://SofthinkCore/UI"
+             xmlns:cmc="clr-namespace:DemoCommon.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/corkboard.jpg"  />
+        </Grid.Background>
+        <ItemsControl ItemsSource="{ Binding Postits}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ui:PhysicPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>           
+            
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <cmc:Postit ExpandText="True" Background="{Binding Color}" Text="{ Binding Text }" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="ui:PhysicItem.PhysicItem">
+                        <Setter.Value>
+                            <ui:PhysicItem Position="{ Binding Position}" Angle="{ Binding Orientation}"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            
+        </ItemsControl>       
+           
+    </Grid>
+</UserControl>

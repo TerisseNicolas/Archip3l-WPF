@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SofthinkCoreShowCase;component/DemoCommon/Controls/Postit.xaml"/>
+        <ResourceDictionary Source="/SofthinkCoreShowCase;component/DemoCommon/Ressources/Background.xaml"/>
+        <ResourceDictionary Source="/SofthinkCoreShowCase;component/DemoManager/DemoManager.xaml"/>
+        <ResourceDictionary Source="/SofthinkCoreShowCase;component/Demos/Popup/ToastWindow.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+
