@@ -34,3 +34,8 @@ C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.Properti
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.csproj.GenerateResource.Cache
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.exe
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.pdb
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\libTUIO.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\Archip3l.csprojResolveAssemblyReference.cache
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\NLog.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\NLog.xml
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\FarseerPhysics.dll

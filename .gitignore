@@ -8,6 +8,8 @@
 *.lai
 *.so
 *.dll
+!SofthinkCore.dll
+!libTUIO.dll
 *.dylib
 
 # Qt-es
