@@ -85,3 +85,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Perso
+# ==========================
+Archip3l/obj
+
