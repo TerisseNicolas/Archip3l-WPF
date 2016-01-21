@@ -17,17 +17,13 @@ using System.Windows.Shapes;
 namespace Archip3l
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour VerticalWindow.xaml
     /// </summary>
-    public partial class MainWindow : SofthinkWindow
+    public partial class VerticalWindow : SofthinkWindow
     {
-       
-        public MainWindow()
+        public VerticalWindow()
         {
             InitializeComponent();
-            VerticalWindow verticalWin = new VerticalWindow();
-            verticalWin.Owner = this;
-            verticalWin.Show();
         }
     }
 }

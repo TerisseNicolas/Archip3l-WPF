@@ -7,14 +7,19 @@
         xmlns:local="clr-namespace:Archip3l"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid Background="White">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\tempConcours\4-islands.png"></ImageBrush>
+            <!--<ImageBrush ImageSource="rchip3l;Ressources/4-islands.png"/>-->
+            <!--<ImageBrush ImageSource="pack://siteoforigin:,,,/Ressources/4-islands.png"/>-->
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="134*" />
+            <ColumnDefinition Width="125*" />
         </Grid.ColumnDefinitions>
     </Grid>
 </app:SofthinkWindow>
