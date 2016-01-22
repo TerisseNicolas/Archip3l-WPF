@@ -88,5 +88,6 @@ $RECYCLE.BIN/
 
 # Perso
 # ==========================
-Archip3l/obj/
+Archip3l\obj\**
+VerticalArchip3l\obj\**
 

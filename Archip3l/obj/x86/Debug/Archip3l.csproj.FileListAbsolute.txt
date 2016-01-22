@@ -78,5 +78,3 @@ C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\De
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\Archip3l.g.resources
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\Archip3l.Properties.Resources.resources
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\Archip3l.csproj.GenerateResource.Cache
-C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\VerticalWindow.g.cs
-C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\VerticalWindow.baml

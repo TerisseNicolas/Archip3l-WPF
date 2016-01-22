@@ -1,0 +1,14 @@
+﻿<app:SofthinkWindow x:Class="VerticalArchip3l.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:app="clr-namespace:SofthinkCore.Application;assembly=SofthinkCore"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VerticalArchip3l"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Grid Background="Aquamarine">
+        
+    </Grid>
+</app:SofthinkWindow>

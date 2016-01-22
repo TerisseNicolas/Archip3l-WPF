@@ -25,9 +25,6 @@ namespace Archip3l
         public MainWindow()
         {
             InitializeComponent();
-            VerticalWindow verticalWin = new VerticalWindow();
-            verticalWin.Owner = this;
-            verticalWin.Show();
         }
     }
 }
