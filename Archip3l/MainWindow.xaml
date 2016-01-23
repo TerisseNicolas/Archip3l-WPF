@@ -6,11 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Archip3l"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="C:\tempConcours\4-islands.png"></ImageBrush>
-            <!--<ImageBrush ImageSource="rchip3l;Ressources/4-islands.png"/>-->
+            <!--<ImageBrush ImageSource="Archip3l;Ressources/4-islands.png"/>-->
             <!--<ImageBrush ImageSource="pack://siteoforigin:,,,/Ressources/4-islands.png"/>-->
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -21,5 +21,28 @@
             <ColumnDefinition Width="134*" />
             <ColumnDefinition Width="125*" />
         </Grid.ColumnDefinitions>
+        <!-- First Island -->
+        <Canvas Grid.Column="0" Grid.Row="0" Name="CanIsl1">
+            <Image Source="C:\tempConcours\harbour.png" Name="HarbIsl1" Canvas.Left="130" Canvas.Top="230">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-96"></RotateTransform>
+                        <ScaleTransform ScaleX="0.2" ScaleY="0.2"></ScaleTransform>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Canvas>
+        <!-- Second Island -->
+        <Canvas Grid.Column="1" Grid.Row="0" Name="CanIsl2">
+
+        </Canvas>
+        <!-- Third Island-->
+        <Canvas Grid.Column="0" Grid.Row="1" Name="CanIsl3">
+
+        </Canvas>
+        <!-- Fourth Island -->
+        <Canvas Grid.Column="1" Grid.Row="1" Name="CanIsl4">
+
+        </Canvas>
     </Grid>
 </app:SofthinkWindow>
