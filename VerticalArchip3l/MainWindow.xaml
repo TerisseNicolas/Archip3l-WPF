@@ -6,9 +6,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VerticalArchip3l"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="1080" Width="1920">
     
     <Grid Background="Aquamarine">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- First Row -->
+        <Canvas Grid.Row="0" Name="TimerRow">
+            <Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal1" Canvas.Left="50" Canvas.Top="50">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="C:\tempConcours\WonMedal.png" Name="Medal2" Canvas.Left="160" Canvas.Top="50">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal3" Canvas.Left="270" Canvas.Top="50">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="C:\tempConcours\WonMedal.png" Name="Medal4" Canvas.Left="380" Canvas.Top="50">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="C:\tempConcours\WonMedal.png" Name="Medal5" Canvas.Left="490" Canvas.Top="50">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
+                </Image.RenderTransform>
+            </Image>
+            <Label Name="TextBlockRemainingTime" FontSize="60" Content="Temps restant : 15:00" Canvas.Top="50" Canvas.Right="20"></Label>
+        </Canvas>
+        <!-- Second Row -->
+        <Canvas Grid.Row="1" Name="InfoRow">
+            <Label Name="TextBlockRemainingTime1" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        </Canvas>
+        <!-- Third Row -->
+        <Canvas Grid.Row="2" Name="MainRow">
+
+        </Canvas>
+
     </Grid>
 </app:SofthinkWindow>
