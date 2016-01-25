@@ -10,6 +10,16 @@ namespace Archip3l
     {
         public List<Ressource> ressources;
 
+        public RessourceManager()
+        {
+            ressources = new List<Ressource>()
+            {
+                new Ressource("bois"),
+                new Ressource("or"),
+                new Ressource("metal")
+            };
+        }
+
         public void giveRessource(Island island)
         {
 

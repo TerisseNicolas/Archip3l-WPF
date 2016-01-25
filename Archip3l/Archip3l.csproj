@@ -114,8 +114,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Island.cs" />
+    <Compile Include="MajorIsland.cs" />
+    <Compile Include="MinorIsland.cs" />
+    <Compile Include="Ressource.cs" />
+    <Compile Include="RessourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

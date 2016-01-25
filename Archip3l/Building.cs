@@ -19,56 +19,36 @@ namespace Archip3l
         public string imageBuilt;
 
 
-        public Building(string argName)
+        public Building(string argName)     //TODO : finir case + initialiser state : démarrer TIMER pour construction
         {
             name = argName;
-            ressourceNeeded = getRessourceNeeded(argName);
-        }
-
-        private string getRessourceNeeded(string name)
-        {
-            string ressourceNeeded = null;
-            switch(name)
+            switch (argName)
             {
-                case "1":
+                case "scierie":
                     ressourceNeeded = null;
+                    consumptionCost = 0;
+                    ressourceProduced = "bois";
+                    productionCost = 0;
+                    constructionTime = 0;
                     break;
-                case "2":
+                case "mine":
                     ressourceNeeded = null;
+                    consumptionCost = 0;
+                    ressourceProduced = "or";
+                    productionCost = 0;
+                    constructionTime = 0;
                     break;
-                case "3":
+                case "usine":
                     ressourceNeeded = null;
+                    consumptionCost = 0;
+                    ressourceProduced = "metal";
+                    productionCost = 0;
+                    constructionTime = 0;
                     break;
             }
-            return ressourceNeeded;
+            imageBeingBuilt = "building-beingbuilt-" + argName;
+            imageBeingBuilt = "building-built-" + argName;
         }
-
-        private string getRessourceProduced(string name)
-        {
-            string ressourceProduced = null;
-            switch (name)
-            {
-                case "1":
-                    ressourceProduced = null;
-                    break;
-                case "2":
-                    ressourceProduced = null;
-                    break;
-                case "3":
-                    ressourceProduced = null;
-                    break;
-            }
-            return ressourceProduced;
-        }
-
-        private string getImageBeingBuilt(string name)
-        {
-            return "building-beingbuilt-" + name;
-        }
-
-        private string getImageBuilt(string name)
-        {
-            return "building-built-" + name;
-        }
+        
     }
 }
