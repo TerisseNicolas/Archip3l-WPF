@@ -73,8 +73,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bonus.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameWindow.cs" />
+    <Compile Include="PlayingGameWindow.cs" />
+    <Compile Include="ResultWindow.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Trophy.cs" />
+    <Compile Include="WelcomeWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
