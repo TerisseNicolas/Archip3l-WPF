@@ -22,18 +22,16 @@ namespace VerticalArchip3l
     /// </summary>
     public partial class MainWindow : SofthinkWindow
     {
-        DateTime remainingTime;
+        //DateTime remainingTime;
+        private Timer timer;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            //Managing time------------------------------------- to be replaced with a time class
-            remainingTime = new DateTime(1, 1, 1, 0, 15, 0);
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            //Managing time------------------------------------
+            this.timer = new Timer(0, 15, 0);
+            this.timer.start();
 
             //Trophies-----------------------------------------
             Trophy trophy1 = new Trophy(1, "Trophée ressources", "Gain de ressources", null);
@@ -61,27 +59,6 @@ namespace VerticalArchip3l
             TimerRow.Children.Add(trophy2Image);
             Canvas.SetTop(trophy2Image, 50);
             Canvas.SetLeft(trophy2Image, 160);
-        }
-        void timer_Tick(object sender, EventArgs e)
-        {
-            string minutes, secondes;
-            if (remainingTime.Minute != 0 || remainingTime.Second != 0)
-            {
-                remainingTime = remainingTime.AddSeconds(-1);
-                if (remainingTime.Minute > 9)
-                    minutes = remainingTime.Minute.ToString();
-                else
-                    minutes = "0" + remainingTime.Minute.ToString();
-                if (remainingTime.Second > 9)
-                    secondes = remainingTime.Second.ToString();
-                else
-                    secondes = "0" + remainingTime.Second.ToString();
-                TextBlockRemainingTime.Content = "Temps restant : " + minutes + ":" + secondes;
-            }
-            else
-            {
-                TextBlockRemainingTime.Foreground = Brushes.Red;
-            }
         }
     }
 }
