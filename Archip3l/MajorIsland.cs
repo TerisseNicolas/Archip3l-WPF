@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Archip3l
 {
-    class MajorIsland
+    class MajorIsland : Island
     {
+
+        public MajorIsland() : base()  //initialize ressources & buildings from Island constructor
+        {
+
+        }
     }
 }

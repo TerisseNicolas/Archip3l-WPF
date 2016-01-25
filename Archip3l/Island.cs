@@ -8,11 +8,11 @@ namespace Archip3l
 {
     class Island
     {
-        public int id;      //1 : haut gauche, 2 : haut droite, 3 : bas gauche, 4 : bas droite
         public List<Building> buildings;
         public List<Ressource> ressources;
 
-        public Island(int id)
+
+        public Island()
         {
             buildings = new List<Building>();
             ressources = new List<Ressource>();

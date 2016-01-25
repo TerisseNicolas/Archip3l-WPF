@@ -21,10 +21,24 @@ namespace Archip3l
     /// </summary>
     public partial class MainWindow : SofthinkWindow
     {
+        private List<MinorIsland> minorIslands;
        
         public MainWindow()
         {
             InitializeComponent();
+
+            minorIslands = new List<MinorIsland>
+            {
+                new MinorIsland(1),
+                new MinorIsland(2),
+                new MinorIsland(3),
+                new MinorIsland(4)
+            };
+        }
+
+        private MinorIsland getIsland(int id)
+        {
+            return minorIslands[id - 1];
         }
     }
 }

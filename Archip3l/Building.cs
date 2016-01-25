@@ -17,9 +17,11 @@ namespace Archip3l
         public int constructionTime;
         public string imageBeingBuilt;
         public string imageBuilt;
+        public int coordX;
+        public int coordY;
 
 
-        public Building(string argName)     //TODO : finir case + initialiser state : démarrer TIMER pour construction
+        public Building(string argName)     //TODO : finir switch + initialiser state : démarrer TIMER pour construction
         {
             name = argName;
             switch (argName)
@@ -30,6 +32,8 @@ namespace Archip3l
                     ressourceProduced = "bois";
                     productionCost = 0;
                     constructionTime = 0;
+                    coordX = 0;
+                    coordY = 0;
                     break;
                 case "mine":
                     ressourceNeeded = null;
@@ -37,6 +41,8 @@ namespace Archip3l
                     ressourceProduced = "or";
                     productionCost = 0;
                     constructionTime = 0;
+                    coordX = 0;
+                    coordY = 0;
                     break;
                 case "usine":
                     ressourceNeeded = null;
@@ -44,6 +50,8 @@ namespace Archip3l
                     ressourceProduced = "metal";
                     productionCost = 0;
                     constructionTime = 0;
+                    coordX = 0;
+                    coordY = 0;
                     break;
             }
             imageBeingBuilt = "building-beingbuilt-" + argName;
