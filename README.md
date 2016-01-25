@@ -5,4 +5,4 @@ Plateforme à utiliser pour le Debug : x86
 NuGets à installer : FarseerPhysics et NLog
 
 #Formatage
-Nom des images: classe-status-nom.png
+Nom des images: classe-status-nom.png (tout en minuscule)
