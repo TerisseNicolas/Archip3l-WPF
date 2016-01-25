@@ -17,71 +17,50 @@ using System.Windows.Threading;
 
 namespace VerticalArchip3l
 {
-    /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : SofthinkWindow
     {
-        DateTime remainingTime;
+        private Timer timer;
+        private List<Trophy> Trophies;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.Trophies = new List<Trophy>();
 
-            //Managing time------------------------------------- to be replaced with a time class
-            remainingTime = new DateTime(1, 1, 1, 0, 15, 0);
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            //Managing time=================================================================================================
+            this.timer = new Timer(0, 15, 0);
+            this.timer.start();
 
-            //Trophies-----------------------------------------
+            //Trophies======================================================================================================
             Trophy trophy1 = new Trophy(1, "Trophée ressources", "Gain de ressources", null);
             Trophy trophy2 = new Trophy(2, "Trophée innovation", "Multiplication de la productivité par 1.5", null);
-
-            Image trophy1Image = new Image
-            {
-                Name = "trophy" + trophy1.Id,
-                Source = new BitmapImage(new Uri(trophy1.Image, UriKind.Absolute)),
-            };
+            Trophy trophy3 = new Trophy(3, "Trophée rapidité", "Multiplication de la productivité par 1.5", null);
+            Trophy trophy4 = new Trophy(4, "Trophée stratégie", "Une description", null);
+            Trophy trophy5 = new Trophy(5, "Trophée légende", "Une description", null);
+            this.Trophies.Add(trophy1);
+            this.Trophies.Add(trophy2);
+            this.Trophies.Add(trophy3);
+            this.Trophies.Add(trophy4);
+            this.Trophies.Add(trophy5);
             trophy2.changeToObtained();
-            Image trophy2Image = new Image
-            {
-                Name = "trophy" + trophy2.Id,
-                Source = new BitmapImage(new Uri(trophy2.Image, UriKind.Absolute)),
-            };
+            trophy3.changeToObtained();
+            trophy5.changeToObtained();
 
-            //positionnement
-            ScaleTransform scaleTransform1 = new ScaleTransform(0.5, 0.5, 0, 0);
-            trophy1Image.RenderTransform = scaleTransform1;
-            TimerRow.Children.Add(trophy1Image);
-            Canvas.SetTop(trophy1Image, 50);
-            Canvas.SetLeft(trophy1Image, 50);
-            trophy2Image.RenderTransform = scaleTransform1;
-            TimerRow.Children.Add(trophy2Image);
-            Canvas.SetTop(trophy2Image, 50);
-            Canvas.SetLeft(trophy2Image, 160);
-        }
-        void timer_Tick(object sender, EventArgs e)
-        {
-            string minutes, secondes;
-            if (remainingTime.Minute != 0 || remainingTime.Second != 0)
+            //Scaling
+            ScaleTransform trophyScaleTransform = new ScaleTransform(0.5, 0.5, 0, 0);
+            foreach(Trophy t in Trophies)
             {
-                remainingTime = remainingTime.AddSeconds(-1);
-                if (remainingTime.Minute > 9)
-                    minutes = remainingTime.Minute.ToString();
-                else
-                    minutes = "0" + remainingTime.Minute.ToString();
-                if (remainingTime.Second > 9)
-                    secondes = remainingTime.Second.ToString();
-                else
-                    secondes = "0" + remainingTime.Second.ToString();
-                TextBlockRemainingTime.Content = "Temps restant : " + minutes + ":" + secondes;
+                //scaling
+                t.Image.RenderTransform = trophyScaleTransform;
+                //positioning
+                TimerRow.Children.Add(t.Image);
+                Canvas.SetTop(t.Image, 50);
             }
-            else
-            {
-                TextBlockRemainingTime.Foreground = Brushes.Red;
-            }
+            Canvas.SetLeft(trophy1.Image, 50);
+            Canvas.SetLeft(trophy2.Image, 160);
+            Canvas.SetLeft(trophy3.Image, 270);
+            Canvas.SetLeft(trophy4.Image, 380);
+            Canvas.SetLeft(trophy5.Image, 490);
         }
     }
 }
