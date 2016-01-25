@@ -19,7 +19,6 @@ namespace Archip3l
             stock = 0;
             production = 0;
             consumption = 0;
-
         }
         
     }
