@@ -6,3 +6,7 @@ NuGets à installer : FarseerPhysics et NLog
 
 #Formatage
 Nom des images: classe-status-nom.png (tout en minuscule)
+
+#Liste d'élements
+Buildings : scierie, mine, usine
+Ressources : bois, or, metal
