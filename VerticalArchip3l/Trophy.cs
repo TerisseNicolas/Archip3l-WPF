@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+
 
 namespace VerticalArchip3l
 {
@@ -12,7 +16,11 @@ namespace VerticalArchip3l
         public string Name { get; private set; }
         public string Description { get; private set; }
         public bool Status { get; private set; }
-        public string Image { get; private set; }
+        public string EmptyMedalPath  { get; private set; }
+        public string ObtainedMedalPath  { get; private set; }
+        private Image EmptyMedal;
+        private Image WonMedal;
+        public Image Image { get; private set; }
         public Bonus Bonus { get; private set; }
 
         public Trophy(int id, string name, string description, Bonus bonus)
@@ -20,9 +28,14 @@ namespace VerticalArchip3l
             this.Id = id;
             this.Name = name;
             this.Description = description;
+            this.EmptyMedalPath = "C:/tempConcours/trophy-emptyMedal.png";
+            this.ObtainedMedalPath = "C:/tempConcours/trophy-wonMedal-" + this.Id + ".png";
             this.Status = false;
             this.Bonus = bonus;
-            this.Image = "C:/tempConcours/trophy-emptyMedal.png";
+            this.EmptyMedal = new Image { Name = "trophy" + this.Id, Source = new BitmapImage(new Uri(this.EmptyMedalPath, UriKind.RelativeOrAbsolute)),};
+            this.WonMedal = new Image { Name = "trophy" + this.Id, Source = new BitmapImage(new Uri(this.ObtainedMedalPath, UriKind.RelativeOrAbsolute)),};
+            this.Image = EmptyMedal;
+            Console.WriteLine(Directory.GetCurrentDirectory());
         }
         public bool changeToObtained()
         {
@@ -37,7 +50,7 @@ namespace VerticalArchip3l
                 //    return false;
                 //}
                 this.Status = true;
-                this.Image = "C:/tempConcours/trophy-wonMedal-" + this.Id + ".png";
+                this.Image = this.WonMedal;
                 return true;
             }
         }
@@ -50,7 +63,7 @@ namespace VerticalArchip3l
             else
             {
                 this.Status = false;
-                this.Image = "C:/tempConcours/trophy-emptyMedal.png";
+                this.Image = this.EmptyMedal;
                 return true;
             }
         }

@@ -16,17 +16,7 @@
         </Grid.RowDefinitions>
         <!-- First Row -->
         <Canvas Grid.Row="0" Name="TimerRow">
-            <!--<Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal1" Canvas.Left="50" Canvas.Top="50">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
-                </Image.RenderTransform>
-            </Image>-->
-            <!--<Image Source="C:\tempConcours\WonMedal.png" Name="Medal2" Canvas.Left="160" Canvas.Top="50">
-                <Image.RenderTransform>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
-                </Image.RenderTransform>
-            </Image>-->
-            <Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal3" Canvas.Left="270" Canvas.Top="50">
+            <!--<Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal3" Canvas.Left="270" Canvas.Top="50">
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
                 </Image.RenderTransform>
@@ -40,7 +30,7 @@
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
                 </Image.RenderTransform>
-            </Image>
+            </Image>-->
             <Label Name="TextBlockRemainingTime" FontSize="60" Content="Temps restant : 15:00" Canvas.Top="50" Canvas.Right="20"></Label>
         </Canvas>
         <!-- Second Row -->

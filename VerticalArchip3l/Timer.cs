@@ -14,7 +14,7 @@ namespace VerticalArchip3l
         public TimeSpan RemainingTime { get; private set; }
         private TimeSpan EndTimer;
         private TimeSpan Interval;
-        private DispatcherTimer dispatcher;
+        private DispatcherTimer Dispatcher;
 
         public Timer(int hours, int minutes, int secondes)
         {
@@ -23,15 +23,15 @@ namespace VerticalArchip3l
             this.Interval = new TimeSpan(0, 0, -1);
             this.RemainingTime = this.StartTimer;
             this.Running = false;
-            this.dispatcher = new DispatcherTimer();
-            this.dispatcher.Interval = TimeSpan.FromSeconds(1);
-            this.dispatcher.Tick += timer_Tick;
+            this.Dispatcher = new DispatcherTimer();
+            this.Dispatcher.Interval = TimeSpan.FromSeconds(1);
+            this.Dispatcher.Tick += timer_Tick;
         }
         public void start()
         {
             if (!this.Running)
             {
-                this.dispatcher.Start();
+                this.Dispatcher.Start();
                 this.Running = true;
             }
         }
@@ -39,7 +39,7 @@ namespace VerticalArchip3l
         {
             if (this.Running)
             {
-                this.dispatcher.Stop();
+                this.Dispatcher.Stop();
                 this.Running = false;
             }
         }
