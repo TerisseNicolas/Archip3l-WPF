@@ -8,9 +8,9 @@ NuGets à installer : FarseerPhysics et NLog
 Nom des images: classe-status-nom.png (tout en minuscule)
 
 #Buildings
-- scierie : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, timer: 0h 0min 20s
-- mine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, timer: XXXh XXXmin XXXs
-- usine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, timer: XXXh XXXmin XXXs
+- scierie : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: 20
+- mine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: XXX
+- usine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: XXX
 
 #Ressources
 - bois
