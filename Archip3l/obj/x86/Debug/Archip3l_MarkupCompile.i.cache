@@ -4,16 +4,28 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\obj\x86\Debug\
+=======
+C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\obj\x86\Debug\
+>>>>>>> origin/master
 Archip3l
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\App.xaml
 11151548125
 
 151848186026
 17-934329636
+=======
+C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\App.xaml
+11151548125
+
+9-1688168503
+171259496340
+>>>>>>> origin/master
 MainWindow.xaml;
 
 False

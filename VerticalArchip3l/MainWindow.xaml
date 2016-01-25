@@ -16,16 +16,16 @@
         </Grid.RowDefinitions>
         <!-- First Row -->
         <Canvas Grid.Row="0" Name="TimerRow">
-            <Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal1" Canvas.Left="50" Canvas.Top="50">
+            <!--<Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal1" Canvas.Left="50" Canvas.Top="50">
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
                 </Image.RenderTransform>
-            </Image>
-            <Image Source="C:\tempConcours\WonMedal.png" Name="Medal2" Canvas.Left="160" Canvas.Top="50">
+            </Image>-->
+            <!--<Image Source="C:\tempConcours\WonMedal.png" Name="Medal2" Canvas.Left="160" Canvas.Top="50">
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
                 </Image.RenderTransform>
-            </Image>
+            </Image>-->
             <Image Source="C:\tempConcours\EmptyMedal.png" Name="Medal3" Canvas.Left="270" Canvas.Top="50">
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"></ScaleTransform>
@@ -45,8 +45,7 @@
         </Canvas>
         <!-- Second Row -->
         <Canvas Grid.Row="1" Name="InfoRow">
-            <Label Name="TextBlockRemainingTime1" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
+            
         </Canvas>
         <!-- Third Row -->
         <Canvas Grid.Row="2" Name="MainRow">
