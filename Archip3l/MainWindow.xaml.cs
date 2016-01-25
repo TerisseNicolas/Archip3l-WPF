@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Archip3l
 {
@@ -34,11 +35,15 @@ namespace Archip3l
                 new MinorIsland(3),
                 new MinorIsland(4)
             };
+
+            Building temp = new Building("scierie");
+
         }
 
         private MinorIsland getIsland(int id)
         {
             return minorIslands[id - 1];
         }
+        
     }
 }

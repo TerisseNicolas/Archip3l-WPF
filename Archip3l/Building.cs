@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Archip3l
 {
@@ -14,11 +17,11 @@ namespace Archip3l
         public string ressourceProduced;
         public int productionCost;
         public bool state; //false: being built, true : built
-        public int constructionTime;
         public string imageBeingBuilt;
         public string imageBuilt;
         public int coordX;
         public int coordY;
+        public int constructionTime;
 
 
         public Building(string argName)     //TODO : finir switch + initialiser state : démarrer TIMER pour construction
@@ -31,16 +34,15 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "bois";
                     productionCost = 0;
-                    constructionTime = 0;
                     coordX = 0;
                     coordY = 0;
+                    constructionTime = 20;
                     break;
                 case "mine":
                     ressourceNeeded = null;
                     consumptionCost = 0;
                     ressourceProduced = "or";
                     productionCost = 0;
-                    constructionTime = 0;
                     coordX = 0;
                     coordY = 0;
                     break;
@@ -49,14 +51,26 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "metal";
                     productionCost = 0;
-                    constructionTime = 0;
                     coordX = 0;
                     coordY = 0;
                     break;
             }
-            imageBeingBuilt = "building-beingbuilt-" + argName;
-            imageBeingBuilt = "building-built-" + argName;
+            imageBeingBuilt = "building-beingbuilt-" + argName + ".png";
+            imageBuilt = "C:\tempConcours\building-built-" + argName + ".png";
+            
+            //ajouter image
+
+            build();
         }
-        
+
+        private async void build()
+        {
+            state = false;
+            await Task.Delay(TimeSpan.FromSeconds(10));
+            state = true;
+
+            //actualiser image
+        }
+
     }
 }
