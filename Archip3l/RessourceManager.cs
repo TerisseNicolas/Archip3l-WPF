@@ -20,7 +20,8 @@ namespace Archip3l
             };
         }
 
-        //give a ressource whose name is "name" to "island", with a stock of "quantity"
+        //give a ressource named "name" to "island", with a stock of "quantity"
+        //if the ressource didn't exist on "island", it is created
         public void giveRessource(string name, Island island, int quantity)
         {
             Ressource ressource = new Ressource(name, quantity);
@@ -35,7 +36,7 @@ namespace Archip3l
             }
         }
 
-        //withdraw a stock of "quantity" from a ressource whose name is "name" of "island"
+        //withdraw a stock of "quantity" from a ressource named "name" of "island"
         //returns the effectively quantity withdrawn (if stock=5 & quantity=7, it returns 5)
         public int withdrawRessource(string name, Island island, int quantity)
         {
@@ -66,12 +67,6 @@ namespace Archip3l
 
         }
 
-        public bool increaseStock(Ressource ressource, int quantity)
-        {
-            ressource.stock += quantity;
-            return true;
-        }
-
         public bool decreaseProduction(Ressource ressource, int quantity)
         {
             if (ressource.production == 0)
@@ -96,21 +91,7 @@ namespace Archip3l
                     ressource.consumption = 0;
                 return true;
             }
-        }
-
-        public bool decreaseStock(Ressource ressource, int quantity)
-        {
-            if (ressource.stock == 0)
-                return false;
-            else
-            {
-                ressource.stock -= quantity;
-                if (ressource.stock < 0)
-                    ressource.stock = 0;
-                return true;
-            }
-        }
-        
+        }      
 
 
 

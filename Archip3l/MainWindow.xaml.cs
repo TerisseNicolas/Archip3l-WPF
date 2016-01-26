@@ -36,7 +36,10 @@ namespace Archip3l
                 new MinorIsland(4)
             };
 
+
+
         }
+        
 
         private MinorIsland getMinorIsland(int id)
         {

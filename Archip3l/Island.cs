@@ -43,17 +43,29 @@ namespace Archip3l
         }
 
 
-        public void createBuilding(string name)
+        //creates a building, adds it to the list and starts the consumption/production of ressources (every 10 seconds)
+        public async void createBuilding(string name)   
         {
-            buildings.Add(new Building(name));
+            Building building = new Building(name);
+            buildings.Add(building);
+            await building.build(building.constructionTime);
+            while (building.state == 1)
+            {
+                building.consume_produce(this);
+                System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceNeeded).name + " : " + getRessource(building.ressourceNeeded).stock);
+                System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceProduced).name + " : " + getRessource(building.ressourceProduced).stock);
+                await Task.Delay(TimeSpan.FromSeconds(10));
+            }
         }
 
         //give a stock of "quantity" of the ressource named "name" to "island"
         public void giveRessourceToIsland(string name, int quantity, Island island)
         {
             RessourceManager rm = new RessourceManager();
+            int quantityWithdrawn = rm.withdrawRessource(name, this, quantity);
             //we give to "island" the quantity withdrawn from the current island
-            rm.giveRessource(name, island, rm.withdrawRessource(name, this, quantity));
+            if (quantityWithdrawn != 0)
+                rm.giveRessource(name, island, quantityWithdrawn);
         }
 
 
