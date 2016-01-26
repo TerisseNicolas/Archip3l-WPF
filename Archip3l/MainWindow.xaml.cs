@@ -36,11 +36,9 @@ namespace Archip3l
                 new MinorIsland(4)
             };
 
-            Building temp = new Building("scierie");
-
         }
 
-        private MinorIsland getIsland(int id)
+        private MinorIsland getMinorIsland(int id)
         {
             return minorIslands[id - 1];
         }

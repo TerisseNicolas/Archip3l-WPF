@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Archip3l
@@ -45,6 +46,7 @@ namespace Archip3l
                     productionCost = 0;
                     coordX = 0;
                     coordY = 0;
+                    constructionTime = 0;
                     break;
                 case "usine":
                     ressourceNeeded = null;
@@ -53,20 +55,21 @@ namespace Archip3l
                     productionCost = 0;
                     coordX = 0;
                     coordY = 0;
+                    constructionTime = 0;
                     break;
             }
             imageBeingBuilt = "building-beingbuilt-" + argName + ".png";
-            imageBuilt = "C:\tempConcours\building-built-" + argName + ".png";
-            
+            imageBuilt = "c:\tempConcours\building-built-" + argName + ".png";
+
             //ajouter image
 
-            build();
+           
         }
 
-        private async void build()
+        private async void build(int time)
         {
             state = false;
-            await Task.Delay(TimeSpan.FromSeconds(10));
+            await Task.Delay(TimeSpan.FromSeconds(time));
             state = true;
 
             //actualiser image

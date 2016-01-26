@@ -33,7 +33,7 @@ namespace Archip3l
         public Ressource getRessource(string name)
         {
             int i = 0;
-            while (i <= ressources.Count)
+            while (i < ressources.Count)
             {
                 if (ressources[i].name == name)
                     return ressources[i];
@@ -47,6 +47,16 @@ namespace Archip3l
         {
             buildings.Add(new Building(name));
         }
-        
+
+        //give a stock of "quantity" of the ressource named "name" to "island"
+        public void giveRessourceToIsland(string name, int quantity, Island island)
+        {
+            RessourceManager rm = new RessourceManager();
+            //we give to "island" the quantity withdrawn from the current island
+            rm.giveRessource(name, island, rm.withdrawRessource(name, this, quantity));
+        }
+
+
+
     }
 }

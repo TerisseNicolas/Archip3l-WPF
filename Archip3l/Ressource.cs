@@ -20,6 +20,14 @@ namespace Archip3l
             production = 0;
             consumption = 0;
         }
-        
+
+        public Ressource(string argName, int quantity)
+        {
+            name = argName;
+            stock = quantity;
+            production = 0;
+            consumption = 0;
+        }
+
     }
 }

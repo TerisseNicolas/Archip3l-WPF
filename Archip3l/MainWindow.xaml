@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Archip3l"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" ResizeMode="NoResize">
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.Background>
             <ImageBrush ImageSource="C:\tempConcours\4-islands.png"></ImageBrush>
             <!--<ImageBrush ImageSource="Archip3l;Ressources/4-islands.png"/>-->

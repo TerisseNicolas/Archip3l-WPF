@@ -8,33 +8,49 @@ namespace Archip3l
 {
     class RessourceManager
     {
-        public List<Ressource> ressources;
+        public List<string> ressources; //list of existing ressources
 
         public RessourceManager()
         {
-            ressources = new List<Ressource>()
+            ressources = new List<string>()
             {
-                new Ressource("bois"),
-                new Ressource("or"),
-                new Ressource("metal")
+                "bois",
+                "or",
+                "metal"
             };
         }
 
-        public Ressource getRessource(string argName)
+        //give a ressource whose name is "name" to "island", with a stock of "quantity"
+        public void giveRessource(string name, Island island, int quantity)
         {
-            int i = 0;
-            while (i <= ressources.Count)
+            Ressource ressource = new Ressource(name, quantity);
+            if (island.getRessource(name) == null)  //the island doesn't have this ressource
             {
-                if (ressources[i].name == argName)
-                    return ressources[i];
-                i++;
+                island.ressources.Add(new Ressource(name));
+                island.getRessource(name).stock = quantity;
             }
-            return null;
+            else    //the island has this ressource
+            {
+                island.getRessource(name).stock += quantity;
+            }
         }
 
-        public void giveRessource(Island island)
+        //withdraw a stock of "quantity" from a ressource whose name is "name" of "island"
+        //returns the effectively quantity withdrawn (if stock=5 & quantity=7, it returns 5)
+        public int withdrawRessource(string name, Island island, int quantity)
         {
-
+            Ressource ressource = island.getRessource(name);
+            if (ressource.stock <= quantity)
+            {
+                int temp = ressource.stock;
+                ressource.stock = 0;
+                return temp;
+            }
+            else
+            {
+                ressource.stock -= quantity;
+                return quantity;
+            }
         }
 
         public bool increaseProduction(Ressource ressource, int quantity)
