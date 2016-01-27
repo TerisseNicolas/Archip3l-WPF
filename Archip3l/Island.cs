@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Archip3l
 {
@@ -45,16 +47,20 @@ namespace Archip3l
 
 
         //creates a building, adds it to the list and starts the consumption/production of ressources (every 10 seconds)
-        public async void createBuilding(string name)   
+        //the corresponding image is added in "canvas"
+        public async void createBuilding(string name, int x, int y, Canvas canvas)   
         {
-            Building building = new Building(name);
+            Building building = new Building(name, x, y);
             buildings.Add(building);
-            await building.build(building.constructionTime);
+            await building.build(building.constructionTime, x, y, canvas);
             while (building.state == 1)
             {
                 building.consume_produce(this);
-                System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceNeeded).name + " : " + getRessource(building.ressourceNeeded).stock);
-                System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceProduced).name + " : " + getRessource(building.ressourceProduced).stock);
+                if (getRessource(building.ressourceNeeded) != null)
+                {
+                    System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceNeeded).name + " : " + getRessource(building.ressourceNeeded).stock);
+                    System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceProduced).name + " : " + getRessource(building.ressourceProduced).stock);
+                }
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
         }
@@ -73,8 +79,7 @@ namespace Archip3l
             else
                 System.Diagnostics.Debug.WriteLine("La ressource " + name + " n'est plus disponible sur l'ile " + island.id.ToString());
         }
-
-
+        
 
     }
 }

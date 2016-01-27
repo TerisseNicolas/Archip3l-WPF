@@ -39,16 +39,20 @@ namespace Archip3l
                 new MinorIsland(3),
                 new MinorIsland(4)
             };
-            
+
+            /*----------- Tests -------------*/
+            islands[0].createBuilding("scierie", 200, 100, CanIsl1);    //200 & 100 got by position of touch event
 
 
+            /*-------------------------------*/
         }
+
 
         private Island getIsland(int id)
         {
             return islands[id];
         }
-
+        
        
     }
 }

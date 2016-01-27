@@ -25,7 +25,7 @@ namespace Archip3l
         public int constructionTime;    //time after which the building'state becomes 1
 
 
-        public Building(string argName)     //TODO : finir switch + initialiser state : démarrer TIMER pour construction
+        public Building(string argName, int x, int y)     //TODO : finir switch
         {
             name = argName;
             switch (argName)
@@ -35,8 +35,8 @@ namespace Archip3l
                     consumptionCost = 3;
                     ressourceProduced = "bois";
                     productionCost = 4;
-                    coordX = 0;
-                    coordY = 0;
+                    coordX = x;
+                    coordY = y;
                     constructionTime = 5;
                     break;
                 case "mine":
@@ -44,8 +44,8 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "or";
                     productionCost = 0;
-                    coordX = 0;
-                    coordY = 0;
+                    coordX = x;
+                    coordY = y;
                     constructionTime = 0;
                     break;
                 case "usine":
@@ -53,32 +53,44 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "metal";
                     productionCost = 0;
-                    coordX = 0;
-                    coordY = 0;
+                    coordX = x;
+                    coordY = y;
                     constructionTime = 0;
                     break;
             }
-            imageBeingBuilt = "c:\tempConcours\building-beingbuilt-" + argName + ".png";
-            imageBuilt = "c:\tempConcours\building-built-" + argName + ".png";
+            imageBeingBuilt = @"c:\tempConcours\building-beingbuilt-" + argName + ".png";
+            imageBuilt = @"c:\tempConcours\building-built-" + argName + ".png";
 
            
         }
 
-        public async Task<bool> build(int time)
+        public async Task<bool> build(int time, int x, int y, Canvas canvas)
         {
-            //construction
-
-
-            //TODO : ajouter image being-built
             state = 0;
             System.Diagnostics.Debug.WriteLine("La construction du batiment " + name + " a commencé !");
-            await Task.Delay(TimeSpan.FromSeconds(time));
-            System.Diagnostics.Debug.WriteLine(name + " est construit !");
+
+            //creation of the image of the building in construction
+            Image image = new Image
+            {
+                Width = 50,
+                Height = 50,
+                Name = this.name,
+                Source = new BitmapImage(new Uri(imageBeingBuilt, UriKind.Absolute)),
+            };
+            Canvas.SetTop(image, y);
+            Canvas.SetLeft(image, x);
+            canvas.Children.Add(image);
+
+            await Task.Delay(TimeSpan.FromSeconds(time));   //construction of the building
             state = 1;
-            //TODO : actualiser image built
+            System.Diagnostics.Debug.WriteLine(name + " est construit !");
+
+            //modification of the image: the building is now built
+            image.Source = new BitmapImage(new Uri(imageBuilt, UriKind.Absolute));
 
             return true;
-        }
+            
+    }
 
 
         //consume the ressourceNeedded and produce the ressourceProduced (only if there was still a stock of ressourceNeedded)
