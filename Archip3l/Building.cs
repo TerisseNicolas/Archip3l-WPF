@@ -71,9 +71,9 @@ namespace Archip3l
 
             //TODO : ajouter image being-built
             state = 0;
-            System.Diagnostics.Debug.WriteLine(name + " is being constructed");
+            System.Diagnostics.Debug.WriteLine("La construction du batiment " + name + " a commencé !");
             await Task.Delay(TimeSpan.FromSeconds(time));
-            System.Diagnostics.Debug.WriteLine(name + " is now constructed");
+            System.Diagnostics.Debug.WriteLine(name + " est construit !");
             state = 1;
             //TODO : actualiser image built
 
@@ -91,7 +91,61 @@ namespace Archip3l
             {
                 rm.withdrawRessource(ressourceNeeded, island, consumptionCost); //consumption
                 rm.giveRessource(ressourceProduced, island, productionCost);    //production
-            }            
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " utilise " + this.consumptionCost.ToString() + " " + this.ressourceNeeded + " et produit " + this.productionCost.ToString() + " " + this.ressourceProduced + " sur l'ile " + island.id.ToString());
+            }    
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " ne peut plus produire de " + this.ressourceProduced + " car il ne reste pas assez de " + ressourceNeeded + " sur l'ile " + island.id.ToString());
+            }        
+        }
+
+        public bool increaseProduction(int quantity)
+        {
+            productionCost += quantity;
+            System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " augmente sa production de " + quantity.ToString());
+            return true;
+        }
+
+        public bool increaseConsumption(int quantity)
+        {
+            consumptionCost += quantity;
+            System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " augmente sa consommation de " + quantity.ToString());
+            return true;
+
+        }
+
+        public bool decreaseProduction(int quantity)
+        {
+            if (productionCost == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " a deja un taux de production nul");
+                return false;
+            }
+            else
+            {
+                productionCost -= quantity;
+                if (productionCost < 0)
+                    productionCost = 0;
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " a maintenant un taux de production de " + productionCost.ToString());
+                return true;
+            }
+        }
+
+        public bool decreaseConsumption(int quantity)
+        {
+            if (consumptionCost == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " a deja un taux de production nul");
+                return false;
+            }
+            else
+            {
+                consumptionCost -= quantity;
+                if (consumptionCost < 0)
+                    consumptionCost = 0;
+                System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " a maintenant un taux de consommation de " + productionCost.ToString());
+                return true;
+            }
         }
 
     }

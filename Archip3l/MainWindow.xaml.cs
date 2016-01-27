@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using SofthinkCore.Gestures.WPF;
+using SofthinkCore.Gestures.Processor;
+using SofthinkCore.Gestures;
 
 namespace Archip3l
 {
@@ -22,29 +25,30 @@ namespace Archip3l
     /// </summary>
     public partial class MainWindow : SofthinkWindow
     {
-        private List<MinorIsland> minorIslands;
+        private List<Island> islands;
        
         public MainWindow()
         {
             InitializeComponent();
 
-            minorIslands = new List<MinorIsland>
+            islands = new List<Island>
             {
+                new MajorIsland(0),
                 new MinorIsland(1),
                 new MinorIsland(2),
                 new MinorIsland(3),
                 new MinorIsland(4)
             };
-
+            
 
 
         }
-        
 
-        private MinorIsland getMinorIsland(int id)
+        private Island getIsland(int id)
         {
-            return minorIslands[id - 1];
+            return islands[id];
         }
-        
+
+       
     }
 }

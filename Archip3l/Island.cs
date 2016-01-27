@@ -8,6 +8,7 @@ namespace Archip3l
 {
     class Island
     {
+        public int id;        //0 : ile pricipale ; 1 : haut gauche, 2 : haut droite, 3 : bas gauche, 4 : bas droite
         public List<Building> buildings;
         public List<Ressource> ressources;
 
@@ -65,7 +66,12 @@ namespace Archip3l
             int quantityWithdrawn = rm.withdrawRessource(name, this, quantity);
             //we give to "island" the quantity withdrawn from the current island
             if (quantityWithdrawn != 0)
+            {
                 rm.giveRessource(name, island, quantityWithdrawn);
+                System.Diagnostics.Debug.WriteLine("L'ile " + this.id.ToString() + " donne " + quantityWithdrawn.ToString() + " " + name + " à l'ile " + island.id.ToString());
+            }
+            else
+                System.Diagnostics.Debug.WriteLine("La ressource " + name + " n'est plus disponible sur l'ile " + island.id.ToString());
         }
 
 

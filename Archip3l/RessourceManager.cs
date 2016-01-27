@@ -41,6 +41,8 @@ namespace Archip3l
         public int withdrawRessource(string name, Island island, int quantity)
         {
             Ressource ressource = island.getRessource(name);
+            if (ressource == null)  //if the ressource doesn't exist on the island
+                return 0;
             if (ressource.stock <= quantity)
             {
                 int temp = ressource.stock;
@@ -54,46 +56,7 @@ namespace Archip3l
             }
         }
 
-        public bool increaseProduction(Ressource ressource, int quantity)
-        {
-            ressource.production += quantity;
-            return true;
-        }
-
-        public bool increaseConsumption(Ressource ressource, int quantity)
-        {
-            ressource.consumption += quantity;
-            return true;
-
-        }
-
-        public bool decreaseProduction(Ressource ressource, int quantity)
-        {
-            if (ressource.production == 0)
-                return false;
-            else
-            {
-                ressource.production -= quantity;
-                if (ressource.production < 0)
-                    ressource.production = 0;
-                return true;
-            }
-        }
-
-        public bool decreaseConsumption(Ressource ressource, int quantity)
-        {
-            if (ressource.consumption == 0)
-                return false;
-            else
-            {
-                ressource.consumption -= quantity;
-                if (ressource.consumption < 0)
-                    ressource.consumption = 0;
-                return true;
-            }
-        }      
-
-
+        
 
     }
 }

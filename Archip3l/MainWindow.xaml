@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Archip3l"
+        xmlns:gw="clr-namespace:SofthinkCore.Gestures.WPF;assembly=SofthinkCore"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" ResizeMode="NoResize">
     <Grid x:Name="RootGrid">

@@ -9,9 +9,9 @@ namespace Archip3l
     class MajorIsland : Island
     {
 
-        public MajorIsland() : base()  //initialize ressources & buildings from Island constructor
+        public MajorIsland(int argId) : base()  //initialize ressources & buildings from Island constructor
         {
-
+            id = argId;
         }
     }
 }
