@@ -15,3 +15,10 @@
 - bois
 - or
 - metal
+
+#Gestuelle
+- Ile principale
+  - 
+- Ile secondaire
+  - Appui long sur une zone vide : choix multiple (créer bâtiment, donner une ressource à une autre île)
+  - Appui long sur un bâtiment : choix multiple (supprimer bâtiment)
