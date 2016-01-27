@@ -50,10 +50,20 @@ namespace Archip3l
         //the corresponding image is added in "canvas"
         public async void createBuilding(string name, int x, int y, Canvas canvas)   
         {
-            Building building = new Building(name, x, y);
+
+            //TODO : appeler une fonction "défi" --> réussite = création du bâtiment ; échec = rien
+
+            //there can't be several buidlings of the same type ("name")
+            if (getBuilding(name) != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Le batiment " + name + " existe déjà !");
+                return;
+            }
+
+            Building building = new Building(name, x, y);                   //instanciation
             buildings.Add(building);
-            await building.build(building.constructionTime, x, y, canvas);
-            while (building.state == 1)
+            await building.build(building.constructionTime, x, y, canvas);  //addition of the building's image to the map (construction time)
+            while (building.state == 1)     //consumption/production during the building's life
             {
                 building.consume_produce(this);
                 if (getRessource(building.ressourceNeeded) != null)
@@ -63,6 +73,11 @@ namespace Archip3l
                 }
                 await Task.Delay(TimeSpan.FromSeconds(10));
             }
+            //if state is 2 --> building removed
+            canvas.Children.RemoveAt(building.indexCanvas);
+            System.Diagnostics.Debug.WriteLine("Le batiment " + building.name + " a été supprimé !");
+            building = null;
+            return;
         }
 
         //give a stock of "quantity" of the ressource named "name" to "island"

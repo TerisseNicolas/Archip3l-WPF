@@ -41,7 +41,10 @@ namespace Archip3l
             };
 
             /*----------- Tests -------------*/
-            islands[0].createBuilding("scierie", 200, 100, CanIsl1);    //200 & 100 got by position of touch event
+            RessourceManager rm = new RessourceManager();
+            rm.giveRessource("or", islands[1], 50);
+            islands[1].createBuilding("scierie", 200, 100, CanIsl1);    //200 & 100 got by position of touch event
+            toto();
 
 
             /*-------------------------------*/
@@ -53,6 +56,13 @@ namespace Archip3l
             return islands[id];
         }
         
+
+        //function for tests with await
+        private async void toto()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(12));
+            islands[1].getBuilding("scierie").state = 2;    //remove scierie
+        }
        
     }
 }

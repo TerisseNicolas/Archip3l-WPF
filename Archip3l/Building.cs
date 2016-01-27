@@ -20,6 +20,7 @@ namespace Archip3l
         public int state; //0 : being built, 1 : built, 2 : closed
         public string imageBeingBuilt;
         public string imageBuilt;
+        public int indexCanvas;
         public int coordX;
         public int coordY;
         public int constructionTime;    //time after which the building'state becomes 1
@@ -79,15 +80,14 @@ namespace Archip3l
             };
             Canvas.SetTop(image, y);
             Canvas.SetLeft(image, x);
-            canvas.Children.Add(image);
+            indexCanvas = canvas.Children.Add(image);
 
             await Task.Delay(TimeSpan.FromSeconds(time));   //construction of the building
             state = 1;
-            System.Diagnostics.Debug.WriteLine(name + " est construit !");
+            System.Diagnostics.Debug.WriteLine("Le batiment " + name + " est construit !");
 
             //modification of the image: the building is now built
             image.Source = new BitmapImage(new Uri(imageBuilt, UriKind.Absolute));
-
             return true;
             
     }
@@ -158,6 +158,12 @@ namespace Archip3l
                 System.Diagnostics.Debug.WriteLine("Le batiment " + this.name + " a maintenant un taux de consommation de " + productionCost.ToString());
                 return true;
             }
+        }
+
+        public void moveBuilding(int x, int y)
+        {
+            this.coordX = x;
+            this.coordY = y;
         }
 
     }
