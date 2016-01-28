@@ -7,14 +7,16 @@
 - Nom des images: classe-status-nom.png (tout en minuscule)
 
 #Buildings
-- scierie : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: 5
-- mine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: XXX
-- usine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: XXX, productionCost: XXX, constuctionTime: XXX
+- scierie : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: bois, productionCost: XXX, constuctionTime: 5
+- mine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: or, productionCost: XXX, constuctionTime: XXX
+- usine : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: metal, productionCost: XXX, constuctionTime: XXX
+- ferme : ressourceNeeded: XXX, consumptionCost: XXX, ressourceProduced: viande, productionCost: XXX, constuctionTime: XXX
 
 #Ressources
 - bois
 - or
-- metal
+- métal
+- viande
 
 #Gestuelle
 - Ile principale
