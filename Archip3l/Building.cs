@@ -36,8 +36,6 @@ namespace Archip3l
                     consumptionCost = 3;
                     ressourceProduced = "bois";
                     productionCost = 4;
-                    coordX = x;
-                    coordY = y;
                     constructionTime = 5;
                     break;
                 case "mine":
@@ -45,8 +43,6 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "or";
                     productionCost = 0;
-                    coordX = x;
-                    coordY = y;
                     constructionTime = 0;
                     break;
                 case "usine":
@@ -54,11 +50,18 @@ namespace Archip3l
                     consumptionCost = 0;
                     ressourceProduced = "metal";
                     productionCost = 0;
-                    coordX = x;
-                    coordY = y;
+                    constructionTime = 0;
+                    break;
+                case "ferme":
+                    ressourceNeeded = null;
+                    consumptionCost = 0;
+                    ressourceProduced = "metal";
+                    productionCost = 0;
                     constructionTime = 0;
                     break;
             }
+            coordX = x;
+            coordY = y;
             imageBeingBuilt = @"c:\tempConcours\building-beingbuilt-" + argName + ".png";
             imageBuilt = @"c:\tempConcours\building-built-" + argName + ".png";
 

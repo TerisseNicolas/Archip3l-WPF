@@ -16,7 +16,8 @@ namespace Archip3l
             {
                 "bois",
                 "or",
-                "metal"
+                "metal",
+                "viande"
             };
         }
 

@@ -114,11 +114,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Disturbance.cs" />
+    <Compile Include="Flooding.cs" />
     <Compile Include="Island.cs" />
     <Compile Include="MajorIsland.cs" />
     <Compile Include="MinorIsland.cs" />
+    <Compile Include="Pandemic.cs" />
     <Compile Include="Ressource.cs" />
     <Compile Include="RessourceManager.cs" />
+    <Compile Include="Typhoon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Building.cs" />
