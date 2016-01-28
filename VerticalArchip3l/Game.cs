@@ -19,7 +19,7 @@ namespace VerticalArchip3l
             this.Score = 0;
             this.Trophies = new List<Trophy>();
             this.Scores = new ScoreManager();
-            this.Scores.addScore("New team", 10);
+            this.Scores.addScore("New team", 38);
             this.Scores.saveScores();
 
             //Managing time=================================================================================================

@@ -77,7 +77,7 @@ namespace VerticalArchip3l
         }
         public void saveScores()
         {
-            StreamWriter file = new StreamWriter("C:/tempConcours/scores2.txt", false);
+            StreamWriter file = new StreamWriter("C:/tempConcours/scores.txt", false);
             string line;
             foreach (Tuple<string, int> item in this.scores)
             {
