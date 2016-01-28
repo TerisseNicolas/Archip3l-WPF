@@ -9,14 +9,18 @@ namespace VerticalArchip3l
     {
         private Timer timer;
         public List<Trophy> Trophies;
+        public ScoreManager Scores { get; private set; }
         public int Score { get; private set;  }
-        public string TeamName; 
+        public string TeamName { get; private set; } 
 
         public Game(string team)
         {
             this.TeamName = team;
             this.Score = 0;
             this.Trophies = new List<Trophy>();
+            this.Scores = new ScoreManager();
+            this.Scores.addScore("New team", 10);
+            this.Scores.saveScores();
 
             //Managing time=================================================================================================
             this.timer = new Timer(0, 15, 0);
@@ -40,7 +44,7 @@ namespace VerticalArchip3l
         {
             this.timer.start();
         }
-        public void stop()
+        public void finish()
         {
 
         }
