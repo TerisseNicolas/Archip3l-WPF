@@ -46,6 +46,8 @@ namespace VerticalArchip3l
         }
         public void finish()
         {
+            this.Scores.addScore(this.TeamName, this.Score);
+            this.Scores.saveScores();
 
         }
     }
