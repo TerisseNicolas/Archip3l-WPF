@@ -30,8 +30,6 @@ namespace VerticalArchip3l
             InitializeComponent();
             this.Game = new Game("Unknown Team");
             welcomeWindow();
-            //newGameWindow(); // to be called from WelcomeWindow
-            //playingGameWindow(); // to be called from GameWindow
         }
         public void welcomeWindow()
         {
