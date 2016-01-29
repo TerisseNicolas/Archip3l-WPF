@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SofthinkCore.UI;
+using SofthinkCore.UI.ContextMenu;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -49,7 +51,8 @@ namespace VerticalArchip3l
             grid.Children.Add(MiddleCanvas);
             grid.Children.Add(MainCanvas);     
 
-            //Trophies=================================================================
+            //UpperCanvas=================================================================
+            //Trophies
             ScaleTransform trophyScaleTransform = new ScaleTransform(0.5, 0.5, 0, 0);
             foreach (Trophy t in this.Game.Trophies)
             {
@@ -64,8 +67,36 @@ namespace VerticalArchip3l
             //Timer
             Label timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 00:00", };
             UpperCanvas.Children.Add(timerLabel);
-            Canvas.SetTop(timerLabel, 50);
+            Canvas.SetTop(timerLabel, 15);
             Canvas.SetRight(timerLabel, 20);
+
+            //Score
+            Label scoreLabel = new Label { Name = "ScoreLabel", FontSize = 60, Content = "Score actuel : 0", };
+            UpperCanvas.Children.Add(scoreLabel);
+            Canvas.SetTop(scoreLabel, 100);
+            Canvas.SetRight(scoreLabel, 20);
+
+            //MiddleCanvas=================================================================
+
+
+            //MainCanvas===================================================================
+
+            //Tests
+            UbiContextMenu contextMenu = new UbiContextMenu();
+            contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
+            //contextMenu.Template = 
+            Control control = new Control();
+            ////UpperCanvas.Children.Add(contextMenu);
+
+            //***
+            ListBox lb = new ListBox();
+            ListBoxItem item1 = new ListBoxItem();
+            ListBoxItem item2 = new ListBoxItem();
+            item1.Content = "item1";
+            item2.Content = "item2";
+            lb.Items.Add(item1);
+            lb.Items.Add(item2);
+            MainCanvas.Children.Add(lb);
         }
     }
 }

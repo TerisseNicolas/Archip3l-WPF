@@ -8,12 +8,12 @@ namespace VerticalArchip3l
     class ScoreManager
     {
         private List<Tuple<string, int>> scores;
-        private int scoreNumber;
+        private int size;
 
         public ScoreManager()
         {
             this.scores = new List<Tuple<string, int>>();
-            this.scoreNumber = 0;
+            this.size = 0;
             loadPreviousScores();
         }
         public void loadPreviousScores()
@@ -27,7 +27,7 @@ namespace VerticalArchip3l
                 {
                     string[] words = line.Split('@');
                     scores.Add(new Tuple<string, int>(words[0], Int32.Parse(words[1])));
-                    this.scoreNumber++;
+                    this.size++;
                 }
                 file.Close();
             }
