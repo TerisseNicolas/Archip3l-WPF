@@ -1,6 +1,7 @@
 ﻿using SofthinkCore.UI.Controls;
 using System;
 using System.Text;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,11 +21,7 @@ namespace VerticalArchip3l
             this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
         }
         public void show()
-        {
-            //Displays the start window (enter the team name ...)
-            //Grid grid = new Grid();
-            //MainWindow.Content = grid; /*.Children.Clear();*/
-
+        { 
             Canvas canvas = new Canvas();
             this.MainWindow.Content = canvas;
             Image backgroundImage = new Image { Name = "background", Source = new BitmapImage(new Uri("C:/tempConcours/newGameBackground.png", UriKind.Absolute)), };
@@ -33,15 +30,29 @@ namespace VerticalArchip3l
             Canvas.SetLeft(backgroundImage, 0);
             Canvas.SetTop(backgroundImage, 0);
 
-            Label teamNameLabel = new Label { Name = "teamNameLabel", FontSize = 60, Content = "Nom de l'équipe", };
+            Label teamNameLabel = new Label { Name = "teamNameLabel", FontSize = 60, Content = "Nom de l'équipe" };
             canvas.Children.Add(teamNameLabel);
             Canvas.SetTop(teamNameLabel, 650);
-            Canvas.SetRight(teamNameLabel, 600);
+            Canvas.SetRight(teamNameLabel, 800);
 
             UbiTextBox teamNameTextBox = new UbiTextBox { Name = "teamNameTextBox", Text = "nom", FontSize = 40, Width = 500, Height = 70 };
             canvas.Children.Add(teamNameTextBox);
             Canvas.SetTop(teamNameTextBox, 670);
-            Canvas.SetRight(teamNameTextBox, 50);
+            Canvas.SetRight(teamNameTextBox, 250);
+
+            TouchButton startButton = new TouchButton { Content = "Lancer le jeu", Width = 200, Height = 69 };
+            startButton.Background = Brushes.YellowGreen;
+
+            canvas.Children.Add(startButton);
+            Canvas.SetTop(startButton, 661);
+            Canvas.SetRight(startButton, 50);
+
+            this.startButton_Tap(null, null);
+        }
+        private void startButton_Tap(object sender, EventArgs e)
+        {
+            Console.WriteLine("Name init start button tapped");
+            this.MainWindow.playingGameWindow();
         }
     }
 }

@@ -47,12 +47,10 @@ namespace VerticalArchip3l
             Canvas.SetRight(startButton, 560);
 
             this.startButton_Tap(null, null);
-
-            
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            Console.WriteLine("start button tapped");
+            Console.WriteLine("welcome start button tapped");
             this.MainWindow.newGameWindow();
         }
     }
