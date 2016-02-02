@@ -1,5 +1,4 @@
-﻿using DemoCommon.Model;
-using SofthinkCore.Utils;
+﻿using SofthinkCore.Utils;
 using SofthinkCoreShowCase.DemoCommon.Model;
 using System;
 using System.Collections.Generic;

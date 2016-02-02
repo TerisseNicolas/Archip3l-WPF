@@ -10,7 +10,7 @@
              xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
              xmlns:uib="clr-namespace:SofthinkCore.UI.Base;assembly=SofthinkCore"
              xmlns:local="clr-namespace:SofthinkCoreShowCase.Demos.DragDrop"
-             xmlns:dmmd="clr-namespace:DemoCommon.Model"
+             xmlns:dmmd="clr-namespace:SofthinkCoreShowCase.DemoCommon.Model"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1000">
     <UserControl.Resources>

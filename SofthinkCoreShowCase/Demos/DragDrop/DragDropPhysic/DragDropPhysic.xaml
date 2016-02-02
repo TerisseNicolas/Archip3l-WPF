@@ -80,12 +80,11 @@
                                         </Setter>
                                         <Setter Property="phy:PhysicItem.PhysicItem" >
                                             <Setter.Value>
-                                                <phy:PhysicItem Gravity="0,50"/>
+                                                <phy:PhysicItem Gravity="0,50" InitialyseWithUIPosition="True"/>
                                             </Setter.Value>       
                                         </Setter>
                                     </Style>
-                                </dd:DragDropParameters.ContainerStyle>
-                                
+                                </dd:DragDropParameters.ContainerStyle>                                
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Cancel"  >

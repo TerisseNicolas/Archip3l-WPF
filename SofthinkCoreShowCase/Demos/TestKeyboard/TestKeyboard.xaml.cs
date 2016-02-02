@@ -3,7 +3,7 @@ using SofthinkCore.UI.Keyboard.AutoComplete;
 using SofthinkCore.UI.Keyboard.KeyboardControl;
 using System;
 using System.Collections.Generic;
-//using System.Data.SQLite;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;

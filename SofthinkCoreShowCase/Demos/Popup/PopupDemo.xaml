@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:manip="clr-namespace:SofthinkCore.UI.Base.Manipulators;assembly=SofthinkCore"
              xmlns:ui="http://SofthinkCore/UI"
+             xmlns:g="http://SofthinkCore/Gesture"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
@@ -21,10 +23,6 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="webRenderer">
-            <ui:WebRenderer Height="800" Width="800"/>
-        </DataTemplate>
-
         <Style x:Key="popupStyle" TargetType="{x:Type ui:UbiWindow}" BasedOn="{StaticResource {x:Type ui:UbiWindow}}">
             <Setter Property="Effect" >
                 <Setter.Value>
@@ -38,62 +36,52 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <ui:UbiToggleButton x:Name="WebRenderer"  IsChecked="False" HorizontalAlignment="Center">
-                WebRenderer
+
+    <StackPanel Orientation="Horizontal">
+        <UniformGrid Rows="1" VerticalAlignment="Center" >
+            <ui:UbiToggleButton x:Name="Bottomtoggle"  IsChecked="False">
+                Bottom
             </ui:UbiToggleButton>
-            <ui:UbiPopup IsOpen="{Binding ElementName=WebRenderer, Path=IsChecked,Mode=TwoWay}"  Placement="Center" ContentTemplate="{StaticResource webRenderer}"
-                         WindowStyle="TitleBar" FollowTarget="False" Title="WebRenderer test" >
-                <sys:String>a</sys:String>
-            </ui:UbiPopup>
-            <StackPanel Orientation="Horizontal">
-                <UniformGrid Rows="1" VerticalAlignment="Center" >
-                    <ui:UbiToggleButton x:Name="Bottomtoggle"  IsChecked="False">
-                        Bottom
-                    </ui:UbiToggleButton>
-                    <ui:UbiPopup IsOpen="{Binding ElementName=Bottomtoggle, Path=IsChecked,Mode=TwoWay}" Placement="Bottom" IsModal="true"
+            <ui:UbiPopup IsOpen="{Binding ElementName=Bottomtoggle, Path=IsChecked,Mode=TwoWay}" Placement="Bottom" IsModal="true"
                          PlacementTarget="{Binding ElementName=Bottomtoggle}" WindowStyle="TitleBar" FollowTarget="False" 
                          ContentTemplate="{StaticResource BottomDataTemplate}" Content="data context from popup">
 
-                    </ui:UbiPopup>
+            </ui:UbiPopup>
 
-                    <ContentControl DataContext="hgfgerger" ContentTemplate="{StaticResource BottomDataTemplate}" />
+            <ContentControl DataContext="hgfgerger" ContentTemplate="{StaticResource BottomDataTemplate}" />
 
-                    <ui:UbiToggleButton x:Name="Toptoggle"   IsChecked="False">
-                        Top
-                    </ui:UbiToggleButton>
-                    <ui:UbiPopup IsOpen="{Binding ElementName=Toptoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Top" ContentTemplate="{StaticResource template}" PopupStyle="{StaticResource popupStyle}"
+            <ui:UbiToggleButton x:Name="Toptoggle"   IsChecked="False">
+                Top
+            </ui:UbiToggleButton>
+            <ui:UbiPopup IsOpen="{Binding ElementName=Toptoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Top" ContentTemplate="{StaticResource template}" PopupStyle="{StaticResource popupStyle}"
                          PlacementTarget="{Binding ElementName=Toptoggle}" WindowStyle="TitleBar" FollowTarget="False" >
-                        <sys:String>data context for datatemplate</sys:String>
-                    </ui:UbiPopup>
+                <sys:String>data context for datatemplate</sys:String>
+            </ui:UbiPopup>
 
-                    <ui:UbiToggleButton x:Name="Centertoggle"   IsChecked="False">
-                        Center
-                    </ui:UbiToggleButton>
-                    <ui:UbiPopup IsOpen="{Binding ElementName=Centertoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Center" ContentTemplate="{StaticResource template}"
+            <ui:UbiToggleButton x:Name="Centertoggle"   IsChecked="False">
+                Center
+            </ui:UbiToggleButton>
+            <ui:UbiPopup IsOpen="{Binding ElementName=Centertoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Center" ContentTemplate="{StaticResource template}"
                          PlacementTarget="{Binding ElementName=Centertoggle}" WindowStyle="TitleBar" FollowTarget="False" >
-                        <sys:String>a</sys:String>
-                    </ui:UbiPopup>
+                <sys:String>a</sys:String>
+            </ui:UbiPopup>
 
-                    <ui:UbiToggleButton x:Name="Lefttoggle"   IsChecked="False">
-                        Left
-                    </ui:UbiToggleButton>
-                    <ui:UbiPopup IsOpen="{Binding ElementName=Lefttoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Left" ContentTemplate="{StaticResource template}"
+            <ui:UbiToggleButton x:Name="Lefttoggle"   IsChecked="False">
+                Left
+            </ui:UbiToggleButton>
+            <ui:UbiPopup IsOpen="{Binding ElementName=Lefttoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Left" ContentTemplate="{StaticResource template}"
                          PlacementTarget="{Binding ElementName=Lefttoggle}" WindowStyle="TitleBar" FollowTarget="False" >
-                        <sys:String>a</sys:String>
-                    </ui:UbiPopup>
+                <sys:String>a</sys:String>
+            </ui:UbiPopup>
 
-                    <ui:UbiToggleButton x:Name="Rigthtoggle"  IsChecked="False">
-                        Right
-                    </ui:UbiToggleButton>
-                    <ui:UbiPopup IsOpen="{Binding ElementName=Rigthtoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Right" ContentTemplate="{StaticResource template}"
+            <ui:UbiToggleButton x:Name="Rigthtoggle"  IsChecked="False">
+                Right
+            </ui:UbiToggleButton>
+            <ui:UbiPopup IsOpen="{Binding ElementName=Rigthtoggle, Path=IsChecked,Mode=TwoWay}"  Placement="Right" ContentTemplate="{StaticResource template}"
                          PlacementTarget="{Binding ElementName=Rigthtoggle}" WindowStyle="TitleBar" FollowTarget="False" >
-                        <sys:String>a</sys:String>
-                    </ui:UbiPopup>
+                <sys:String>a</sys:String>
+            </ui:UbiPopup>
 
-                </UniformGrid>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+        </UniformGrid>
+    </StackPanel>
 </UserControl>

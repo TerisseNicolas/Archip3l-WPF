@@ -1,4 +1,5 @@
-﻿using SofthinkCore.UI.ContextMenu;
+﻿using SofthinkCore.UI.Base.Command;
+using SofthinkCore.UI.ContextMenu;
 using SofthinkCore.Utils;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace DemoCommon.Model
+namespace SofthinkCoreShowCase.DemoCommon.Model
 {
     public class PostitViewModel : INotifyPropertyChanged
     {
@@ -20,7 +21,24 @@ namespace DemoCommon.Model
         {
             TextCommand = new ChangeTextCommand(this);
             ColorCommand = new ChangeColorCommand(this);
+
+            DeletionRequestCommand = new RelayCommand<object>((o) => DeletionRequest(this, new EventArgs()));
         }
+
+        public event EventHandler DeletionRequest;
+
+        private ICommand _deletion;
+        public ICommand DeletionRequestCommand
+        {
+            get { return _deletion; }
+            set
+            {
+                _deletion = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("DeletionRequestCommand"));
+            }
+        }
+
 
         private Point _position;
         public Point Position
@@ -42,7 +60,7 @@ namespace DemoCommon.Model
             {
                 _orientation = value;
                 if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Orientation"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("Directions"));
             }
         }
 

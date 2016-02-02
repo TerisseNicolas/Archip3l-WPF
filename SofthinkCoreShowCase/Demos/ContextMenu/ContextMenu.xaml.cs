@@ -1,5 +1,4 @@
-﻿using DemoCommon.Model;
-using SofthinkCore.Utils;
+﻿using SofthinkCore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using model = DemoCommon.Model;
+using model = SofthinkCoreShowCase.DemoCommon.Model;
 using SofthinkCore.UI.ContextMenu;
 using SofthinkCoreShowCase.DemoManager;
+using SofthinkCoreShowCase.DemoCommon.Model;
 
 namespace SofthinkCoreShowCase.Demos.ContextMenu
 {

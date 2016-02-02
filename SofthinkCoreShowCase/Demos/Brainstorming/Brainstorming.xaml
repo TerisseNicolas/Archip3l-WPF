@@ -6,7 +6,12 @@
              xmlns:ui="http://SofthinkCore/UI"
              xmlns:cmc="clr-namespace:DemoCommon.Controls"
              xmlns:g="http://SofthinkCore/Gesture"
+             xmlns:m="clr-namespace:SofthinkCoreShowCase.DemoCommon.Model"
              xmlns:local="clr-namespace:SofthinkCoreShowCase.Demos.Brainstorming"
+             xmlns:sys="clr-namespace=System,assembly=mscorlib"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:bu="clr-namespace:SofthinkCore.UI.Base.BehaviorUtils;assembly=SofthinkCore"
+             xmlns:pn="clr-namespace:SofthinkCore.UI.Base.Panels;assembly=SofthinkCore"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid >
@@ -14,6 +19,63 @@
             <ImageBrush ImageSource="/Resources/corkboard.jpg"  />
         </Grid.Background>
         <ItemsControl ItemsSource="{ Binding Postits}">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type m:PostitViewModel}">
+                    <cmc:Postit Background="{Binding Color}" Text="{ Binding Text }" >
+                        <ui:UbiContextMenu.ContextMenu>
+                            <ui:UbiContextMenu OpeningEvent="g:HoldProcessor.HoldBubble" MultiInstance="True">
+
+                                <ui:UbiContextMenu.MenuItems>
+                                    <ui:MenuItemCollection>
+                                        <ui:UbiMenuItem Caption="Edit" Command="{Binding Postits.CreatePostitCommand}"  >
+                                            <ui:UbiMenuItem.Converter>
+                                                <local:HoldConverter Color="LemonChiffon" VisualReference="{Binding ElementName=panel}" />
+                                            </ui:UbiMenuItem.Converter>
+                                        </ui:UbiMenuItem>
+                                    </ui:MenuItemCollection>
+                                </ui:UbiContextMenu.MenuItems>
+
+                            </ui:UbiContextMenu>
+                        </ui:UbiContextMenu.ContextMenu>
+                    </cmc:Postit>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type local:BrowserModel}" >
+                    <Grid>                                         
+                        <Border BorderBrush="Orange" BorderThickness="50" CornerRadius="10">
+                            <ui:TouchChromium Address="www.google.fr" Width="800px" Height="600px" >
+                                <i:Interaction.Behaviors>
+                                    <ui:ImageDragBehavior/>
+                                </i:Interaction.Behaviors>
+                                <!--<ui:TouchChromium.MenuHandler>
+                                    <local:BrowserContextMenu />
+                                </ui:TouchChromium.MenuHandler> -->                              
+                            </ui:TouchChromium>
+                        </Border>
+                        <ui:TouchButton VerticalAlignment="Top" HorizontalAlignment="Right" Padding="3" Content="Close" Command="{Binding DeletionRequestCommand}" Margin="10" FontSize="20"/>
+                    </Grid>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type local:ImageModel}" >
+                    <Grid>
+                        <Border BorderBrush="Orange" BorderThickness="5" CornerRadius="10">
+                            <Image MaxHeight="400" MaxWidth="400"  x:Name="image"   >
+                                <Image.Source>
+                                    <BitmapImage x:Name="bmp" UriSource="{Binding URI}"/>
+                                </Image.Source>
+                            </Image>
+                        </Border>
+                        <ui:TouchButton VerticalAlignment="Top" HorizontalAlignment="Right" Padding="3" Content="Close" Command="{Binding DeletionRequestCommand}" Margin="10" FontSize="20"/>
+                    </Grid>
+                    <!--<DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsGif}" Value="True">
+                            <Setter Property="gif:ImageBehavior.AnimatedSource" TargetName="image" Value="{Binding URI}" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>-->
+                </DataTemplate>
+
+            </ItemsControl.Resources>
+            
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ui:PhysicPanel x:Name="panel" Background="Transparent">                       
@@ -26,17 +88,22 @@
 
                                 <ui:UbiContextMenu.MenuItems>
                                     <ui:MenuItemCollection>
-                                        <ui:UbiMenuItem Caption="Add yellow postit" Command="{Binding Postits.CreatePostitCommand}"  >
+                                        <ui:UbiMenuItem Caption="Add yellow postit" Command="{Binding Postits.CreatePostitCommand}" ConverterParameter="{x:Static local:HoldConverter+DataType.Text}"  >                                           
                                             <ui:UbiMenuItem.Converter>
-                                                <local:HoldConverter Color="LemonChiffon" VisualReference="{Binding ElementName=panel}" />
+                                                <local:HoldConverter Color="LemonChiffon" VisualReference="{Binding ElementName=panel}"  />
                                             </ui:UbiMenuItem.Converter>
                                         </ui:UbiMenuItem>
-                                        <ui:UbiMenuItem Caption="Add pink postit" Command="{Binding Postits.CreatePostitCommand}" >
+                                        <ui:UbiMenuItem Caption="Add pink postit" Command="{Binding Postits.CreatePostitCommand}" ConverterParameter="{x:Static local:HoldConverter+DataType.Text}"  >
                                             <ui:UbiMenuItem.Converter>
                                                 <local:HoldConverter Color="LightPink" VisualReference="{Binding ElementName=panel}" />
                                             </ui:UbiMenuItem.Converter>
                                         </ui:UbiMenuItem>
-                                        <ui:UbiMenuItem Caption="Add green postit" Command="{Binding Postits.CreatePostitCommand}" >
+                                        <ui:UbiMenuItem Caption="Add green postit" Command="{Binding Postits.CreatePostitCommand}" ConverterParameter="{x:Static local:HoldConverter+DataType.Text}" >
+                                            <ui:UbiMenuItem.Converter>
+                                                <local:HoldConverter Color="YellowGreen" VisualReference="{Binding ElementName=panel}" />
+                                            </ui:UbiMenuItem.Converter>
+                                        </ui:UbiMenuItem>
+                                        <ui:UbiMenuItem Caption="Add browser" Command="{Binding Postits.CreatePostitCommand}" ConverterParameter="{x:Static local:HoldConverter+DataType.Browser}" >
                                             <ui:UbiMenuItem.Converter>
                                                 <local:HoldConverter Color="YellowGreen" VisualReference="{Binding ElementName=panel}" />
                                             </ui:UbiMenuItem.Converter>
@@ -60,19 +127,20 @@
                         </ui:UbiContextMenu.ContextMenu>
                     </ui:PhysicPanel>
                 </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <cmc:Postit Background="{Binding Color}" Text="{ Binding Text }" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+            </ItemsControl.ItemsPanel>          
 
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <Setter Property="ui:PhysicItem.PhysicItem">
+                        <Setter.Value> 
+                            <ui:PhysicItem Position="{ Binding Position}" Angle="{ Binding Orientation}" GroupIndex="-1" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="bu:InteractivityAsRessource.Behaviors">
                         <Setter.Value>
-                            <ui:PhysicItem Position="{ Binding Position}" Angle="{ Binding Orientation}"/>
+                            <bu:Behaviors>
+                                <pn:ZIndexAlwaysOnTop RaiseIndexEvent="g:DragProcessor.DragStart" DecreaseIndexEvent="g:DragProcessor.DragEnd" />
+                            </bu:Behaviors>
                         </Setter.Value>
                     </Setter>
                 </Style>

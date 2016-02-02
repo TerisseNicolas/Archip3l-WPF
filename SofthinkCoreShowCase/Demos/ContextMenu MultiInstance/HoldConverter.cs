@@ -9,8 +9,8 @@ using SofthinkCore.Gestures.Processor;
 using System.Windows;
 using System.Windows.Media;
 using SofthinkCore.Utils;
-using DemoCommon.Model;
 using SofthinkCore.UI.ContextMenu;
+using SofthinkCoreShowCase.DemoCommon.Model;
 
 namespace SofthinkCoreShowCase.Demos.ContextMenu_MultiInstance
 {

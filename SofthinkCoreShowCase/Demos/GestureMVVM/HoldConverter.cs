@@ -9,7 +9,8 @@ using SofthinkCore.Gestures.Processor;
 using System.Windows;
 using System.Windows.Media;
 using SofthinkCore.Utils;
-using DemoCommon.Model;
+using SofthinkCoreShowCase.DemoCommon.Model;
+using SofthinkCore.Gestures;
 
 namespace SofthinkCoreShowCase.Demos.GestureMVVM
 {
@@ -29,7 +30,7 @@ namespace SofthinkCoreShowCase.Demos.GestureMVVM
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var tap = value as HoldEventArgs;
+            var tap = value as GestureEventArgs;
             //return (Point) (VisualReference.PointFromScreen(tap.Center) - new Point(75, 75));    
             return new PostitViewModel() { Text = RandomHelper.GetRandomSmallerThan(50), Position = (Point)(VisualReference.PointFromScreen(tap.Transform.Center) - new Point(75, 75)) };
         }

@@ -4,11 +4,14 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:c="clr-namespace:DemoCommon.Controls"
 >
     <Style x:Key="{x:Type c:Postit}" TargetType="{x:Type c:Postit}">
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="150" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type c:Postit}">
-                    <Border BorderThickness="3" BorderBrush="Black" Width="150" Height="150" Background="{TemplateBinding Background}">
-                        <TextBlock Text="{TemplateBinding Text}" Margin="10" FontSize="20"  TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center"/>
+                    <Border BorderThickness="3" BorderBrush="Black"  Background="{TemplateBinding Background}">
+                        <TextBlock Text="{TemplateBinding Text}" Margin="10"  TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -19,9 +22,9 @@ xmlns:c="clr-namespace:DemoCommon.Controls"
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type c:Postit}">
-                            <Border BorderThickness="3" BorderBrush="Black" Width="150" Height="150" Background="{TemplateBinding Background}">
+                            <Border BorderThickness="3" BorderBrush="Black"  Background="{TemplateBinding Background}">
                                 <Viewbox>
-                                    <TextBlock Text="{TemplateBinding Text}" Margin="10" FontSize="20"  TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{TemplateBinding Text}" Margin="10"  TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center"/>
                                 </Viewbox>
                             </Border>
                         </ControlTemplate>

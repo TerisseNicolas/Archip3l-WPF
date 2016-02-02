@@ -25,7 +25,7 @@
         </Border>
 
         <Border BorderBrush="Thistle"  BorderThickness="5"  HorizontalAlignment="Center" Margin="10">
-            <ScrollViewer >
+            <ScrollViewer PanningMode="Both" CanContentScroll="True"  >
                 <Border BorderBrush="BlueViolet"  BorderThickness="5" >
                     <Image Source="/SofthinkCore;Component/Resources/Images/Lenna.png"  Stretch="Uniform"/>
                 </Border>

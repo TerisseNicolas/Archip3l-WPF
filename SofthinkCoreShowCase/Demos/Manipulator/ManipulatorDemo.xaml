@@ -49,6 +49,9 @@
                 <manip:Manipulator.Manipulator>
                     <manip:PhysicManipulator ManipulationSource="{Binding ElementName=gesture}" />
                 </manip:Manipulator.Manipulator>
+                <phy:PhysicItem.PhysicItem>
+                    <phy:PhysicItem Gravity="0,50" Friction="2"  InitialyseWithUIPosition="True" />
+                </phy:PhysicItem.PhysicItem>
             </Border>
 
             <Border Width="150" Height="150" Background="Coral" BorderBrush="Black" BorderThickness="2" >
@@ -60,9 +63,12 @@
                 <manip:Manipulator.Manipulator>
                     <manip:PhysicManipulator ManipulationSource="{Binding ElementName=gesture2}" />
                 </manip:Manipulator.Manipulator>
+                <phy:PhysicItem.PhysicItem>
+                    <phy:PhysicItem Gravity="0,50" Friction="2"  InitialyseWithUIPosition="True" />
+                </phy:PhysicItem.PhysicItem>
             </Border>
 
-            <Ellipse Width="150" Height="150"   >
+            <Ellipse Width="150" Height="150"  Stroke="BlueViolet"  StrokeThickness="10" >
                 <Ellipse.Fill>
                     <LinearGradientBrush>
                         <GradientStop Color="Blue" Offset="0"/>
@@ -75,7 +81,7 @@
                     <g:ManipulationProcessor x:Name="gesture3"/>
                 </g:Gesture.Collection>
                 <phy:PhysicItem.PhysicItem>
-                    <phy:PhysicItem Gravity="0,50" Friction="2" BodyStyle="Shape" >
+                    <phy:PhysicItem Gravity="0,50" Friction="2" BodyStyle="Shape"  InitialyseWithUIPosition="True" >
                         <phy:PhysicItem.Shape>
                             <EllipseGeometry RadiusX="75" RadiusY="75"  Center="75,75"/>
                         </phy:PhysicItem.Shape>

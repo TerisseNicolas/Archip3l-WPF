@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cmc="clr-namespace:DemoCommon.Controls"
-             xmlns:cmm="clr-namespace:DemoCommon.Model"
+             xmlns:cmm="clr-namespace:SofthinkCoreShowCase.DemoCommon.Model"
              xmlns:bh="clr-namespace:SofthinkCore.UI.Base.BehaviorUtils;assembly=SofthinkCore"
              xmlns:menu="clr-namespace:SofthinkCore.UI.ContextMenu;assembly=SofthinkCore"
              xmlns:g="clr-namespace:SofthinkCore.Gestures;assembly=SofthinkCore"

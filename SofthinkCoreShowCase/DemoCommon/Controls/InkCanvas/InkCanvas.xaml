@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.DemoCommon.Controls.InkCanvas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ui="http://SofthinkCore/UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ControlTemplate TargetType="{x:Type ui:TouchButton}" x:Key="color_button_temp">
+            <Ellipse Width="50" Height="50" Fill="{TemplateBinding Background}"/>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel >
+            <StackPanel Orientation="Horizontal">
+                <ui:TouchButton Template="{StaticResource color_button_temp}" Background="Black" ButtonTap="ColorButtonTap"/>
+                <ui:TouchButton Template="{StaticResource color_button_temp}" Background="Red" ButtonTap="ColorButtonTap"/>
+                <ui:TouchButton Template="{StaticResource color_button_temp}" Background="Blue" ButtonTap="ColorButtonTap"/>
+                <ui:TouchButton Template="{StaticResource color_button_temp}" Background="Green" ButtonTap="ColorButtonTap"/>
+            </StackPanel>
+        <ui:UbiInkCanvas x:Name="inkCanvas" Width="800" Height="500" Background="WhiteSmoke">
+            <ui:UbiInkCanvas.DefaultDrawingAttributes>
+                <DrawingAttributes Color="Red" Height="10" Width="5" FitToCurve="True" />
+            </ui:UbiInkCanvas.DefaultDrawingAttributes>
+        </ui:UbiInkCanvas>
+        <StackPanel>
+            <ui:TouchButton x:Name="analyseButton" Content="Analyse" Margin="20"  ButtonTap="analyseButton_ButtonTap"  />
+            <ui:TouchButton x:Name="clear" Content="Clear" ButtonTap="clear_ButtonTap"/>
+        </StackPanel>
+
+        <TextBlock x:Name="inkResult" />
+        </StackPanel>
+    </Grid>
+</UserControl>

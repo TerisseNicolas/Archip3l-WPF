@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SofthinkCoreShowCase.Demos.Zoom
 {
@@ -25,6 +26,10 @@ namespace SofthinkCoreShowCase.Demos.Zoom
     [SofthinkCoreShowCase.DemoManager.Demo(Name = "Zoom Virtualized",Category="Zoom")]
     public partial class ZoomVirtualized : UserControl
     {
+        int x = 0;
+        int y = 200;
+        int i = 0;
+
         public ZoomVirtualized()
         {
             InitializeComponent();
@@ -32,18 +37,39 @@ namespace SofthinkCoreShowCase.Demos.Zoom
             canvas.ContentCanvas.Background = FindResource("brush") as Brush;
 
             var zoom = new MapZoom(canvas.ContentCanvas);
-            int x = 0;
-            int y = 200;
+            
 
-            for(int i = 0;i < 10000;i++)
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(20);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+            
+                
+            //LayoutUpdated += ZoomTest_LayoutUpdated;
+
+            scroll.ScrollChanged += scroll_ScrollChanged;
+            
+        }
+
+        void timer_Tick(object sender, EventArgs ta)
+        {
+            int tempi = 0;
+            for (; canvas.VirtualChildren.Count < 10000 && tempi < 1000; i++)
             {
-                var e = new Grid { Width = 100, Height = 100 ,ClipToBounds = false};
+                var e = new Grid { Width = 100, Height = 100, ClipToBounds = false };
                 var el = new Ellipse { Fill = Brushes.Red, Stroke = Brushes.Black, StrokeThickness = 2 };
                 e.Children.Add(el);
-                var t = new TextBlock {  Text = i.ToString(), FontSize = 30 , ClipToBounds = false , VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Center};
+                var t = new TextBlock
+                {
+                    Text = i.ToString(),
+                    FontSize = 30,
+                    ClipToBounds = false,
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Center
+                };
                 e.Children.Add(t);
-                VirtualCanvas.SetX(e,x * 100);
+                VirtualCanvas.SetX(e, x * 100);
                 VirtualCanvas.SetY(e, Math.Sin(i) * 200 + y);
                 e.CacheMode = new BitmapCache();
                 canvas.VirtualChildren.Add(e);
@@ -51,11 +77,10 @@ namespace SofthinkCoreShowCase.Demos.Zoom
                 var zoomProperty = DependencyPropertyDescriptor.FromProperty(TouchScrollViewer.ScrollViewerZoomProperty, typeof(Grid));
                 zoomProperty.AddValueChanged(e, new EventHandler(ZoomChanged));
 
-                e.RenderTransformOrigin = new Point(0.5,0.5);
+                e.RenderTransformOrigin = new Point(0.5, 0.5);
                 e.RenderTransform = new ScaleTransform();
 
                 //el.Loaded += e_Loaded;
-                
 
                 x++;
 
@@ -63,14 +88,17 @@ namespace SofthinkCoreShowCase.Demos.Zoom
                 {
                     x = 0;
                     y += 500;
-                }                  
-                
-            }
-                
-            //LayoutUpdated += ZoomTest_LayoutUpdated;
+                }
 
-            scroll.ScrollChanged += scroll_ScrollChanged;
-            
+                tempi++;
+
+            }
+
+            if(canvas.VirtualChildren.Count >= 10000)
+            {
+                var t = sender as DispatcherTimer;
+                t.Stop();
+            }
         }
 
         /*void e_Loaded(object sender, RoutedEventArgs e)

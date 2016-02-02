@@ -12,57 +12,7 @@
         Title="SofthinkCore Showcase" >
     
 
-    <Grid>
-        <!--<Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="400"/>
-        </Grid.ColumnDefinitions>
-        
-        <Border Grid.Column="0" Background="AliceBlue" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Background="WhiteSmoke" Grid.Row="0"  Text="{Binding CurrentDemoName}" TextAlignment="Center" FontSize="30" Panel.ZIndex="1"/>
-                <ContentPresenter Grid.Row="1" x:Name="DemoContainer">
-                    <ContentPresenter.Content>
-                        <sh:ShowcaseHome></sh:ShowcaseHome>
-                    </ContentPresenter.Content>                 
-                </ContentPresenter>
-            </Grid>          
-        </Border>
-        <Border Grid.Column="1" Background="WhiteSmoke" BorderThickness="30" BorderBrush="WhiteSmoke">
-            <ItemsControl ItemsSource="{ Binding DemoCollection}">
-                <ItemsControl.Template>
-                    <ControlTemplate>
-                        <uic:TouchScrollViewer>
-                            <StackPanel IsItemsHost="True" Orientation="Vertical"/>
-                        </uic:TouchScrollViewer>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-                
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="ai:DemoInfo">
-                        <Border BorderThickness="0,0,0,2" BorderBrush="LightGray" Background="WhiteSmoke"  Padding="5">
-                            <g:Gesture.Collection>
-                                <gp:TapProcessor Tap="TapProcessor_Tap"/>
-                            </g:Gesture.Collection>
-                            <TextBlock Text="{Binding Name}" Margin="20" FontSize="20"/>
-                        </Border>                      
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>-->
+    <Grid>       
         <dm:DemoManager/>
     </Grid>
 </app:SofthinkWindow>

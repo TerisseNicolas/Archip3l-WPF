@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SofthinkCoreShowCase.DemoCommon.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace DemoCommon.Model
+namespace SofthinkCoreShowCase.DemoCommon.Model
 {
     public class PostitViewModelA : PostitViewModel
     {

@@ -28,7 +28,11 @@
                 <Style>
                     <Setter Property="ui:PhysicItem.PhysicItem">
                         <Setter.Value>
-                            <ui:PhysicItem Position="{ Binding Position}" Angle="{ Binding Orientation}"/>
+                            <ui:PhysicItem Position="{ Binding Position}" Angle="{ Binding Orientation}"  >
+                                <!--<ui:PhysicItem.Shape>
+                                    <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                                </ui:PhysicItem.Shape>-->
+                            </ui:PhysicItem>
                         </Setter.Value>
                     </Setter>
                 </Style>

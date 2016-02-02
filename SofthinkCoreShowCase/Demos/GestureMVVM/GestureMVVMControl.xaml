@@ -19,13 +19,19 @@
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas x:Name="canvas" Background="AliceBlue">
+                    <Canvas x:Name="canvas" Background="AliceBlue"    > <!--:TapProcessor.TapBubble="{uib:RoutedEventCommandExtension {Binding Postits.CreatePostitCommand}}" >-->
                         <Canvas.Resources>
                             <!-- convert HoldEventArgs to a Point taking into account the size of a postit to make the point directly consomable by ViewModel-->
                             <local:HoldConverter x:Key="holdConv" VisualReference="{Binding ElementName=canvas}"/>
                         </Canvas.Resources>
+                        
+                        <uib:CommandCollection.CommandCollection>
+                            <uib:CommandSource uib:CommandCollection.Event="gp:TapProcessor.TapBubble" Command="{Binding Postits.CreatePostitCommand}" Converter="{StaticResource holdConv}" />
+                        </uib:CommandCollection.CommandCollection>
+                        
                         <g:Gesture.Collection>
                             <gp:HoldProcessor AllowMultipleInstance="True" CatchChildEvent="False"/>
+                            <gp:TapProcessor/>
                         </g:Gesture.Collection>
 
                         <i:Interaction.Triggers>

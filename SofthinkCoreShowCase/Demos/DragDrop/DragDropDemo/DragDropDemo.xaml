@@ -77,6 +77,17 @@
                             </dd:DragDropParameters>
                         </dd:DragAndDrop.DragDropParameters>
 
+                        <!--<i:Interaction.Triggers>
+                             Start Drag Action : Call RemovePostitCommand 
+                            <uib:RoutedEventTrigger Event="dd:DragAndDrop.DragStarted" >
+                                <ic:ChangePropertyAction PropertyName="Visibility" Value="Hidden" />
+                            </uib:RoutedEventTrigger>
+                             Drop Action : Call CreatePostitCommand 
+                            <uib:RoutedEventTrigger Event="dd:DragAndDrop.Drop" >
+                                <ic:ChangePropertyAction PropertyName="Visibility" Value="Visible"  />
+                            </uib:RoutedEventTrigger>
+                        </i:Interaction.Triggers>-->
+
                     </cmc:Postit>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

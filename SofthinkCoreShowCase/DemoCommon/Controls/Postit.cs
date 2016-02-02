@@ -28,10 +28,17 @@ namespace DemoCommon.Controls
 
         private static object CoerceText(DependencyObject obj,object value)
         {
+            if (value == null)
+                return null;
+
             var postit = obj as Postit;
             if(postit.ExpandText)
             {
-                int maxln = 17;
+                double w = postit.RenderSize.Width;
+                var size = postit.GetValue(FontSizeProperty);
+                int maxln = (int)((double)w / ((double)size/2.0));
+                if (maxln < 1)
+                    maxln = 1;
                 string nwtext = "";
                 int start = 0;
                 string real_text = value as string;
@@ -53,7 +60,7 @@ namespace DemoCommon.Controls
                     else
                     {
                         ind = LastIndexOfScriptioContinua(sub);
-                        if(ind != -1)
+                        if(ind != -1 && ind > 0)
                         {
                             nwtext += sub.Substring(0, ind -1) + ((start + ind  >= real_text.Length) ? "" : "\n");
                             start += ind +1;
@@ -78,7 +85,7 @@ namespace DemoCommon.Controls
             while( i >= 0)
             {
                 int ch = st[i];
-                if ( ch == ' ' || ch == '\t' )
+                if ( ch == ' ' || ch =='-' || ch == '\t' )
                     return i;
                 i--;
             }
@@ -114,6 +121,13 @@ namespace DemoCommon.Controls
         private static void OnExpandTextChanged(DependencyObject obj, DependencyPropertyChangedEventArgs arg)
         {
             obj.CoerceValue(TextProperty);
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+
+            CoerceValue(TextProperty);
         }
 
         

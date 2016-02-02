@@ -1,5 +1,4 @@
-﻿using DemoCommon.Model;
-using SofthinkCore.UI.DragDrop;
+﻿using SofthinkCore.UI.DragDrop;
 using SofthinkCoreShowCase.DemoCommon.Model;
 using System;
 using System.Collections.Generic;

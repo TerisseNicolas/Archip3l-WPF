@@ -24,6 +24,15 @@ namespace SofthinkCoreShowCase.Demos.DragDrop
         public DragDropHitTest()
         {
             InitializeComponent();
+
+            targetdrop.AddHandler(SofthinkCore.UI.DragDrop.DragAndDrop.CanDropEvent, new RoutedEventHandler(OnCanDrop));
+            targetdrop2.AddHandler(SofthinkCore.UI.DragDrop.DragAndDrop.CanDropEvent, new RoutedEventHandler(OnCanDrop));
+            targetdrop3.AddHandler(SofthinkCore.UI.DragDrop.DragAndDrop.CanDropEvent, new RoutedEventHandler(OnCanDrop));
+        }
+
+        private void OnCanDrop(object sender,RoutedEventArgs arg)
+        {
+            arg.Handled = true;
         }
 
         private void targetdrop_CanDrop(object sender, RoutedEventArgs e)

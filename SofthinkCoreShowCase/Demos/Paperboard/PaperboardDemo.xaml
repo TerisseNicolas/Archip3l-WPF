@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="SofthinkCoreShowCase.Demos.Paperboard.PaperboardDemo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ui="http://SofthinkCore/UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="2000" d:DesignWidth="2000">
+    <Grid Background="AliceBlue">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Page Count : "  Margin="5"/>
+                <TextBlock Text="{Binding ElementName=editor,Path=Pages.Count}" Margin="5"/>
+                <TextBlock Text="Current : "  Margin="5"/>
+                <TextBlock Text="{Binding ElementName=editor,Path=CurrentPage}" Margin="5"/>
+                <ui:TouchButton ButtonTap="TouchButton_ButtonTap" >Save Xps</ui:TouchButton>
+            </StackPanel>
+            
+            <ui:TouchButton VerticalAlignment="Top"  Height="50" x:Name="button_plus" ButtonTap="button_plus_ButtonTap" >+</ui:TouchButton>
+            <ui:TouchButton VerticalAlignment="Top" Height="50" x:Name="button_minus" ButtonTap="button_minus_ButtonTap" >-</ui:TouchButton>
+            <StackPanel Orientation="Vertical">
+                <ui:UbiPaperBoard Margin="50"  x:Name="editor" >                   
+                </ui:UbiPaperBoard>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
