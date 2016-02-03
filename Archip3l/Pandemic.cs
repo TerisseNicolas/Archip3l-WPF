@@ -15,7 +15,7 @@ namespace Archip3l
 
         public async Task<bool> applyEffect()
         {
-
+            return true;
         }
     }
 }
