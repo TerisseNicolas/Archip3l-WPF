@@ -19,6 +19,8 @@ namespace VerticalArchip3l
             this.Game = game;
             this.MainWindow = mainWindow;
             this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
+            this.Game.Sounds.playNameSelection();
+            show();
         }
         public void show()
         { 
@@ -47,7 +49,7 @@ namespace VerticalArchip3l
             Canvas.SetTop(startButton, 661);
             Canvas.SetRight(startButton, 50);
 
-            this.startButton_Tap(null, null);
+            //this.startButton_Tap(null, null);
         }
         private void startButton_Tap(object sender, EventArgs e)
         {

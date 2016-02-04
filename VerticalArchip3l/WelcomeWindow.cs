@@ -24,6 +24,9 @@ namespace VerticalArchip3l
             var border = new Border();
             var tap = new TapProcessor();
             border.AddGesture(tap);
+
+            this.Game.Sounds.playWelcome();
+            show();
         }
         public void show()
         {

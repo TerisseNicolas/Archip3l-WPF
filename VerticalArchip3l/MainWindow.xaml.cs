@@ -34,23 +34,23 @@ namespace VerticalArchip3l
         public void welcomeWindow()
         {
             this.WelcomeWindow = new WelcomeWindow(this.Game, this);
-            this.WelcomeWindow.show();
+            //this.WelcomeWindow.show();
         }
         public void newGameWindow()
         {
             this.GameWindow = new GameWindow(this.Game, this);
-            this.GameWindow.show();
+            //this.GameWindow.show();
 
         }
         public void playingGameWindow()
         {
             this.PlayingGameWindow = new PlayingGameWindow(this.Game, this);
-            this.PlayingGameWindow.show();           
+            //this.PlayingGameWindow.show();           
         }
         public void resultWindow()
         {
             this.ResultWindow = new ResultWindow(this.Game, this);
-            this.ResultWindow.show();
+            //this.ResultWindow.show();
 
         }
     }

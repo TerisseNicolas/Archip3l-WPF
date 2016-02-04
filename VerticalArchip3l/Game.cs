@@ -9,6 +9,7 @@ namespace VerticalArchip3l
     {
         private Timer timer;
         public List<Trophy> Trophies;
+        public SoundManager Sounds;
         public ScoreManager Scores { get; private set; }
         public int Score { get; private set;  }
         public string TeamName { get; private set; } 
@@ -19,6 +20,7 @@ namespace VerticalArchip3l
             this.Score = 0;
             this.Trophies = new List<Trophy>();
             this.Scores = new ScoreManager();
+            this.Sounds = new SoundManager();
             this.Scores.addScore("New team", 38);
             this.Scores.saveScores();
 

@@ -19,6 +19,8 @@ namespace VerticalArchip3l
         {
             this.Game = game;
             this.MainWindow = mainWindow;
+            this.Game.Sounds.playMainTheme();
+            show();
         }
         public void show()
         {
