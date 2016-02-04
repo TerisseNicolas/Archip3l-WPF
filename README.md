@@ -1,7 +1,7 @@
 # Archip3l
 - Plateforme à utiliser pour le Debug : x86
 - .dll nécessaires : libTUIO et SofthinkCore
-- NuGets à installer : FarseerPhysics et NLog
+- NuGets à installer : FarseerPhysics, NLog, CefSharp.WPF
 
 #Formatage
 - Nom des images: classe-status-nom.png (tout en minuscule)
