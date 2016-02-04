@@ -24,7 +24,7 @@ namespace Archip3l
         public Building getBuilding(string name)
         {
             int i = 0;
-            while (i <= buildings.Count)
+            while (i <= buildings.Count)  // Mec quand i == building.count(), t'es out of range ^^
             {
                 if (buildings[i].name == name)
                     return buildings[i];
