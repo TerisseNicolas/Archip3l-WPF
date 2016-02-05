@@ -29,7 +29,7 @@ namespace VerticalArchip3l
 
             //Managing time=================================================================================================
             //this.Timer = new Timer(this, 0, 15, 0);          
-            this.Timer = new Timer(this, 0, 1, 3);
+            this.Timer = new Timer(this, 0, 0, 13);
 
             //Trophies======================================================================================================
             Trophy trophy1 = new Trophy(1, "Trophée ressources", "Gain de ressources", 50, 50, null);

@@ -3,6 +3,8 @@ using SofthinkCore.UI.ContextMenu;
 using SofthinkCore.UI.Controls;
 using System;
 using System.IO;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,12 +15,16 @@ namespace VerticalArchip3l
 {
     class PlayingGameWindow
     {
-        Game Game;
-        MainWindow MainWindow;
+        public Game Game;
+        public MainWindow MainWindow;
+        private System.Timers.Timer TransitionTimer;
 
         //Important widgets
-        Label timerLabel;
-        Label scoreLabel;
+        private ScaleTransform MainScaleTransform;
+        private Grid grid;
+        private Canvas MainCanvas;
+        private Label timerLabel;
+        private Label scoreLabel;
 
 
         public PlayingGameWindow(Game game, MainWindow mainWindow)
@@ -31,9 +37,7 @@ namespace VerticalArchip3l
             this.Game.State = GameState.Playing;
             this.Game.Sounds.playTheme();
 
-            //Widgets
-            this.timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 00:00", };
-            this.scoreLabel = new Label { Name = "ScoreLabel", FontSize = 60, Content = "Score actuel : 0", };
+            this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
 
             show();
         }
@@ -41,7 +45,7 @@ namespace VerticalArchip3l
         public void show()
         {
             //Grid=================================================================
-            Grid grid = new Grid();
+            this.grid = new Grid();
             this.MainWindow.Content = grid;
             grid.Background = Brushes.Aqua;
             grid.ShowGridLines = true;
@@ -60,14 +64,14 @@ namespace VerticalArchip3l
             UpperCanvas.Background = Brushes.Ivory;
             Canvas MiddleCanvas = new Canvas();
             MiddleCanvas.Background = Brushes.GreenYellow;
-            Canvas MainCanvas = new Canvas();
+            this.MainCanvas = new Canvas();
 
             Grid.SetRow(UpperCanvas, 0);
             Grid.SetRow(MiddleCanvas, 1);
             Grid.SetRow(MainCanvas, 2);
             grid.Children.Add(UpperCanvas);
             grid.Children.Add(MiddleCanvas);
-            grid.Children.Add(MainCanvas);     
+            grid.Children.Add(MainCanvas);
 
             //UpperCanvas=================================================================
             //Trophies
@@ -83,11 +87,13 @@ namespace VerticalArchip3l
             }
 
             //Timer
+            this.timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 15:00", };
             UpperCanvas.Children.Add(this.timerLabel);
             Canvas.SetTop(timerLabel, 15);
             Canvas.SetRight(timerLabel, 20);
 
             //Score
+            this.scoreLabel = new Label { Name = "ScoreLabel", FontSize = 60, Content = "Score actuel : 0", };
             UpperCanvas.Children.Add(this.scoreLabel);
             Canvas.SetTop(scoreLabel, 100);
             Canvas.SetRight(scoreLabel, 20);
@@ -129,8 +135,14 @@ namespace VerticalArchip3l
             this.timerLabel.Content = "Temps restant : " + this.Game.Timer.ToString();
             Console.WriteLine("Temps restant : " + this.Game.Timer.ToString());
         }
-        private void Timer_FinalTick(object sender, FinalTickEventArgs e)
+        private async void Timer_FinalTick(object sender, FinalTickEventArgs e)
         {
+            Image finishImage = new Image { Name = "finisheImage", Source = new BitmapImage(new Uri("C:/tempConcours/timeIsUp.png", UriKind.RelativeOrAbsolute)) };
+            finishImage.RenderTransform = MainScaleTransform;
+            this.MainCanvas.Children.Add(finishImage);
+            Canvas.SetLeft(finishImage, 0);
+            Canvas.SetTop(finishImage, 0);
+            await Task.Delay(TimeSpan.FromSeconds(5));
             this.MainWindow.resultWindow();
         }
     }
