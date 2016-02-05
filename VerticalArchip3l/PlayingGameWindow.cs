@@ -124,6 +124,8 @@ namespace VerticalArchip3l
             b1.Content = "click me";
             MainCanvas.Children.Add(b1);
             b1.Click += B1_Click;
+
+            this.Game.increaseScore(37);
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
@@ -137,6 +139,7 @@ namespace VerticalArchip3l
         }
         private async void Timer_FinalTick(object sender, FinalTickEventArgs e)
         {
+            this.Game.finish();
             Image finishImage = new Image { Name = "finisheImage", Source = new BitmapImage(new Uri("C:/tempConcours/timeIsUp.png", UriKind.RelativeOrAbsolute)) };
             finishImage.RenderTransform = MainScaleTransform;
             this.MainCanvas.Children.Add(finishImage);

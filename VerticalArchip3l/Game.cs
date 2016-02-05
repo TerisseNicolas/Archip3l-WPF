@@ -14,7 +14,7 @@ namespace VerticalArchip3l
         public GameState State { get; set; }
         public ScoreManager Scores { get; private set; }
         public int Score { get; private set;  }
-        public string TeamName { get; private set; } 
+        public string TeamName { get; set; } 
 
         public Game(string team)
         {
@@ -57,6 +57,10 @@ namespace VerticalArchip3l
             this.Scores.addScore(this.TeamName, this.Score);
             this.Scores.saveScores();
 
+        }
+        public void increaseScore(int add)
+        {
+            this.Score += add;
         }
     }
 }

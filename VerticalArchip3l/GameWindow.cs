@@ -13,6 +13,7 @@ namespace VerticalArchip3l
         Game Game;
         MainWindow MainWindow;
         private ScaleTransform MainScaleTransform;
+        private UbiTextBox teamNameTextBox;
 
         public GameWindow(Game game, MainWindow mainWindow)
         {
@@ -40,7 +41,7 @@ namespace VerticalArchip3l
             Canvas.SetTop(teamNameLabel, 650);
             Canvas.SetRight(teamNameLabel, 800);
 
-            UbiTextBox teamNameTextBox = new UbiTextBox { Name = "teamNameTextBox", Text = "nom", FontSize = 40, Width = 500, Height = 70 };
+            this.teamNameTextBox = new UbiTextBox { Name = "teamNameTextBox", Text = "nom", FontSize = 40, Width = 500, Height = 70 };
             canvas.Children.Add(teamNameTextBox);
             Canvas.SetTop(teamNameTextBox, 670);
             Canvas.SetRight(teamNameTextBox, 250);
@@ -57,6 +58,7 @@ namespace VerticalArchip3l
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
+            this.Game.TeamName = this.teamNameTextBox.Text;
             this.MainWindow.playingGameWindow();
         }
     }
