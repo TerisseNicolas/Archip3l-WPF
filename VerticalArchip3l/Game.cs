@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -7,7 +8,7 @@ namespace VerticalArchip3l
 {
     class Game
     {
-        private Timer timer;
+        public Timer Timer { get; private set; }
         public List<Trophy> Trophies;
         public SoundManager Sounds;
         public GameState State { get; set; }
@@ -27,7 +28,8 @@ namespace VerticalArchip3l
             this.Scores.saveScores();
 
             //Managing time=================================================================================================
-            this.timer = new Timer(0, 15, 0);
+            //this.Timer = new Timer(this, 0, 15, 0);          
+            this.Timer = new Timer(this, 0, 1, 3);
 
             //Trophies======================================================================================================
             Trophy trophy1 = new Trophy(1, "Trophée ressources", "Gain de ressources", 50, 50, null);
@@ -43,10 +45,12 @@ namespace VerticalArchip3l
             trophy2.changeToObtained();
             trophy3.changeToObtained();
             trophy5.changeToObtained();
+
+            this.start();
         }
         public void start()
         {
-            this.timer.start();
+            this.Timer.start();
         }
         public void finish()
         {

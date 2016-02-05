@@ -1,11 +1,12 @@
 ﻿using SofthinkCore.UI;
 using SofthinkCore.UI.ContextMenu;
+using SofthinkCore.UI.Controls;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Text;
 
 
 namespace VerticalArchip3l
@@ -15,16 +16,28 @@ namespace VerticalArchip3l
         Game Game;
         MainWindow MainWindow;
 
+        //Important widgets
+        Label timerLabel;
+        Label scoreLabel;
+
+
         public PlayingGameWindow(Game game, MainWindow mainWindow)
         {
             this.Game = game;
+            this.Game.Timer.Dispatcher.Tick += Dispatcher_Tick;
+            this.Game.Timer.FinalTick += Timer_FinalTick;
             this.MainWindow = mainWindow;
 
             this.Game.State = GameState.Playing;
             this.Game.Sounds.playTheme();
-            
+
+            //Widgets
+            this.timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 00:00", };
+            this.scoreLabel = new Label { Name = "ScoreLabel", FontSize = 60, Content = "Score actuel : 0", };
+
             show();
         }
+
         public void show()
         {
             //Grid=================================================================
@@ -70,14 +83,12 @@ namespace VerticalArchip3l
             }
 
             //Timer
-            Label timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 00:00", };
-            UpperCanvas.Children.Add(timerLabel);
+            UpperCanvas.Children.Add(this.timerLabel);
             Canvas.SetTop(timerLabel, 15);
             Canvas.SetRight(timerLabel, 20);
 
             //Score
-            Label scoreLabel = new Label { Name = "ScoreLabel", FontSize = 60, Content = "Score actuel : 0", };
-            UpperCanvas.Children.Add(scoreLabel);
+            UpperCanvas.Children.Add(this.scoreLabel);
             Canvas.SetTop(scoreLabel, 100);
             Canvas.SetRight(scoreLabel, 20);
 
@@ -113,7 +124,12 @@ namespace VerticalArchip3l
         {
             Console.WriteLine("coucou");
         }
-        public void timeUp()
+        private void Dispatcher_Tick(object sender, EventArgs e)
+        {
+            this.timerLabel.Content = "Temps restant : " + this.Game.Timer.ToString();
+            Console.WriteLine("Temps restant : " + this.Game.Timer.ToString());
+        }
+        private void Timer_FinalTick(object sender, FinalTickEventArgs e)
         {
             this.MainWindow.resultWindow();
         }

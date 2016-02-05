@@ -14,10 +14,13 @@ namespace VerticalArchip3l
         public TimeSpan RemainingTime { get; private set; }
         private TimeSpan EndTimer;
         private TimeSpan Interval;
-        private DispatcherTimer Dispatcher;
+        public DispatcherTimer Dispatcher;
+        public Game Game { get; private set; }
+        public event EventHandler<FinalTickEventArgs> FinalTick;
 
-        public Timer(int hours, int minutes, int secondes)
+        public Timer(Game game, int hours, int minutes, int secondes)
         {
+            this.Game = game;
             this.StartTimer = new TimeSpan(hours, minutes, secondes);
             this.EndTimer = new TimeSpan(0, 0, 0);
             this.Interval = new TimeSpan(0, 0, -1);
@@ -54,13 +57,6 @@ namespace VerticalArchip3l
                 return false;
             }
         }
-        private void updateAftermath()
-        {
-            // mettre a jour l'affichage
-            Console.WriteLine("Temps restant : " + this.ToString());
-            // gerer la liste des processus en cours (construction batiments..)
-            // production des ressources
-        }
         public override string ToString()
         {
             return String.Format("{0:00}:{1:00}", this.RemainingTime.Minutes, this.RemainingTime.Seconds);
@@ -75,10 +71,14 @@ namespace VerticalArchip3l
                 }
                 else
                 {
+                    if(this.FinalTick != null)
+                    {
+                        FinalTick(this, new FinalTickEventArgs());
+                    }
                     this.stop();
                 }
-                this.updateAftermath();
             }
         }
     }
+    class FinalTickEventArgs : EventArgs { }
 }
