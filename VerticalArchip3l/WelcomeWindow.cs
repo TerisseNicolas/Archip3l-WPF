@@ -25,7 +25,9 @@ namespace VerticalArchip3l
             var tap = new TapProcessor();
             border.AddGesture(tap);
 
-            this.Game.Sounds.playWelcome();
+            this.Game.State = GameState.Sleeping;
+            this.Game.Sounds.playTheme();
+
             show();
         }
         public void show()
@@ -52,8 +54,6 @@ namespace VerticalArchip3l
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            this.Game.Sounds.playNameSelection();
-            this.Game.State = GameState.NameFilling;
             this.MainWindow.newGameWindow();
         }
     }

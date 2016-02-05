@@ -19,7 +19,10 @@ namespace VerticalArchip3l
         {
             this.Game = game;
             this.MainWindow = mainWindow;
-            this.Game.Sounds.playMainTheme();
+
+            this.Game.State = GameState.Playing;
+            this.Game.Sounds.playTheme();
+            
             show();
         }
         public void show()
@@ -112,8 +115,6 @@ namespace VerticalArchip3l
         }
         public void timeUp()
         {
-            this.Game.Sounds.playNameSelection();
-            this.Game.State = GameState.ScoreViewing;
             this.MainWindow.resultWindow();
         }
     }

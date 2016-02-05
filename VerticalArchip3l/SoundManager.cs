@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VerticalArchip3l
 {
@@ -11,9 +8,12 @@ namespace VerticalArchip3l
     {
         private SoundPlayer Player;
         private Dictionary<GameState, string> Playlist;
+        private Game Game;
 
-        public SoundManager()
+        public SoundManager(Game game)
         {
+            this.Game = game;
+
             this.Playlist = new Dictionary<GameState, string>();
             this.Playlist.Add(GameState.Sleeping, "C:/tempConcours/welcomeMusic.wav");
             this.Playlist.Add(GameState.NameFilling, "C:/tempConcours/gameWindow.wav");
@@ -22,23 +22,9 @@ namespace VerticalArchip3l
 
             this.Player = new SoundPlayer();    
         }
-        public void playWelcome()
+        public void playTheme()
         {
-            this.Player.SoundLocation = Playlist[GameState.Sleeping];
-            this.start();
-        }
-        public void playNameSelection()
-        {
-            this.Player.SoundLocation = Playlist[GameState.NameFilling];
-            this.start();
-        }
-        public void playMainTheme()
-        {
-            this.Player.SoundLocation = Playlist[GameState.Playing];
-            this.start();
-        }
-        private void start()
-        {
+            this.Player.SoundLocation = Playlist[this.Game.State];
             this.Player.Load();
             this.Player.PlayLooping();
         }

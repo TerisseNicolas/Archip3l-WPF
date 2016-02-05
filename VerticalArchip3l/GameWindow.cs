@@ -19,7 +19,10 @@ namespace VerticalArchip3l
             this.Game = game;
             this.MainWindow = mainWindow;
             this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
-            this.Game.Sounds.playNameSelection();
+
+            this.Game.State = GameState.NameFilling;
+            this.Game.Sounds.playTheme();
+
             show();
         }
         public void show()
@@ -54,8 +57,6 @@ namespace VerticalArchip3l
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            this.Game.Sounds.playMainTheme();
-            this.Game.State = GameState.Playing;
             this.MainWindow.playingGameWindow();
         }
     }

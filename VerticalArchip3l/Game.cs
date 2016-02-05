@@ -22,7 +22,7 @@ namespace VerticalArchip3l
             this.State = GameState.Sleeping;
             this.Trophies = new List<Trophy>();
             this.Scores = new ScoreManager();
-            this.Sounds = new SoundManager();
+            this.Sounds = new SoundManager(this);
             this.Scores.addScore("New team", 38);
             this.Scores.saveScores();
 
