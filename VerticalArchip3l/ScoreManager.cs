@@ -21,7 +21,7 @@ namespace VerticalArchip3l
             string path = "C:/tempConcours/scores.txt";
             if (File.Exists(path))
             {
-                StreamReader file = new StreamReader(path); // Si le fichier n'existe pas?
+                StreamReader file = new StreamReader(path);
                 while ((line = file.ReadLine()) != null)
                 {
                     string[] words = line.Split('@');
@@ -78,60 +78,6 @@ namespace VerticalArchip3l
             }
             return final;
         }
-        public List<Tuple<int, string, int>> getFinalResult2(string teamName)
-        {
-            List<Tuple<int, string, int>> retour = new List<Tuple<int, string, int>>();
-            //add index in scores list
-
-            //int count = 0;
-            //int limit = 9;
-            //bool flag = false;
-            //int i = 0;
-            //int l = this.scores.
-            //while ((limit != 0) && (this.scores[i] != null))
-            //{
-            //    count += 1;
-            //    limit -= 1;
-            //    if (this.scores[i].Item1 == teamName)
-            //    {
-            //        flag = true;
-
-            //    }
-            //    retour.Add(new Tuple<int, string, int>(count, this.scores[i].Item1, this.scores[i].Item2));
-            //    i += 1;
-            //}
-            //if(flag)
-            //{
-            //    if(this.scores[i] != null)
-            //    {
-            //        retour.Add(new Tuple<int, string, int>(count, this.scores[i].Item1, this.scores[i].Item2));
-            //    }
-            //}
-            //else
-            //{
-            //    while(this.scores[i].Item1 != teamName)
-            //    {
-            //        i += 1;
-            //    }
-            //    retour.Add(new Tuple<int, string, int>(count, this.scores[i].Item1, this.scores[i].Item2));
-            //}
-            //foreach (Tuple<string, int> item in this.scores)
-            //{
-            //    count += 1;
-            //    if(limit == 0)
-            //    {
-            //        break;
-            //    }
-            //    if(item.Item1 == teamName)
-            //    {
-            //        flag = true;
-                    
-            //    }
-            //    retour.Add(new Tuple<int, string, int>(count, item.Item1, item.Item2));
-            //    limit -= 1;
-            //}
-            return retour;
-        }
         public void addScore(string teamName, int value)
         {
             bool flag = false;
@@ -159,30 +105,6 @@ namespace VerticalArchip3l
             }
             this.scores = temp;
         }
-        //public void addScore2(string teamName, int value)
-        //{
-        //    bool flag = false;
-        //    Tuple<string, int> add = new Tuple<string, int>(teamName, value);
-        //    List<Tuple<string, int>> temp = new List<Tuple<string, int>>();
-        //    foreach (Tuple<string, int> item in this.scores)
-        //    {
-        //        if ((item.Item2 <= value) && !flag)
-        //        {
-        //            flag = true;
-        //            temp.Add(add);
-        //            temp.Add(item);
-        //        }
-        //        else
-        //        {
-        //            temp.Add(item);
-        //        }
-        //    }
-        //    if(!flag)
-        //    {
-        //        temp.Add(add);
-        //    }
-        //    this.scores = temp;
-        //}
         public void saveScores()
         {
             StreamWriter file = new StreamWriter("C:/tempConcours/scores.txt", false);
@@ -193,13 +115,6 @@ namespace VerticalArchip3l
                 file.WriteLine(line);
             }
             file.Close();
-        }
-        public void debug()
-        {
-            foreach (Tuple<int, string, int> item in this.scores)
-            {
-                Console.WriteLine(item);
-            }
         }
     }
 }
