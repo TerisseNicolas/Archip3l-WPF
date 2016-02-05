@@ -10,6 +10,7 @@ namespace VerticalArchip3l
         private Timer timer;
         public List<Trophy> Trophies;
         public SoundManager Sounds;
+        public GameState State { get; set; }
         public ScoreManager Scores { get; private set; }
         public int Score { get; private set;  }
         public string TeamName { get; private set; } 
@@ -18,6 +19,7 @@ namespace VerticalArchip3l
         {
             this.TeamName = team;
             this.Score = 0;
+            this.State = GameState.Sleeping;
             this.Trophies = new List<Trophy>();
             this.Scores = new ScoreManager();
             this.Sounds = new SoundManager();

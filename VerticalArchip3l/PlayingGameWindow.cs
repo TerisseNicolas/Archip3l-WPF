@@ -110,5 +110,11 @@ namespace VerticalArchip3l
         {
             Console.WriteLine("coucou");
         }
+        public void timeUp()
+        {
+            this.Game.Sounds.playNameSelection();
+            this.Game.State = GameState.ScoreViewing;
+            this.MainWindow.resultWindow();
+        }
     }
 }

@@ -10,30 +10,31 @@ namespace VerticalArchip3l
     class SoundManager
     {
         private SoundPlayer Player;
-        private List<string> Playlist;
+        private Dictionary<GameState, string> Playlist;
 
         public SoundManager()
         {
-            this.Playlist = new List<string>();
-            this.Playlist.Add("C:/tempConcours/welcomeMusic.wav");
-            this.Playlist.Add("C:/tempConcours/gameWindow.wav");
-            this.Playlist.Add("C:/tempConcours/mainTheme.wav");
+            this.Playlist = new Dictionary<GameState, string>();
+            this.Playlist.Add(GameState.Sleeping, "C:/tempConcours/welcomeMusic.wav");
+            this.Playlist.Add(GameState.NameFilling, "C:/tempConcours/gameWindow.wav");
+            this.Playlist.Add(GameState.Playing, "C:/tempConcours/mainTheme.wav");
+            this.Playlist.Add(GameState.ScoreViewing, "C:/tempConcours/gameWindow.wav");
 
             this.Player = new SoundPlayer();    
         }
         public void playWelcome()
         {
-            this.Player.SoundLocation = Playlist[0];
+            this.Player.SoundLocation = Playlist[GameState.Sleeping];
             this.start();
         }
         public void playNameSelection()
         {
-            this.Player.SoundLocation = Playlist[1];
+            this.Player.SoundLocation = Playlist[GameState.NameFilling];
             this.start();
         }
         public void playMainTheme()
         {
-            this.Player.SoundLocation = Playlist[2];
+            this.Player.SoundLocation = Playlist[GameState.Playing];
             this.start();
         }
         private void start()

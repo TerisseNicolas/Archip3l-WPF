@@ -55,6 +55,7 @@ namespace VerticalArchip3l
         private void startButton_Tap(object sender, EventArgs e)
         {
             this.Game.Sounds.playMainTheme();
+            this.Game.State = GameState.Playing;
             this.MainWindow.playingGameWindow();
         }
     }

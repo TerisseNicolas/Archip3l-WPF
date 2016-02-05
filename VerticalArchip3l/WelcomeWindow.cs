@@ -53,6 +53,7 @@ namespace VerticalArchip3l
         private void startButton_Tap(object sender, EventArgs e)
         {
             this.Game.Sounds.playNameSelection();
+            this.Game.State = GameState.NameFilling;
             this.MainWindow.newGameWindow();
         }
     }
