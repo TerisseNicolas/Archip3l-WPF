@@ -42,18 +42,17 @@ namespace VerticalArchip3l
             startButton.Content = "Demarrer le jeu";
             startButton.Width = 400;
             startButton.Height = 75;
-            //startButton.Tap += EventHandler(launchGame);
+            startButton.ButtonTap += startButton_Tap;
             startButton.Background = Brushes.YellowGreen;
 
             canvas.Children.Add(startButton);
             Canvas.SetTop(startButton, 700);
             Canvas.SetRight(startButton, 560);
 
-            this.startButton_Tap(null, null);
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            Console.WriteLine("welcome start button tapped");
+            this.Game.Sounds.playNameSelection();
             this.MainWindow.newGameWindow();
         }
     }

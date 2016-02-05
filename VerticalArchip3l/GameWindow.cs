@@ -44,6 +44,7 @@ namespace VerticalArchip3l
 
             TouchButton startButton = new TouchButton { Content = "Lancer le jeu", Width = 200, Height = 69 };
             startButton.Background = Brushes.YellowGreen;
+            startButton.ButtonTap += startButton_Tap;
 
             canvas.Children.Add(startButton);
             Canvas.SetTop(startButton, 661);
@@ -53,7 +54,7 @@ namespace VerticalArchip3l
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            Console.WriteLine("Name init start button tapped");
+            this.Game.Sounds.playMainTheme();
             this.MainWindow.playingGameWindow();
         }
     }

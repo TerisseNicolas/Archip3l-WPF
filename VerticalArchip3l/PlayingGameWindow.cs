@@ -84,21 +84,31 @@ namespace VerticalArchip3l
             //MainCanvas===================================================================
 
             //Tests
-            UbiContextMenu contextMenu = new UbiContextMenu();
-            contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
-            //contextMenu.Template = 
-            Control control = new Control();
-            ////UpperCanvas.Children.Add(contextMenu);
+            //UbiContextMenu contextMenu = new UbiContextMenu();
+            //contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
+            ////contextMenu.Template = 
+            //Control control = new Control();
+            //////UpperCanvas.Children.Add(contextMenu);
 
             //***
-            ListBox lb = new ListBox();
-            ListBoxItem item1 = new ListBoxItem();
-            ListBoxItem item2 = new ListBoxItem();
-            item1.Content = "item1";
-            item2.Content = "item2";
-            lb.Items.Add(item1);
-            lb.Items.Add(item2);
-            MainCanvas.Children.Add(lb);
+            //ListBox lb = new ListBox();
+            //ListBoxItem item1 = new ListBoxItem();
+            //ListBoxItem item2 = new ListBoxItem();
+            //item1.Content = "item1";
+            //item2.Content = "item2";
+            //lb.Items.Add(item1);
+            //lb.Items.Add(item2);
+            //MainCanvas.Children.Add(lb);
+
+            Button b1 = new Button();
+            b1.Content = "click me";
+            MainCanvas.Children.Add(b1);
+            b1.Click += B1_Click;
+        }
+
+        private void B1_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("coucou");
         }
     }
 }
