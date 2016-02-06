@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SofthinkCore.UI.Controls;
+using System;
 using System.Collections.Generic;
-using System.Windows.Media;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace VerticalArchip3l
 {
@@ -29,14 +31,20 @@ namespace VerticalArchip3l
             {
                 max = 10;
             }
+
+            Canvas canvas = new Canvas();
+            this.MainWindow.Content = canvas;
+            canvas.Background = Brushes.LavenderBlush;
+
             Grid grid = new Grid();
-            this.MainWindow.Content = grid;
-            grid.Background = Brushes.LavenderBlush;
+            grid.Background = Brushes.LightCyan;
             grid.ShowGridLines = true;
-            grid.Width = 300;
+            grid.Width = 500;
             grid.Height = 500;
-            grid.HorizontalAlignment = HorizontalAlignment.Center;
-            grid.VerticalAlignment = VerticalAlignment.Center;
+
+            canvas.Children.Add(grid);
+            Canvas.SetTop(grid, 200);
+            Canvas.SetRight(grid, 100);
 
             List <RowDefinition> ScoreRows = new List<RowDefinition>();
             List<Tuple<Label, Label, Label>> Labels = new List<Tuple<Label, Label, Label>>();
@@ -56,19 +64,52 @@ namespace VerticalArchip3l
                                                           new Label { Content = result[i].Item2, FontSize = 20 },
                                                           new Label { Content = result[i].Item3.ToString(), FontSize = 20 }));
                 grid.RowDefinitions.Add(ScoreRows[i]);
+                if(result[i].Item2 == this.Game.TeamName)
+                {
+                    //Change color of the row
+                    Border border1 = new Border { Background = Brushes.Red};
+                    Border border2 = new Border { Background = Brushes.Red };
+                    Border border3 = new Border { Background = Brushes.Red };
+                    Grid.SetRow(border1, i);
+                    Grid.SetRow(border2, i);
+                    Grid.SetRow(border3, i);
+                    Grid.SetColumn(border1, 0);
+                    Grid.SetColumn(border2, 1);
+                    Grid.SetColumn(border3, 2);
+                    grid.Children.Add(border1);
+                    grid.Children.Add(border2);
+                    grid.Children.Add(border3);
+                }
 
                 Grid.SetRow(Labels[i].Item1, i);
                 Grid.SetColumn(Labels[i].Item1, 0);
                 grid.Children.Add(Labels[i].Item1);
+                Labels[i].Item1.HorizontalAlignment = HorizontalAlignment.Center;
+                Labels[i].Item1.VerticalAlignment = VerticalAlignment.Center;
 
                 Grid.SetRow(Labels[i].Item2, i);
                 Grid.SetColumn(Labels[i].Item2, 1);
                 grid.Children.Add(Labels[i].Item2);
+                Labels[i].Item2.HorizontalAlignment = HorizontalAlignment.Center;
+                Labels[i].Item2.VerticalAlignment = VerticalAlignment.Center;
 
                 Grid.SetRow(Labels[i].Item3, i);
                 Grid.SetColumn(Labels[i].Item3, 2);
                 grid.Children.Add(Labels[i].Item3);
+                Labels[i].Item3.HorizontalAlignment = HorizontalAlignment.Center;
+                Labels[i].Item3.VerticalAlignment = VerticalAlignment.Center;
             }
+
+            TouchButton finishButton = new TouchButton { Content = "Terminer", Width = 200, Height = 69 };
+            finishButton.Background = Brushes.YellowGreen;
+            finishButton.ButtonTap += FinishButton_ButtonTap;
+            canvas.Children.Add(finishButton);
+            Canvas.SetTop(finishButton, 700);
+            Canvas.SetRight(finishButton, 100);
+        }
+        private void FinishButton_ButtonTap(object sender, RoutedEventArgs e)
+        {
+            this.MainWindow.welcomeWindow();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace VerticalArchip3l
     {
         public Game Game;
         public MainWindow MainWindow;
-        private System.Timers.Timer TransitionTimer;
 
         //Important widgets
         private ScaleTransform MainScaleTransform;
@@ -87,7 +86,7 @@ namespace VerticalArchip3l
             }
 
             //Timer
-            this.timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 15:00", };
+            this.timerLabel = new Label { Name = "TextBlockRemainingTime", FontSize = 60, Content = "Temps restant : 15:00" };
             UpperCanvas.Children.Add(this.timerLabel);
             Canvas.SetTop(timerLabel, 15);
             Canvas.SetRight(timerLabel, 20);
@@ -149,4 +148,5 @@ namespace VerticalArchip3l
             this.MainWindow.resultWindow();
         }
     }
+
 }

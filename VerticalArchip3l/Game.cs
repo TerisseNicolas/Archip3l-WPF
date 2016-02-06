@@ -56,7 +56,6 @@ namespace VerticalArchip3l
         {
             this.Scores.addScore(this.TeamName, this.Score);
             this.Scores.saveScores();
-
         }
         public void increaseScore(int add)
         {

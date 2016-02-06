@@ -77,6 +77,7 @@ namespace VerticalArchip3l
                     }
                     this.stop();
                 }
+                //Console.WriteLine(this.RemainingTime.ToString());
             }
         }
     }
