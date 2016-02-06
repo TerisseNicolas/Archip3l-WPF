@@ -105,7 +105,7 @@ namespace VerticalArchip3l
             finishButton.ButtonTap += FinishButton_ButtonTap;
             canvas.Children.Add(finishButton);
             Canvas.SetTop(finishButton, 700);
-            Canvas.SetRight(finishButton, 100);
+            Canvas.SetRight(finishButton, 90);
         }
         private void FinishButton_ButtonTap(object sender, RoutedEventArgs e)
         {

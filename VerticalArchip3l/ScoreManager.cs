@@ -8,12 +8,22 @@ namespace VerticalArchip3l
     {
         private List<Tuple<int, string, int>> scores;
         private int size;
+        public int Score { get; private set; }
+        public event EventHandler<ScoreUpdateEventArgs> ScoreUpdate;
 
         public ScoreManager()
         {
             this.scores = new List<Tuple<int, string, int>>();
             this.size = 0;
             loadPreviousScores();
+        }
+        public void increaseScore(int add)
+        {
+            this.Score += add;
+            if(this.ScoreUpdate != null)
+            {
+                this.ScoreUpdate(this, new ScoreUpdateEventArgs { newScore = this.Score });
+            }
         }
         public void loadPreviousScores()
         {
@@ -78,18 +88,18 @@ namespace VerticalArchip3l
             }
             return final;
         }
-        public void addScore(string teamName, int value)
+        public void addScore(string teamName)
         {
             bool flag = false;
             int count = 1;
-            Tuple<int, string, int> add = new Tuple<int, string, int>(0, teamName, value);
+            Tuple<int, string, int> add = new Tuple<int, string, int>(0, teamName, this.Score);
             List<Tuple<int, string, int>> temp = new List<Tuple<int, string, int>>();
             foreach (Tuple<int, string, int> item in this.scores)
             { 
-                if ((item.Item3 <= value) && !flag)
+                if ((item.Item3 <= this.Score) && !flag)
                 {
                     flag = true;
-                    temp.Add(new Tuple<int, string, int>(count, teamName, value));
+                    temp.Add(new Tuple<int, string, int>(count, teamName, this.Score));
                     count += 1;
                     temp.Add(new Tuple<int, string, int>(count, item.Item2, item.Item3));
                 }
@@ -101,7 +111,7 @@ namespace VerticalArchip3l
             }
             if (!flag)
             {
-                temp.Add(new Tuple<int, string, int>(count, teamName, value));
+                temp.Add(new Tuple<int, string, int>(count, teamName, this.Score));
             }
             this.scores = temp;
         }
@@ -116,5 +126,9 @@ namespace VerticalArchip3l
             }
             file.Close();
         }
+    }
+    public class ScoreUpdateEventArgs : EventArgs
+    {
+        public int newScore;
     }
 }

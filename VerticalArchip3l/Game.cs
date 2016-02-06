@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Timers;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace VerticalArchip3l
 {
@@ -13,18 +11,15 @@ namespace VerticalArchip3l
         public SoundManager Sounds;
         public GameState State { get; set; }
         public ScoreManager Scores { get; private set; }
-        public int Score { get; private set;  }
         public string TeamName { get; set; } 
 
         public Game(string team)
         {
             this.TeamName = team;
-            this.Score = 0;
             this.State = GameState.Sleeping;
             this.Trophies = new List<Trophy>();
             this.Scores = new ScoreManager();
             this.Sounds = new SoundManager(this);
-            this.Scores.addScore("New team", 38);
             this.Scores.saveScores();
 
             //Managing time=================================================================================================
@@ -54,12 +49,8 @@ namespace VerticalArchip3l
         }
         public void finish()
         {
-            this.Scores.addScore(this.TeamName, this.Score);
+            this.Scores.addScore(this.TeamName);
             this.Scores.saveScores();
-        }
-        public void increaseScore(int add)
-        {
-            this.Score += add;
         }
     }
 }

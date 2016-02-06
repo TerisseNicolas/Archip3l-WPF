@@ -31,6 +31,7 @@ namespace VerticalArchip3l
             this.Game = game;
             this.Game.Timer.Dispatcher.Tick += Dispatcher_Tick;
             this.Game.Timer.FinalTick += Timer_FinalTick;
+            this.Game.Scores.ScoreUpdate += Scores_ScoreUpdate;
             this.MainWindow = mainWindow;
 
             this.Game.State = GameState.Playing;
@@ -124,7 +125,8 @@ namespace VerticalArchip3l
             MainCanvas.Children.Add(b1);
             b1.Click += B1_Click;
 
-            this.Game.increaseScore(37);
+            Random random = new Random();
+            this.Game.Scores.increaseScore(random.Next(1, 50));
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
@@ -147,6 +149,10 @@ namespace VerticalArchip3l
             await Task.Delay(TimeSpan.FromSeconds(5));
             this.MainWindow.resultWindow();
         }
+        private void Scores_ScoreUpdate(object sender, ScoreUpdateEventArgs e)
+        {
+            this.scoreLabel.Content = "Score actuel : " + e.newScore;
+            Console.WriteLine("Score actuel: " + e.newScore);
+        }
     }
-
 }
