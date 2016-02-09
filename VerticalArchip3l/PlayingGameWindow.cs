@@ -105,14 +105,26 @@ namespace VerticalArchip3l
             //Action History
             List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
             List<Label> actionHistoryLabels = new List<Label>();
-            int posX = 0;
+            int posY = 0;
             foreach(string elt in actionHistoryList)
             {
                 actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
                 MiddleCanvas.Children.Add(actionHistoryLabels[actionHistoryLabels.Count - 1]);
-                Canvas.SetTop(actionHistoryLabels[actionHistoryLabels.Count - 1], posX);
+                Canvas.SetTop(actionHistoryLabels[actionHistoryLabels.Count - 1], posY);
                 Canvas.SetLeft(actionHistoryLabels[actionHistoryLabels.Count - 1], 600);
-                posX += 30;
+                posY += 30;
+            }
+
+            //Situation
+            List<Label> ressourcesSituationLabels = new List<Label>();
+            posY = 0;
+            foreach(Ressource item in this.Game.RessourceManager.Ressources)
+            {
+                ressourcesSituationLabels.Add(new Label { Content = item.name + "\t" + item.stock.ToString(), FontSize = 20 });
+                MiddleCanvas.Children.Add(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1]);
+                Canvas.SetTop(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], posY);
+                Canvas.SetLeft(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], 1000);
+                posY += 30;
             }
 
 

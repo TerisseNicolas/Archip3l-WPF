@@ -30,10 +30,6 @@ namespace VerticalArchip3l
             changeTrophyToObtained(trophy2);
             changeTrophyToObtained(trophy3);
             changeTrophyToObtained(trophy5);
-
-            //trophy2.changeToObtained();
-            //trophy3.changeToObtained();
-            //trophy5.changeToObtained();
         }
         public List<Trophy> getTrophies(bool status)
         {

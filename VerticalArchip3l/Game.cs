@@ -12,6 +12,7 @@ namespace VerticalArchip3l
         public GameState State { get; set; }
         public ScoreManager Scores { get; private set; }
         public ActionHistoryManager ActionHistory { get; private set; }
+        public RessourceManager RessourceManager { get; private set; }
         public string TeamName { get; set; } 
 
         public Game(string team)
@@ -22,6 +23,7 @@ namespace VerticalArchip3l
             this.Scores = new ScoreManager();
             this.Sounds = new SoundManager(this);
             this.ActionHistory = new ActionHistoryManager();
+            this.RessourceManager = new RessourceManager();
             this.Scores.saveScores();
 
             //Managing time=================================================================================================

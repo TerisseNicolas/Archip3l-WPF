@@ -99,6 +99,8 @@
     <Compile Include="GameWindow.cs" />
     <Compile Include="ActionHistoryManager.cs" />
     <Compile Include="PlayingGameWindow.cs" />
+    <Compile Include="Ressource.cs" />
+    <Compile Include="RessourceManager.cs" />
     <Compile Include="ResultWindow.cs" />
     <Compile Include="ScoreManager.cs" />
     <Compile Include="SoundManager.cs" />
