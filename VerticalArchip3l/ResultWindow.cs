@@ -58,7 +58,6 @@ namespace VerticalArchip3l
 
             for (int i = 0; i < max; i++)
             {
-                //Console.WriteLine(result[i].Item2);
                 ScoreRows.Add(new RowDefinition());
                 Labels.Add(new Tuple<Label, Label, Label>(new Label { Content = result[i].Item1.ToString(), FontSize = 20 },
                                                           new Label { Content = result[i].Item2, FontSize = 20 },
