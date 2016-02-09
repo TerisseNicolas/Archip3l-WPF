@@ -9,6 +9,7 @@ namespace VerticalArchip3l
     class TrophyManager
     {
         public List<Trophy> Trophies { get; private set; }
+        public EventHandler<TrophyObtainedEventArgs> TrophyObtained;
 
         public TrophyManager()
         {
@@ -26,9 +27,13 @@ namespace VerticalArchip3l
             this.Trophies.Add(trophy4);
             this.Trophies.Add(trophy5);
 
-            trophy2.changeToObtained();
-            trophy3.changeToObtained();
-            trophy5.changeToObtained();
+            changeTrophyToObtained(trophy2);
+            changeTrophyToObtained(trophy3);
+            changeTrophyToObtained(trophy5);
+
+            //trophy2.changeToObtained();
+            //trophy3.changeToObtained();
+            //trophy5.changeToObtained();
         }
         public List<Trophy> getTrophies(bool status)
         {
@@ -46,5 +51,17 @@ namespace VerticalArchip3l
             }
             return value;
         }
+        public void changeTrophyToObtained(Trophy trophy)
+        {
+            trophy.changeToObtained();
+            if(this.TrophyObtained != null)
+            {
+                this.TrophyObtained(this, new TrophyObtainedEventArgs { Trophy = trophy });
+            }
+        }
+    }
+    class TrophyObtainedEventArgs : EventArgs
+    {
+        public Trophy Trophy;
     }
 }

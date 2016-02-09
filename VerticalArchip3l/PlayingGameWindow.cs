@@ -151,7 +151,6 @@ namespace VerticalArchip3l
         private void Dispatcher_Tick(object sender, EventArgs e)
         {
             this.timerLabel.Content = "Temps restant : " + this.Game.Timer.ToString();
-            Console.WriteLine("Temps restant : " + this.Game.Timer.ToString());
         }
         private async void Timer_FinalTick(object sender, FinalTickEventArgs e)
         {
@@ -167,7 +166,6 @@ namespace VerticalArchip3l
         private void Scores_ScoreUpdate(object sender, ScoreUpdateEventArgs e)
         {
             this.scoreLabel.Content = "Score actuel : " + e.newScore;
-            Console.WriteLine("Score actuel: " + e.newScore);
         }
     }
 }

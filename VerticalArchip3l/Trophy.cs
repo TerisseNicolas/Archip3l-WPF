@@ -24,7 +24,6 @@ namespace VerticalArchip3l
         private Image WonMedal;
         public Image Image { get; private set; }
         public Bonus Bonus { get; private set; }
-        public EventHandler<TrophyObtainedEventArgs> TrophyObtained;
 
         public Trophy(int id, string name, string description, int posX, int posY, Bonus bonus)
         {
@@ -55,10 +54,6 @@ namespace VerticalArchip3l
                 //}
                 this.Status = true;
                 this.Image = this.WonMedal;
-                if(this.TrophyObtained != null)
-                {
-                    this.TrophyObtained(this, new TrophyObtainedEventArgs { Trophy = this });
-                }
                 return true;
             }
         }
@@ -75,9 +70,5 @@ namespace VerticalArchip3l
                 return true;
             }
         }
-    }
-    class TrophyObtainedEventArgs : EventArgs
-    {
-        public Trophy Trophy;
     }
 }

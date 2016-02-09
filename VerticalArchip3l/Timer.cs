@@ -42,6 +42,7 @@ namespace VerticalArchip3l
         {
             if (this.Running)
             {
+                this.Running = false;
                 this.Dispatcher.Stop();
                 this.Running = false;
             }
@@ -77,7 +78,6 @@ namespace VerticalArchip3l
                     }
                     this.stop();
                 }
-                //Console.WriteLine(this.RemainingTime.ToString());
             }
         }
     }

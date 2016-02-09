@@ -93,6 +93,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bonus.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWindow.cs" />
