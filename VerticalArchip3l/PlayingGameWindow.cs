@@ -22,9 +22,12 @@ namespace VerticalArchip3l
         //Important widgets
         private ScaleTransform MainScaleTransform;
         private Grid grid;
+        private Canvas MiddleCanvas;
         private Canvas MainCanvas;
         private Label timerLabel;
         private Label scoreLabel;
+        private List<Label> actionHistoryLabels;
+        private List<Label> ressourcesSituationLabels;
 
 
         public PlayingGameWindow(Game game, MainWindow mainWindow)
@@ -33,6 +36,8 @@ namespace VerticalArchip3l
             this.Game.Timer.Dispatcher.Tick += Dispatcher_Tick;
             this.Game.Timer.FinalTick += Timer_FinalTick;
             this.Game.Scores.ScoreUpdate += Scores_ScoreUpdate;
+            this.Game.ResourceManager.ResourceProduction += ResourceManager_ResourceProduction;
+            this.Game.ResourceManager.ResourceStock += ResourceManager_ResourceStock;
             this.MainWindow = mainWindow;
 
             this.Game.State = GameState.Playing;
@@ -40,12 +45,16 @@ namespace VerticalArchip3l
 
             this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
 
+            //Widgets
+            this.actionHistoryLabels = new List<Label>();
+            this.ressourcesSituationLabels = new List<Label>();
+
             show();
         }
 
         public void show()
         {
-            //Grid=================================================================
+            //Main Grid=================================================================
             this.grid = new Grid();
             this.MainWindow.Content = grid;
             grid.Background = Brushes.Aqua;
@@ -58,23 +67,13 @@ namespace VerticalArchip3l
             MiddleRow.Height = new GridLength(200);
             grid.RowDefinitions.Add(UpperRow);
             grid.RowDefinitions.Add(MiddleRow);
-            grid.RowDefinitions.Add(MainRow);
-
-            //Canvas================================================================
-            Canvas UpperCanvas = new Canvas();
-            UpperCanvas.Background = Brushes.Ivory;
-            Canvas MiddleCanvas = new Canvas();
-            MiddleCanvas.Background = Brushes.GreenYellow;
-            this.MainCanvas = new Canvas();
-
-            Grid.SetRow(UpperCanvas, 0);
-            Grid.SetRow(MiddleCanvas, 1);
-            Grid.SetRow(MainCanvas, 2);
-            grid.Children.Add(UpperCanvas);
-            grid.Children.Add(MiddleCanvas);
-            grid.Children.Add(MainCanvas);
+            grid.RowDefinitions.Add(MainRow);  
 
             //UpperCanvas=================================================================
+            Canvas UpperCanvas = new Canvas();
+            UpperCanvas.Background = Brushes.Ivory;
+            Grid.SetRow(UpperCanvas, 0);
+            grid.Children.Add(UpperCanvas);
             //Trophies
             ScaleTransform trophyScaleTransform = new ScaleTransform(0.5, 0.5, 0, 0);
             foreach (Trophy t in this.Game.Trophies.Trophies)
@@ -100,35 +99,54 @@ namespace VerticalArchip3l
             Canvas.SetRight(scoreLabel, 20);
 
             //MiddleCanvas=================================================================
+            this.MiddleCanvas = new Canvas();
+            MiddleCanvas.Background = Brushes.GreenYellow;
+            Grid.SetRow(this.MiddleCanvas, 1);
+            grid.Children.Add(this.MiddleCanvas);
 
+            //ColumnDefinition MiddleGridLeftColumn = new ColumnDefinition();
+            //ColumnDefinition MiddleGridMiddleColumn = new ColumnDefinition();
+            //ColumnDefinition MiddleGridRightColumn = new ColumnDefinition();
+            //MiddleGridLeftColumn.Width = new GridLength(600);
+            //MiddleGridRightColumn.Width = new GridLength(600);
+            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridLeftColumn);
+            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridMiddleColumn);
+            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridRightColumn);
 
             //Action History
-            List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
-            List<Label> actionHistoryLabels = new List<Label>();
-            int posY = 0;
-            foreach(string elt in actionHistoryList)
-            {
-                actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
-                MiddleCanvas.Children.Add(actionHistoryLabels[actionHistoryLabels.Count - 1]);
-                Canvas.SetTop(actionHistoryLabels[actionHistoryLabels.Count - 1], posY);
-                Canvas.SetLeft(actionHistoryLabels[actionHistoryLabels.Count - 1], 600);
-                posY += 30;
-            }
+            //List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
+            //this.actionHistoryLabels = new List<Label>();
+            //this.updateMiddleCanvas(1);
+
+            //int posY = 0;
+            //foreach (string elt in actionHistoryList)
+            //{
+            //    this.actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
+            //    MiddleCanvas.Children.Add(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1]);
+            //    Canvas.SetTop(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1], posY);
+            //    Canvas.SetLeft(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1], 600);
+            //    posY += 30;
+            //}
+
+
+            //this.middleGridRightCanvas = new Canvas();
+            //this.middleGridRightCanvas.Background = Brushes.MintCream;
+            //this.middleGridRightCanvas.Width = 100;
+            //this.middleGridRightCanvas.Height = 100;
+            //Grid.SetRow(this.middleGridRightCanvas, 0);
+            //Grid.SetColumn(this.middleGridRightCanvas, 1);
+            //this.MiddleGrid.Children.Add(this.middleGridRightCanvas);
 
             //Situation
-            List<Label> ressourcesSituationLabels = new List<Label>();
-            posY = 0;
-            foreach(Resource item in this.Game.ResourceManager.Resources)
-            {
-                ressourcesSituationLabels.Add(new Label { Content = item.Name + "\t" + item.Stock.ToString(), FontSize = 20 });
-                MiddleCanvas.Children.Add(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1]);
-                Canvas.SetTop(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], posY);
-                Canvas.SetLeft(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], 1000);
-                posY += 30;
-            }
+            //this.ressourcesSituationLabels = new List<Label>();
+            //this.updateMiddleCanvas(2);
 
+            this.updateMiddleCanvas(3);
 
             //MainCanvas===================================================================
+            this.MainCanvas = new Canvas();
+            Grid.SetRow(MainCanvas, 2);
+            grid.Children.Add(MainCanvas);
 
             //Tests
             //UbiContextMenu contextMenu = new UbiContextMenu();
@@ -181,6 +199,58 @@ namespace VerticalArchip3l
         private void Scores_ScoreUpdate(object sender, ScoreUpdateEventArgs e)
         {
             this.scoreLabel.Content = "Score actuel : " + e.newScore;
+        }
+        private void ResourceManager_ResourceProduction(object sender, ResourceProductionEventArgs e)
+        {
+            this.updateMiddleCanvas(2);
+        }
+        private void ResourceManager_ResourceStock(object sender, ResourceStockEventArgs e)
+        {
+            this.updateMiddleCanvas(2);
+        }
+        private void updateMiddleCanvas(int block)
+        {
+            this.MiddleCanvas.Children.Clear();
+            int posY = 0;
+            if(block == 0 || block == 3)
+            {
+
+            }
+            posY = 0;
+            if(block == 1 || block == 3)
+            {
+                List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
+                this.actionHistoryLabels.Clear();
+                foreach (string elt in actionHistoryList)
+                {
+                    this.actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
+                }
+            }
+            foreach(Label item in this.actionHistoryLabels)
+            {
+                this.MiddleCanvas.Children.Add(item);
+                Canvas.SetTop(item, posY);
+                Canvas.SetLeft(item, 600);
+                posY += 30;
+            }
+            posY = 0;
+            if (block == 2 || block == 3)
+            {
+                this.ressourcesSituationLabels.Clear();
+                foreach (Resource item in this.Game.ResourceManager.Resources)
+                {
+                    //To be improved
+                    string content = string.Format("{0, -15 } {1, 7} {2, 7}", item.Name, item.Stock.ToString(), item.Production.ToString());
+                    this.ressourcesSituationLabels.Add(new Label { Content = content, FontSize = 20 });
+                }
+            }
+            foreach (Label item in this.ressourcesSituationLabels)
+            {
+                this.MiddleCanvas.Children.Add(item);
+                Canvas.SetTop(item, posY);
+                Canvas.SetLeft(item, 1000);
+                posY += 30;
+            }
         }
     }
 }
