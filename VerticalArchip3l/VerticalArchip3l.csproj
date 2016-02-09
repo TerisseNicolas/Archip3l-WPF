@@ -96,12 +96,14 @@
     <Compile Include="Enumeration.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWindow.cs" />
+    <Compile Include="ActionHistoryManager.cs" />
     <Compile Include="PlayingGameWindow.cs" />
     <Compile Include="ResultWindow.cs" />
     <Compile Include="ScoreManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Trophy.cs" />
+    <Compile Include="TrophyManager.cs" />
     <Compile Include="WelcomeWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

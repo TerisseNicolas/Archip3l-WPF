@@ -76,7 +76,7 @@ namespace VerticalArchip3l
             //UpperCanvas=================================================================
             //Trophies
             ScaleTransform trophyScaleTransform = new ScaleTransform(0.5, 0.5, 0, 0);
-            foreach (Trophy t in this.Game.Trophies)
+            foreach (Trophy t in this.Game.Trophies.Trophies)
             {
                 //scaling
                 t.Image.RenderTransform = trophyScaleTransform;
@@ -99,6 +99,9 @@ namespace VerticalArchip3l
             Canvas.SetRight(scoreLabel, 20);
 
             //MiddleCanvas=================================================================
+
+            //Canvas ActionHistoryCanvas = new Canvas();
+            //ActionHistoryCanvas.Background = Brushes.Purple;
 
 
             //MainCanvas===================================================================
