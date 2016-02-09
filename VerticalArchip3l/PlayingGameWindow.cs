@@ -118,9 +118,9 @@ namespace VerticalArchip3l
             //Situation
             List<Label> ressourcesSituationLabels = new List<Label>();
             posY = 0;
-            foreach(Ressource item in this.Game.RessourceManager.Ressources)
+            foreach(Resource item in this.Game.ResourceManager.Resources)
             {
-                ressourcesSituationLabels.Add(new Label { Content = item.name + "\t" + item.stock.ToString(), FontSize = 20 });
+                ressourcesSituationLabels.Add(new Label { Content = item.Name + "\t" + item.Stock.ToString(), FontSize = 20 });
                 MiddleCanvas.Children.Add(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1]);
                 Canvas.SetTop(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], posY);
                 Canvas.SetLeft(ressourcesSituationLabels[ressourcesSituationLabels.Count - 1], 1000);
@@ -152,8 +152,11 @@ namespace VerticalArchip3l
             MainCanvas.Children.Add(b1);
             b1.Click += B1_Click;
 
+            //To be removed
             Random random = new Random();
             this.Game.Scores.increaseScore(random.Next(1, 50));
+            this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], 75);
+
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)

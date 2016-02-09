@@ -21,7 +21,9 @@ namespace VerticalArchip3l
             this.Game.Timer.FinalTick += Timer_FinalTick;
             this.Game.Timer.Dispatcher.Tick += Dispatcher_Tick;
             this.Game.Scores.ScoreUpdate += Scores_ScoreUpdate;
-            this.Game.Trophies.TrophyObtained += Trophies_TrophyObtained; 
+            this.Game.Trophies.TrophyObtained += Trophies_TrophyObtained;
+            this.Game.ResourceManager.ResourceProduction += ResoureceManager_ResourceProduction;
+            this.Game.ResourceManager.ResourceStock += ResourceManager_ResourceStock;
         }
 
         private void Scores_ScoreUpdate(object sender, ScoreUpdateEventArgs e)
@@ -39,6 +41,14 @@ namespace VerticalArchip3l
         private void Trophies_TrophyObtained(object sender, TrophyObtainedEventArgs e)
         {
             display("Trophy obtained : " + e.Trophy.Description);
+        }
+        private void ResoureceManager_ResourceProduction(object sender, ResourceProductionEventArgs e)
+        {
+            display("Resource : " + e.Resource + " new production : " + e.NewProduction);
+        }
+        private void ResourceManager_ResourceStock(object sender, ResourceStockEventArgs e)
+        {
+            display("Resource : " + e.Resource + " new production : " + e.NewStock);
         }
         private void display(string msg)
         {
