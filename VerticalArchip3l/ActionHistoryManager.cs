@@ -11,10 +11,15 @@ namespace VerticalArchip3l
         public ActionHistoryManager()
         {
             this.History = new List<string>();
+
+            //To be removed
+            this.AddAction("History action 1");
+            this.AddAction("HIstory action 2");
         }
         public void AddAction(string msg)
         {
             this.History.Add(msg);
+            Console.WriteLine("New action : " + msg);
             if(this.NewAction != null)
             {
                 NewAction(this, new NewActionHistoryEventArgs { Message = msg });
@@ -33,9 +38,9 @@ namespace VerticalArchip3l
             {
                 return null;
             }
-            for (int i = this.History.Count - size - 1; i < this.History.Count -1; i++)
+            for (int i = this.History.Count - size; i < this.History.Count; i++)
             {
-                values.Add(this.History[this.History.Count - i]);
+                values.Add(this.History[this.History.Count - size + i]);
             }
             return values;
         }

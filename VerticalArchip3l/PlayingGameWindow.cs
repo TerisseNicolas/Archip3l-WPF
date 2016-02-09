@@ -2,6 +2,7 @@
 using SofthinkCore.UI.ContextMenu;
 using SofthinkCore.UI.Controls;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Timers;
@@ -100,8 +101,19 @@ namespace VerticalArchip3l
 
             //MiddleCanvas=================================================================
 
-            //Canvas ActionHistoryCanvas = new Canvas();
-            //ActionHistoryCanvas.Background = Brushes.Purple;
+
+            //Action History
+            List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
+            List<Label> actionHistoryLabels = new List<Label>();
+            int posX = 0;
+            foreach(string elt in actionHistoryList)
+            {
+                actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
+                MiddleCanvas.Children.Add(actionHistoryLabels[actionHistoryLabels.Count - 1]);
+                Canvas.SetTop(actionHistoryLabels[actionHistoryLabels.Count - 1], posX);
+                Canvas.SetLeft(actionHistoryLabels[actionHistoryLabels.Count - 1], 600);
+                posX += 30;
+            }
 
 
             //MainCanvas===================================================================
