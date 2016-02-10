@@ -226,7 +226,7 @@ namespace VerticalArchip3l
                 foreach (Resource item in this.Game.ResourceManager.Resources)
                 {
                     //To be improved
-                    string content = string.Format("{0, -15 } {1, 7} {2, 7}", item.Name, item.Stock.ToString(), item.Production.ToString());
+                    string content = string.Format("{0}\t{1}\t{2}", item.Name.PadRight(20), item.Stock.ToString().PadRight(7), item.Production.ToString()).PadLeft(10);
                     this.ressourcesSituationLabels.Add(new Label { Content = content, FontSize = 20 });
                 }
             }
@@ -246,24 +246,32 @@ namespace VerticalArchip3l
             List<ActionTouchButton> actionTouchButtonList = new List<ActionTouchButton>();
 
             //foreach item in actions
+            foreach(Action item in this.Game.ActionManager.Actions)
+            {
+                actionTouchButtonList.Add(new ActionTouchButton { Action = item });
+                actionTouchButtonList[actionTouchButtonList.Count - 1].Width = 200;
+                actionTouchButtonList[actionTouchButtonList.Count - 1].Background = Brushes.DarkGreen;
+                actionTouchButtonList[actionTouchButtonList.Count - 1].Content = item.Description;
+                actionTouchButtonList[actionTouchButtonList.Count - 1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[actionTouchButtonList.Count - 1].Action));
+                this.actionsStackPanel.Children.Add(actionTouchButtonList[actionTouchButtonList.Count - 1]);
+            }
+
+            //To be removed
             actionTouchButtonList.Add(new ActionTouchButton { Action = null });
             actionTouchButtonList[0].Width = 200;
             actionTouchButtonList[0].Background = Brushes.DarkGreen;
             actionTouchButtonList[0].Content = "Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.";
             actionTouchButtonList[0].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[0].Action));
-
             actionTouchButtonList.Add(new ActionTouchButton { Action = null });
             actionTouchButtonList[1].Width = 70;
             actionTouchButtonList[1].Background = Brushes.DarkOrange;
             actionTouchButtonList[1].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
             actionTouchButtonList[1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[1].Action));
-
             actionTouchButtonList.Add(new ActionTouchButton { Action = null });
             actionTouchButtonList[2].Width = 70;
             actionTouchButtonList[2].Background = Brushes.Red;
             actionTouchButtonList[2].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
             actionTouchButtonList[2].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[2].Action));
-
             this.actionsStackPanel.Children.Add(actionTouchButtonList[0]);
             this.actionsStackPanel.Children.Add(actionTouchButtonList[1]);
             this.actionsStackPanel.Children.Add(actionTouchButtonList[2]);
