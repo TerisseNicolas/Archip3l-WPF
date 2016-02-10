@@ -14,6 +14,11 @@ namespace VerticalArchip3l
         public ActionManager()
         {
             this.Actions = new List<Action>();
+
+            //To be removed
+            this.AddAction(new Action("Action1", TempPerformAction, "Action 1 super description, and some text, and again again etc ...."));
+            this.AddAction(new Action("Action2", TempPerformAction, "Action 2 description. Do you see, this is my beautiful life, and some text ..."));
+            this.AddAction(new Action("Action3", TempPerformAction, "Action 3 description: if you want, i can tell you a story. Once uppon a time, a little ... xd"));
         }
         public void AddAction(Action action)
         {
@@ -30,6 +35,12 @@ namespace VerticalArchip3l
             {
                 PerformAction(this, new PerformActionEventArgs { Action = action });
             }
+        }
+        //To be removed
+        public bool TempPerformAction()
+        {
+            Console.WriteLine("Performing action, doing nothing yet");
+            return true;
         }
     }
     class PerformActionEventArgs : EventArgs

@@ -116,7 +116,6 @@ namespace VerticalArchip3l
             Grid.SetRow(MainCanvas, 2);
             grid.Children.Add(MainCanvas);
 
-
             //action scroll viewer
             this.actionsScrollViewer = new TouchScrollViewer();
             this.actionsScrollViewer.Height = 100;
@@ -245,43 +244,23 @@ namespace VerticalArchip3l
             this.actionsStackPanel.Children.Clear();
             List<ActionTouchButton> actionTouchButtonList = new List<ActionTouchButton>();
 
-            //foreach item in actions
             foreach(Action item in this.Game.ActionManager.Actions)
             {
                 actionTouchButtonList.Add(new ActionTouchButton { Action = item });
                 actionTouchButtonList[actionTouchButtonList.Count - 1].Width = 200;
                 actionTouchButtonList[actionTouchButtonList.Count - 1].Background = Brushes.DarkGreen;
                 actionTouchButtonList[actionTouchButtonList.Count - 1].Content = item.Description;
+                //Issue here whith the the RoutedEventHandler action 3 then 2 then 1 sent
                 actionTouchButtonList[actionTouchButtonList.Count - 1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[actionTouchButtonList.Count - 1].Action));
                 this.actionsStackPanel.Children.Add(actionTouchButtonList[actionTouchButtonList.Count - 1]);
             }
-
-            //To be removed
-            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
-            actionTouchButtonList[0].Width = 200;
-            actionTouchButtonList[0].Background = Brushes.DarkGreen;
-            actionTouchButtonList[0].Content = "Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.";
-            actionTouchButtonList[0].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[0].Action));
-            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
-            actionTouchButtonList[1].Width = 70;
-            actionTouchButtonList[1].Background = Brushes.DarkOrange;
-            actionTouchButtonList[1].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
-            actionTouchButtonList[1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[1].Action));
-            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
-            actionTouchButtonList[2].Width = 70;
-            actionTouchButtonList[2].Background = Brushes.Red;
-            actionTouchButtonList[2].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
-            actionTouchButtonList[2].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[2].Action));
-            this.actionsStackPanel.Children.Add(actionTouchButtonList[0]);
-            this.actionsStackPanel.Children.Add(actionTouchButtonList[1]);
-            this.actionsStackPanel.Children.Add(actionTouchButtonList[2]);
         }
 
         private void actionButton_ButtonTap(object sender, RoutedEventArgs e, Action action)
         {
-            //do the action (remove from the StackPanel)
-            updateActionScrollViewer();
-            Console.WriteLine("in ahah");
+            this.Game.ActionManager.Perform(action);
+            this.Game.ActionManager.RemoveAction(action);
+            this.updateActionScrollViewer();
         }
 
         //private void IslandControlsNewBuilding_ButtonTap(object sender, RoutedEventArgs e)

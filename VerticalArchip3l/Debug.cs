@@ -24,8 +24,13 @@ namespace VerticalArchip3l
             this.Game.Trophies.TrophyObtained += Trophies_TrophyObtained;
             this.Game.ResourceManager.ResourceProduction += ResourceManager_ResourceProduction;
             this.Game.ResourceManager.ResourceStock += ResourceManager_ResourceStock;
+            this.Game.ActionManager.PerformAction += ActionManager_PerformAction;
         }
 
+        private void ActionManager_PerformAction(object sender, PerformActionEventArgs e)
+        {
+            display("Action perform : " + e.Action.Name);
+        }
         private void Scores_ScoreUpdate(object sender, ScoreUpdateEventArgs e)
         {
             display("Score actuel: " + e.newScore);
