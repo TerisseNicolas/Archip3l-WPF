@@ -86,3 +86,9 @@ C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\bin\x86\De
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\bin\x86\Debug\NLog.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\bin\x86\Debug\NLog.xml
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\Archip3l\bin\x86\Debug\FarseerPhysics.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.Core.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.Wpf.dll
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.Wpf.xml
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.xml
+C:\Users\Baptiste Amato\GitHub\Archip3l\Archip3l\bin\x86\Debug\CefSharp.Core.xml
