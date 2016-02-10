@@ -282,7 +282,6 @@ namespace VerticalArchip3l
         //    //Event tests
         //    Random random = new Random();
         //    this.Game.Scores.increaseScore(random.Next(1, 50));
-
         //}
         //private void IslandControlsDeleteBuilding_ButtonTap(object sender, RoutedEventArgs e)
         //{
