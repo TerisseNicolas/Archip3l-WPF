@@ -21,9 +21,6 @@ namespace VerticalArchip3l
 
         private List<TouchButton> MainListViewButtonList;
         private List<TouchButton> MinorListViewButtonList;
-
-        //private TouchButton NewBuildingButton;
-        //private TouchButton DeleteBuildingButton;
        
         public IslandControls(Island island, Canvas canvas, int posX, int posY)
         {
@@ -60,7 +57,6 @@ namespace VerticalArchip3l
         //Event functions
         private void NewBuildingButton_ButtonTap(object sender, System.Windows.RoutedEventArgs e)
         {
-            //this.MinorListView.Items.Clear();
             Canvas.SetTop(this.MinorListView, this.Position[1]);
             Canvas.SetLeft(this.MinorListView, this.Position[0] + 300);
             this.Canvas.Children.Add(this.MinorListView);

@@ -19,16 +19,21 @@ namespace VerticalArchip3l
         public Game Game;
         public MainWindow MainWindow;
 
+        //Event handlers
+
         //Important widgets
         private ScaleTransform MainScaleTransform;
         private Grid grid;
-        private Canvas MiddleCanvas;
-        private Canvas MainCanvas;
         private Label timerLabel;
         private Label scoreLabel;
+
+        private Canvas MiddleCanvas;
         private List<Label> actionHistoryLabels;
         private List<Label> ressourcesSituationLabels;
 
+        private Canvas MainCanvas;
+        private TouchScrollViewer actionsScrollViewer;
+        private StackPanel actionsStackPanel;
 
         public PlayingGameWindow(Game game, MainWindow mainWindow)
         {
@@ -111,12 +116,33 @@ namespace VerticalArchip3l
             Grid.SetRow(MainCanvas, 2);
             grid.Children.Add(MainCanvas);
 
+
+            //action scroll viewer
+            this.actionsScrollViewer = new TouchScrollViewer();
+            this.actionsScrollViewer.Height = 100;
+            this.actionsScrollViewer.Width = 500;
+            this.actionsScrollViewer.Background = Brushes.Fuchsia;
+            this.actionsScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+            this.actionsScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
+            this.actionsStackPanel = new StackPanel();
+            this.actionsStackPanel.Orientation = Orientation.Horizontal;
+            this.actionsStackPanel.HorizontalAlignment = HorizontalAlignment.Left;
+            this.actionsStackPanel.VerticalAlignment = VerticalAlignment.Top;
+
+            this.actionsScrollViewer.Content = this.actionsStackPanel;
+            Canvas.SetRight(this.actionsScrollViewer, 500);
+            this.MainCanvas.Children.Add(this.actionsScrollViewer);
+
+            this.updateActionScrollViewer();
+
+
             //Tests
             //UbiContextMenu contextMenu = new UbiContextMenu();
             //contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
             ////contextMenu.Template = 
             //Control control = new Control();
-            //////UpperCanvas.Children.Add(contextMenu);
+            ////UpperCanvas.Children.Add(contextMenu);
 
             //***
             //ListBox lb = new ListBox();
@@ -175,7 +201,6 @@ namespace VerticalArchip3l
             int posY = 0;
             if(block == 0 || block == 3)
             {
-
             }
             posY = 0;
             if(block == 1 || block == 3)
@@ -215,20 +240,56 @@ namespace VerticalArchip3l
         }
 
         //MainCanvas
-        private void IslandControlsNewBuilding_ButtonTap(object sender, RoutedEventArgs e)
+        private void updateActionScrollViewer()
         {
-            Console.WriteLine("New");
-            //Event tests
-            Random random = new Random();
-            this.Game.Scores.increaseScore(random.Next(1, 50));
+            this.actionsStackPanel.Children.Clear();
+            List<ActionTouchButton> actionTouchButtonList = new List<ActionTouchButton>();
 
+            //foreach item in actions
+            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
+            actionTouchButtonList[0].Width = 200;
+            actionTouchButtonList[0].Background = Brushes.DarkGreen;
+            actionTouchButtonList[0].Content = "Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.Scrolling is enabled when it is necessary. Resize the Window, making it larger and smaller.";
+            actionTouchButtonList[0].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[0].Action));
+
+            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
+            actionTouchButtonList[1].Width = 70;
+            actionTouchButtonList[1].Background = Brushes.DarkOrange;
+            actionTouchButtonList[1].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
+            actionTouchButtonList[1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[1].Action));
+
+            actionTouchButtonList.Add(new ActionTouchButton { Action = null });
+            actionTouchButtonList[2].Width = 70;
+            actionTouchButtonList[2].Background = Brushes.Red;
+            actionTouchButtonList[2].Content = "Scrolling is enabled when it is necessary. This is the second text block.";
+            actionTouchButtonList[2].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[2].Action));
+
+            this.actionsStackPanel.Children.Add(actionTouchButtonList[0]);
+            this.actionsStackPanel.Children.Add(actionTouchButtonList[1]);
+            this.actionsStackPanel.Children.Add(actionTouchButtonList[2]);
         }
-        private void IslandControlsDeleteBuilding_ButtonTap(object sender, RoutedEventArgs e)
+
+        private void actionButton_ButtonTap(object sender, RoutedEventArgs e, Action action)
         {
-            Console.WriteLine("Delete");
-            //Event tests
-            Random random = new Random();
-            this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], random.Next(1, 100));
+            //do the action (remove from the StackPanel)
+            updateActionScrollViewer();
+            Console.WriteLine("in ahah");
         }
+
+        //private void IslandControlsNewBuilding_ButtonTap(object sender, RoutedEventArgs e)
+        //{
+        //    Console.WriteLine("New");
+        //    //Event tests
+        //    Random random = new Random();
+        //    this.Game.Scores.increaseScore(random.Next(1, 50));
+
+        //}
+        //private void IslandControlsDeleteBuilding_ButtonTap(object sender, RoutedEventArgs e)
+        //{
+        //    Console.WriteLine("Delete");
+        //    //Event tests
+        //    Random random = new Random();
+        //    this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], random.Next(1, 100));
+        //}
     }
 }

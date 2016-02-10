@@ -93,11 +93,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bonus.cs" />
+    <Compile Include="Action.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWindow.cs" />
     <Compile Include="ActionHistoryManager.cs" />
+    <Compile Include="HeritedExistingClass.cs" />
     <Compile Include="Island.cs" />
     <Compile Include="IslandControls.cs" />
     <Compile Include="PlayingGameWindow.cs" />
