@@ -13,12 +13,18 @@ namespace VerticalArchip3l
         Game Game;
         MainWindow MainWindow;
         private ScaleTransform MainScaleTransform;
+        private UbiTextBox teamNameTextBox;
 
         public GameWindow(Game game, MainWindow mainWindow)
         {
             this.Game = game;
             this.MainWindow = mainWindow;
             this.MainScaleTransform = new ScaleTransform(0.3, 0.3, 0, 0);
+
+            this.Game.State = GameState.NameFilling;
+            this.Game.Sounds.playTheme();
+
+            show();
         }
         public void show()
         { 
@@ -35,7 +41,7 @@ namespace VerticalArchip3l
             Canvas.SetTop(teamNameLabel, 650);
             Canvas.SetRight(teamNameLabel, 800);
 
-            UbiTextBox teamNameTextBox = new UbiTextBox { Name = "teamNameTextBox", Text = "nom", FontSize = 40, Width = 500, Height = 70 };
+            this.teamNameTextBox = new UbiTextBox { Name = "teamNameTextBox", Text = "nom", FontSize = 40, Width = 500, Height = 70 };
             canvas.Children.Add(teamNameTextBox);
             Canvas.SetTop(teamNameTextBox, 670);
             Canvas.SetRight(teamNameTextBox, 250);
@@ -43,15 +49,17 @@ namespace VerticalArchip3l
             TouchButton startButton = new TouchButton { Content = "Lancer le jeu", Width = 200, Height = 69 };
             startButton.Background = Brushes.YellowGreen;
 
+            startButton.ButtonTap += startButton_Tap;
+
             canvas.Children.Add(startButton);
             Canvas.SetTop(startButton, 661);
             Canvas.SetRight(startButton, 50);
 
-            this.startButton_Tap(null, null);
+            //this.startButton_Tap(null, null);
         }
         private void startButton_Tap(object sender, EventArgs e)
         {
-            Console.WriteLine("Name init start button tapped");
+            this.Game.TeamName = this.teamNameTextBox.Text;
             this.MainWindow.playingGameWindow();
         }
     }

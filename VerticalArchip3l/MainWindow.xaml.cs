@@ -25,33 +25,31 @@ namespace VerticalArchip3l
         private PlayingGameWindow PlayingGameWindow;
         private ResultWindow ResultWindow;
 
+        private Debug Debug;
+
         public MainWindow()
         {
             InitializeComponent();
             this.Game = new Game("Unknown Team");
+
+            this.Debug = new Debug(this, this.Game);
             welcomeWindow();
         }
         public void welcomeWindow()
         {
             this.WelcomeWindow = new WelcomeWindow(this.Game, this);
-            this.WelcomeWindow.show();
         }
         public void newGameWindow()
         {
             this.GameWindow = new GameWindow(this.Game, this);
-            this.GameWindow.show();
-
         }
         public void playingGameWindow()
         {
-            this.PlayingGameWindow = new PlayingGameWindow(this.Game, this);
-            this.PlayingGameWindow.show();           
+            this.PlayingGameWindow = new PlayingGameWindow(this.Game, this);     
         }
         public void resultWindow()
         {
             this.ResultWindow = new ResultWindow(this.Game, this);
-            this.ResultWindow.show();
-
         }
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+        <section name="ConfigSofthink" type="SofthinkCore.Devices.ConfigSofthink, SofthinkCore, Version=2.0.706.666, Culture=neutral, PublicKeyToken=null" allowLocation="true" allowDefinition="Everywhere" allowExeDefinition="MachineToApplication" overrideModeDefault="Allow" restartOnExternalChanges="true" requirePermission="true" />
+    </configSections>
+    <ConfigSofthink DeviceName="" Orientation="Vertical" MinimalDistance="0.2"
+        PickingRadius="0.2" DisplaySize="0" UseWinTouch="true" BlockMouseInteraction="false"
+        UseMouse="false">
+        <UseTUIO Activated="false" Port="3333" />
+    </ConfigSofthink>
+</configuration>
