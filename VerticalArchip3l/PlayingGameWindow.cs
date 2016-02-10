@@ -104,43 +104,6 @@ namespace VerticalArchip3l
             Grid.SetRow(this.MiddleCanvas, 1);
             grid.Children.Add(this.MiddleCanvas);
 
-            //ColumnDefinition MiddleGridLeftColumn = new ColumnDefinition();
-            //ColumnDefinition MiddleGridMiddleColumn = new ColumnDefinition();
-            //ColumnDefinition MiddleGridRightColumn = new ColumnDefinition();
-            //MiddleGridLeftColumn.Width = new GridLength(600);
-            //MiddleGridRightColumn.Width = new GridLength(600);
-            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridLeftColumn);
-            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridMiddleColumn);
-            //this.MiddleGrid.ColumnDefinitions.Add(MiddleGridRightColumn);
-
-            //Action History
-            //List<string> actionHistoryList = this.Game.ActionHistory.getLastActions(5);
-            //this.actionHistoryLabels = new List<Label>();
-            //this.updateMiddleCanvas(1);
-
-            //int posY = 0;
-            //foreach (string elt in actionHistoryList)
-            //{
-            //    this.actionHistoryLabels.Add(new Label { Content = elt, FontSize = 20 });
-            //    MiddleCanvas.Children.Add(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1]);
-            //    Canvas.SetTop(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1], posY);
-            //    Canvas.SetLeft(this.actionHistoryLabels[this.actionHistoryLabels.Count - 1], 600);
-            //    posY += 30;
-            //}
-
-
-            //this.middleGridRightCanvas = new Canvas();
-            //this.middleGridRightCanvas.Background = Brushes.MintCream;
-            //this.middleGridRightCanvas.Width = 100;
-            //this.middleGridRightCanvas.Height = 100;
-            //Grid.SetRow(this.middleGridRightCanvas, 0);
-            //Grid.SetColumn(this.middleGridRightCanvas, 1);
-            //this.MiddleGrid.Children.Add(this.middleGridRightCanvas);
-
-            //Situation
-            //this.ressourcesSituationLabels = new List<Label>();
-            //this.updateMiddleCanvas(2);
-
             this.updateMiddleCanvas(3);
 
             //MainCanvas===================================================================
@@ -165,10 +128,8 @@ namespace VerticalArchip3l
             //lb.Items.Add(item2);
             //MainCanvas.Children.Add(lb);
 
-            Button b1 = new Button();
-            b1.Content = "click me";
-            MainCanvas.Children.Add(b1);
-            b1.Click += B1_Click;
+            //IslandControls class test
+            IslandControls IslandControls2 = new IslandControls(null, this.MainCanvas, 0, 0);
 
             //To be removed
             Random random = new Random();
@@ -177,10 +138,8 @@ namespace VerticalArchip3l
 
         }
 
-        private void B1_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("coucou");
-        }
+        //Event functions=============================================================
+        //UpperCanvas
         private void Dispatcher_Tick(object sender, EventArgs e)
         {
             this.timerLabel.Content = "Temps restant : " + this.Game.Timer.ToString();
@@ -200,6 +159,8 @@ namespace VerticalArchip3l
         {
             this.scoreLabel.Content = "Score actuel : " + e.newScore;
         }
+
+        //MiddleCanvas
         private void ResourceManager_ResourceProduction(object sender, ResourceProductionEventArgs e)
         {
             this.updateMiddleCanvas(2);
@@ -251,6 +212,23 @@ namespace VerticalArchip3l
                 Canvas.SetLeft(item, 1000);
                 posY += 30;
             }
+        }
+
+        //MainCanvas
+        private void IslandControlsNewBuilding_ButtonTap(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("New");
+            //Event tests
+            Random random = new Random();
+            this.Game.Scores.increaseScore(random.Next(1, 50));
+
+        }
+        private void IslandControlsDeleteBuilding_ButtonTap(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Delete");
+            //Event tests
+            Random random = new Random();
+            this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], random.Next(1, 100));
         }
     }
 }

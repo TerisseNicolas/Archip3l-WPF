@@ -9,8 +9,8 @@ namespace VerticalArchip3l
     class ResourceManager
     {
         public List<Resource> Resources;
-        public EventHandler<ResourceProductionEventArgs> ResourceProduction;
-        public EventHandler<ResourceStockEventArgs> ResourceStock;
+        public event EventHandler<ResourceProductionEventArgs> ResourceProduction;
+        public event EventHandler<ResourceStockEventArgs> ResourceStock;
 
         public ResourceManager()
         {

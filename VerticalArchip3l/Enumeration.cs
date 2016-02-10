@@ -7,4 +7,11 @@
         Playing,
         ScoreViewing
     }
+    enum BuildingType
+    {
+        Scierie,
+        Mine,
+        Usine,
+        Ferme
+    }
 }

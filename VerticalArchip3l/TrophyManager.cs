@@ -9,7 +9,7 @@ namespace VerticalArchip3l
     class TrophyManager
     {
         public List<Trophy> Trophies { get; private set; }
-        public EventHandler<TrophyObtainedEventArgs> TrophyObtained;
+        public event EventHandler<TrophyObtainedEventArgs> TrophyObtained;
 
         public TrophyManager()
         {
