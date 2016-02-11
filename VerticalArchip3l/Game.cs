@@ -30,9 +30,7 @@ namespace VerticalArchip3l
 
             //Managing time=================================================================================================
             //this.Timer = new Timer(this, 0, 15, 0);          
-            this.Timer = new Timer(this, 0, 0, 13);
-
-            this.start();
+            this.Timer = new Timer(this, 0, 0, 15);
         }
         public void start()
         {

@@ -55,6 +55,7 @@ namespace VerticalArchip3l
             this.ressourcesSituationLabels = new List<Label>();
 
             show();
+            this.Game.start();
         }
 
         public void show()
@@ -224,7 +225,6 @@ namespace VerticalArchip3l
                 this.ressourcesSituationLabels.Clear();
                 foreach (Resource item in this.Game.ResourceManager.Resources)
                 {
-                    //To be improved
                     string content = string.Format("{0}\t{1}\t{2}", item.Name.PadRight(20), item.Stock.ToString().PadRight(7), item.Production.ToString()).PadLeft(10);
                     this.ressourcesSituationLabels.Add(new Label { Content = content, FontSize = 20 });
                 }
@@ -247,15 +247,14 @@ namespace VerticalArchip3l
             foreach(Action item in this.Game.ActionManager.Actions)
             {
                 actionTouchButtonList.Add(new ActionTouchButton { Action = item });
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Width = 200;
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Background = Brushes.DarkGreen;
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Content = item.Description;
-                //Issue here whith the the RoutedEventHandler action 3 then 2 then 1 sent
-                actionTouchButtonList[actionTouchButtonList.Count - 1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[actionTouchButtonList.Count - 1].Action));
-                this.actionsStackPanel.Children.Add(actionTouchButtonList[actionTouchButtonList.Count - 1]);
+                int index = actionTouchButtonList.Count - 1;
+                actionTouchButtonList[index].Width = 200;
+                actionTouchButtonList[index].Background = Brushes.DarkGreen;
+                actionTouchButtonList[index].Content = item.Description;
+                actionTouchButtonList[index].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[index].Action));
+                this.actionsStackPanel.Children.Add(actionTouchButtonList[index]);
             }
         }
-
         private void actionButton_ButtonTap(object sender, RoutedEventArgs e, Action action)
         {
             this.Game.ActionManager.Perform(action);

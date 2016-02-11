@@ -39,7 +39,6 @@ namespace VerticalArchip3l
         //To be removed
         public bool TempPerformAction()
         {
-            Console.WriteLine("Performing action, doing nothing yet");
             return true;
         }
     }
