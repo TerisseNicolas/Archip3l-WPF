@@ -62,6 +62,10 @@ namespace VerticalArchip3l
         {
             return String.Format("{0:00}:{1:00}", this.RemainingTime.Minutes, this.RemainingTime.Seconds);
         }
+        public string ToStringSecondOnly()
+        {
+            return String.Format("{0:00}}", this.RemainingTime.Seconds);
+        }
         private void timer_Tick(object sender, EventArgs e)
         {
             if (this.Running)

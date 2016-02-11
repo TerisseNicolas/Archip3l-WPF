@@ -31,7 +31,7 @@ namespace VerticalArchip3l
         private List<Label> actionHistoryLabels;
         private List<Label> ressourcesSituationLabels;
 
-        private Canvas MainCanvas;
+        public Canvas MainCanvas;
         private TouchScrollViewer actionsScrollViewer;
         private StackPanel actionsStackPanel;
 
@@ -120,7 +120,7 @@ namespace VerticalArchip3l
             //action scroll viewer
             this.actionsScrollViewer = new TouchScrollViewer();
             this.actionsScrollViewer.Height = 100;
-            this.actionsScrollViewer.Width = 500;
+            this.actionsScrollViewer.Width = 700;
             this.actionsScrollViewer.Background = Brushes.Fuchsia;
             this.actionsScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             this.actionsScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
@@ -131,7 +131,7 @@ namespace VerticalArchip3l
             this.actionsStackPanel.VerticalAlignment = VerticalAlignment.Top;
 
             this.actionsScrollViewer.Content = this.actionsStackPanel;
-            Canvas.SetRight(this.actionsScrollViewer, 500);
+            Canvas.SetRight(this.actionsScrollViewer, 400);
             this.MainCanvas.Children.Add(this.actionsScrollViewer);
 
             this.updateActionScrollViewer();
