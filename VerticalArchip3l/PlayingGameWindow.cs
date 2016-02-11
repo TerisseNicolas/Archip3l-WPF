@@ -137,7 +137,8 @@ namespace VerticalArchip3l
             this.updateActionScrollViewer();
 
 
-            //Tests
+            //Tests*************************
+
             //UbiContextMenu contextMenu = new UbiContextMenu();
             //contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
             ////contextMenu.Template = 
@@ -153,6 +154,19 @@ namespace VerticalArchip3l
             //lb.Items.Add(item1);
             //lb.Items.Add(item2);
             //MainCanvas.Children.Add(lb);
+
+            TouchButton but = new TouchButton();
+            but.Content = "test disturbance";
+            but.ButtonTap += But_ButtonTap;
+            but.Width = 200;
+            but.Background = Brushes.Red;
+            Canvas.SetTop(but, 200);
+            this.MainCanvas.Children.Add(but);
+
+            //Test Ends**************************************************
+
+
+
 
             //IslandControls class test
             IslandControls IslandControls2 = new IslandControls(null, this.MainCanvas, 0, 0);
@@ -276,5 +290,12 @@ namespace VerticalArchip3l
         //    Random random = new Random();
         //    this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], random.Next(1, 100));
         //}
+
+        //Test functions
+        private void But_ButtonTap(object sender, RoutedEventArgs e)
+        {
+            DisturbanceRepartition distRep = new DisturbanceRepartition(this, this.Game, new Disturbance("Disturb 1", "Watch out!", null));
+            distRep.show();
+        }
     }
 }

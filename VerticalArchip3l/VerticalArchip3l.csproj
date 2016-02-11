@@ -96,6 +96,7 @@
     <Compile Include="Bonus.cs" />
     <Compile Include="ActionManager.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="DisturbanceEffect.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWindow.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="HeritedExistingClass.cs" />
     <Compile Include="Island.cs" />
     <Compile Include="IslandControls.cs" />
+    <Compile Include="Disturbance.cs" />
+    <Compile Include="DisturbanceRepartition.cs" />
     <Compile Include="PlayingGameWindow.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="ResourceManager.cs" />

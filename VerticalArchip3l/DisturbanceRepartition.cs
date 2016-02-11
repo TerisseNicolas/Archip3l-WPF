@@ -41,13 +41,13 @@ namespace VerticalArchip3l
             //Timer label
             this.labelList.Add(new Label { FontSize = 60, Content = this.Timer.ToStringSecondOnly() });
             this.MainWindow.MainCanvas.Children.Add(this.labelList[1]);
-            Canvas.SetTop(this.labelList[1], 80);
+            Canvas.SetTop(this.labelList[1], 130);
             Canvas.SetLeft(this.labelList[1], 300);
 
             //Instruction textbox
             this.textBlockList.Add(new TextBox { FontSize = 60, Text = this.Disturbance.Instruction });
             this.MainWindow.MainCanvas.Children.Add(this.textBlockList[0]);
-            Canvas.SetTop(this.textBlockList[0], 120);
+            Canvas.SetTop(this.textBlockList[0], 330);
             Canvas.SetLeft(this.textBlockList[0], 300);
 
             //timer
