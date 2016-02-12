@@ -98,15 +98,6 @@
     </ApplicationDefinition>
     <Compile Include="Action.cs" />
     <Compile Include="Bonus.cs" />
-<<<<<<< HEAD
-    <Compile Include="Game.cs" />
-    <Compile Include="GameWindow.cs" />
-    <Compile Include="PlayingGameWindow.cs" />
-    <Compile Include="ResultWindow.cs" />
-    <Compile Include="ScoreManager.cs" />
-    <Compile Include="Timer.cs" />
-    <Compile Include="Trophy.cs" />
-=======
     <Compile Include="ActionManager.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Enumeration.cs" />
@@ -125,7 +116,6 @@
     <Compile Include="Timer.cs" />
     <Compile Include="Trophy.cs" />
     <Compile Include="TrophyManager.cs" />
->>>>>>> VerticalWindow
     <Compile Include="WelcomeWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -14,12 +14,9 @@ C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bi
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\SofthinkCore.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\System.Windows.Interactivity.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\Microsoft.Expression.Interactions.dll
-<<<<<<< HEAD
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\CefSharp.Wpf.xml
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\CefSharp.xml
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\CefSharp.Core.xml
-=======
->>>>>>> VerticalWindow
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\NLog.xml
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\de\System.Windows.Interactivity.resources.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\en\System.Windows.Interactivity.resources.dll
@@ -41,10 +38,7 @@ C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bi
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\ru\Microsoft.Expression.Interactions.resources.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\zh-Hans\Microsoft.Expression.Interactions.resources.dll
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\bin\x86\Debug\zh-Hant\Microsoft.Expression.Interactions.resources.dll
-<<<<<<< HEAD
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.csprojResolveAssemblyReference.cache
-=======
->>>>>>> VerticalWindow
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\MainWindow.g.cs
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\App.g.cs
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l_MarkupCompile.cache
@@ -55,12 +49,6 @@ C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\ob
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.csproj.GenerateResource.Cache
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.exe
 C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.pdb
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-C:\Users\Nicolas\Documents\Ecole\Concours connexion\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.csprojResolveAssemblyReference.cache
->>>>>>> VerticalWindow
-=======
 C:\Users\Baptiste Amato\GitHub\Archip3l\VerticalArchip3l\bin\x86\Debug\VerticalArchip3l.exe.config
 C:\Users\Baptiste Amato\GitHub\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.exe
 C:\Users\Baptiste Amato\GitHub\Archip3l\VerticalArchip3l\obj\x86\Debug\VerticalArchip3l.pdb
