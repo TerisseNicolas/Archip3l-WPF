@@ -68,7 +68,7 @@ namespace VerticalArchip3l
             imageBeingBuilt = @"c:\tempConcours\building-beingbuilt-" + this.name + ".png";
             imageBuilt = @"c:\tempConcours\building-built-" + this.name + ".png";
 
-            this.build();
+            //this.build();
         }
         public Building(BuildingType buildingType, string name) : this(buildingType)
         {
