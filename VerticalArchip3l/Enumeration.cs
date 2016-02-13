@@ -14,4 +14,11 @@
         Usine,
         Ferme
     }
+    enum ResourceType
+    {
+        Or,
+        Nourriture,
+        Bois,
+        Pierre
+    }
 }

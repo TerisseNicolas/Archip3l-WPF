@@ -95,6 +95,8 @@
     <Compile Include="Action.cs" />
     <Compile Include="Bonus.cs" />
     <Compile Include="ActionManager.cs" />
+    <Compile Include="Building.cs" />
+    <Compile Include="BuildingManager.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DisturbanceEffect.cs" />
     <Compile Include="Enumeration.cs" />

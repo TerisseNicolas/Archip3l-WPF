@@ -28,8 +28,5 @@ namespace VerticalArchip3l
             }
         }
     }
-    class ApplyingDisturbanceEffectEventArgs : EventArgs
-    {
-
-    }
+    class ApplyingDisturbanceEffectEventArgs : EventArgs { }
 }
