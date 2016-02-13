@@ -14,7 +14,8 @@ namespace VerticalArchip3l
         public ResourceManager ResourceManager { get; private set; }
         public int BuildState;
 
-        public event EventHandler<BuildingConstructionEventArgs> BuildingConstruction;
+        public event EventHandler<BuildingConstructionStartEventArgs> BuildingConstructionStart;
+        public event EventHandler<BuildingConstructionEndEventArgs> BuildingConstructionEnd;
 
         public string name;
         public string ressourceNeeded;
@@ -25,15 +26,13 @@ namespace VerticalArchip3l
         public string imageBuilt;
         public int constructionTime;    //time after which the building'state becomes 1
 
-
-        public Building(BuildingType buildingType, string argName)     //TODO : finir switch
+        public Building(BuildingType buildingType)
         {
             this.BuildingType = buildingType;
             this.ResourceManager = new ResourceManager();
             this.BuildState = 0;
 
-
-            name = argName;
+            this.name = String.Empty;
             switch (buildingType)
             {
                 case BuildingType.Scierie:
@@ -66,13 +65,14 @@ namespace VerticalArchip3l
                     break;
             }
 
-            imageBeingBuilt = @"c:\tempConcours\building-beingbuilt-" + argName + ".png";
-            imageBuilt = @"c:\tempConcours\building-built-" + argName + ".png";
+            imageBeingBuilt = @"c:\tempConcours\building-beingbuilt-" + this.name + ".png";
+            imageBuilt = @"c:\tempConcours\building-built-" + this.name + ".png";
 
-            if(this.BuildingConstruction != null)
-            {
-                this.BuildingConstruction(this, new BuildingConstructionEventArgs { Building = this });
-            }
+            this.build();
+        }
+        public Building(BuildingType buildingType, string name) : this(buildingType)
+        {
+            this.name = name;
         }
 
         //public async Task<bool> build(int time, int x, int y, Canvas canvas)
@@ -126,8 +126,14 @@ namespace VerticalArchip3l
             return this.ResourceManager.changeResourceProduction(resourceType, value);
         }
     }
-    class BuildingConstructionEventArgs : EventArgs
+    class BuildingConstructionStartEventArgs : EventArgs
     {
-        public Building Building;
+        public BuildingType BuildingType;
+        public Island Island;
+    }
+    class BuildingConstructionEndEventArgs : EventArgs
+    {
+        public BuildingType BuildingType;
+        public Island Island;
     }
 }

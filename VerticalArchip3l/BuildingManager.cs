@@ -11,6 +11,10 @@ namespace VerticalArchip3l
         public Island Island { get; private set; }
         public List<Building> BuildingList { get; private set; }
 
+        public event EventHandler<BuildingConstructionStartEventArgs> BuildingConstructionStart;
+        public event EventHandler<BuildingConstructionEndEventArgs> BuildingConstructionEnd;
+        public event EventHandler<BuildingDestructionEventArgs> BuildingDestruction;
+
         public BuildingManager(Island island)
         {
             this.Island = island;
@@ -27,46 +31,48 @@ namespace VerticalArchip3l
             return null;
         }
 
-        //public async void createBuilding(BuildingType buildingType);
         public bool createBuilding(BuildingType buildingType)
         {
-            //To be implemented
-            return true;
+           if(this.getBuilding(buildingType) == null)
+           {
+                Building newBuilding = new Building(buildingType);
+                this.BuildingList.Add(newBuilding);
+                newBuilding.BuildingConstructionStart += NewBuilding_BuildingConstructionStart;
+                newBuilding.BuildingConstructionEnd += NewBuilding_BuildingConstructionEnd;
+                return true;
+           }
+           else
+           {
+                return false;
+           }
         }
-        //{
-        ////TODO : appeler une fonction "défi" --> réussite = création du bâtiment ; échec = rien
-
-        ////there can't be several buidlings of the same type ("name")
-        //if (getBuilding(name) != null)
-        //{
-        //    System.Diagnostics.Debug.WriteLine("Le batiment " + name + " existe déjà !");
-        //    return;
-        //}
-
-        //Building building = new Building(name, x, y);                   //instanciation
-        //buildings.Add(building);
-        //await building.build(building.constructionTime, x, y, canvas);  //addition of the building's image to the map (construction time)
-        //while (building.state == 1)     //consumption/production during the building's life
-        //{
-        //    building.consume_produce(this);
-        //    if (getRessource(building.ressourceNeeded) != null)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceNeeded).Name + " : " + getRessource(building.ressourceNeeded).Stock);
-        //        System.Diagnostics.Debug.WriteLine(getRessource(building.ressourceProduced).Name + " : " + getRessource(building.ressourceProduced).Stock);
-        //    }
-        //    await Task.Delay(TimeSpan.FromSeconds(10));
-        //}
-        ////if state is 2 --> building removed
-        //canvas.Children.RemoveAt(building.indexCanvas);
-        //System.Diagnostics.Debug.WriteLine("Le batiment " + building.name + " a été supprimé !");
-        //building = null;
-        //return;
-        //}
         public bool destroyBuilding(BuildingType buildingType)
         {
-            //To be implemented
-            return true;
+            if(this.BuildingList.Remove(this.getBuilding(buildingType)))
+            {
+                if(this.BuildingDestruction != null)
+                {
+                    this.BuildingDestruction(this, new BuildingDestructionEventArgs { BuildingType = buildingType, Island = this.Island });
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        //destroy
+
+        //Events
+        private void NewBuilding_BuildingConstructionStart(object sender, BuildingConstructionStartEventArgs e)
+        {
+        }
+        private void NewBuilding_BuildingConstructionEnd(object sender, BuildingConstructionEndEventArgs e)
+        {
+        }
+    }
+    class BuildingDestructionEventArgs : EventArgs
+    {
+        public BuildingType BuildingType;
+        public Island Island;
     }
 }
