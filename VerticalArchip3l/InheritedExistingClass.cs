@@ -11,4 +11,8 @@ namespace VerticalArchip3l
     {
         public Action Action;
     }
+    class IslandConrolsBuildingTouchButton : TouchButton
+    {
+        public BuildingType BuildingType;
+    }
 }

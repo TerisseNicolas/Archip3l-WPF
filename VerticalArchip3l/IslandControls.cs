@@ -14,6 +14,7 @@ namespace VerticalArchip3l
         Island Island;
         int[] Position;
         Canvas Canvas;
+        bool MinorWindowVisible;
 
         //Widgets
         public TouchListView MainListView;
@@ -34,6 +35,7 @@ namespace VerticalArchip3l
             this.MainListView = new TouchListView();
             this.Canvas.Children.Add(this.MainListView);
             this.MinorListView = new TouchListView();
+            this.MinorWindowVisible = false;
 
             this.show();
         }
@@ -53,42 +55,86 @@ namespace VerticalArchip3l
             this.MainListViewButtonList[1].ButtonTap += DeleteBuildingButton_ButtonTap;
             this.MainListView.Items.Add(this.MainListViewButtonList[1]);
         }
-
+        private void hideMinorWindow()
+        {
+            if(this.MinorWindowVisible)
+            {
+                this.Canvas.Children.Remove(this.MinorListView);
+                this.MinorListView.Items.Clear();
+                this.MinorListViewButtonList.Clear();
+                this.MinorWindowVisible = false;
+            }
+        }
         //Event functions
         private void NewBuildingButton_ButtonTap(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (this.MinorWindowVisible == false)
+            {
+                this.MinorWindowVisible = true;
+            }
+            else
+            {
+                this.Canvas.Children.Remove(this.MinorListView);
+                this.MinorListView.Items.Clear();
+                this.MinorListViewButtonList.Clear();
+            }
+
             Canvas.SetTop(this.MinorListView, this.Position[1]);
             Canvas.SetLeft(this.MinorListView, this.Position[0] + 300);
             this.Canvas.Children.Add(this.MinorListView);
             this.MinorListView.Width = 300;
 
-            this.MinorListViewButtonList.Add(new TouchButton { Content = "Scierie", Background = Brushes.Red });
+            //List possible buildings to be created
+            this.MinorListViewButtonList.Add(new IslandConrolsBuildingTouchButton { Content = "Scierie", BuildingType = BuildingType.Scierie, Background = Brushes.Red });
             this.MinorListViewButtonList[0].Width = 260;
             this.MinorListViewButtonList[0].ButtonTap += IslandControlsNewBuildingSelection_ButtonTap;
             this.MinorListView.Items.Add(this.MinorListViewButtonList[0]);
 
-            this.MinorListViewButtonList.Add(new TouchButton { Content = "Mine", Background = Brushes.Black });
+            this.MinorListViewButtonList.Add(new IslandConrolsBuildingTouchButton { Content = "Mine", BuildingType = BuildingType.Mine, Background = Brushes.Black });
             this.MinorListViewButtonList[1].Width = 260;
-            this.MinorListViewButtonList[0].ButtonTap += IslandControlsNewBuildingSelection_ButtonTap;
-            this.MinorListView.Items.Add(this.MinorListViewButtonList[1]);
+            this.MinorListViewButtonList[1].ButtonTap += IslandControlsNewBuildingSelection_ButtonTap;
+            this.MinorListView.Items.Add(this.MinorListViewButtonList[1]);            
         }
-
         private void DeleteBuildingButton_ButtonTap(object sender, System.Windows.RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (this.MinorWindowVisible == false)
+            {
+                this.MinorWindowVisible = true;
+            }
+            else
+            {
+                this.Canvas.Children.Remove(this.MinorListView);
+                this.MinorListView.Items.Clear();
+                this.MinorListViewButtonList.Clear();
+            }
+
+            Canvas.SetTop(this.MinorListView, this.Position[1]);
+            Canvas.SetLeft(this.MinorListView, this.Position[0] + 300);
+            this.Canvas.Children.Add(this.MinorListView);
+            this.MinorListView.Width = 300;
+
+            this.MinorListViewButtonList.Add(new IslandConrolsBuildingTouchButton { Content = "Scierie", BuildingType = BuildingType.Scierie, Background = Brushes.Red });
+            this.MinorListViewButtonList[0].Width = 260;
+            this.MinorListViewButtonList[0].ButtonTap += IslandControlsDeleteBuildingSelection_ButtonTap;
+            this.MinorListView.Items.Add(this.MinorListViewButtonList[0]);
+
+            this.MinorListViewButtonList.Add(new IslandConrolsBuildingTouchButton { Content = "Mine", BuildingType = BuildingType.Mine, Background = Brushes.Black });
+            this.MinorListViewButtonList[1].Width = 260;
+            this.MinorListViewButtonList[0].ButtonTap += IslandControlsDeleteBuildingSelection_ButtonTap;
+            this.MinorListView.Items.Add(this.MinorListViewButtonList[1]);
         }
         private void IslandControlsNewBuildingSelection_ButtonTap(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.MinorListView.Items.Clear();
-            this.Canvas.Children.Remove(this.MinorListView);
-            TouchButton senderButton = (TouchButton)sender;
-            switch((string)senderButton.Content)
+            this.hideMinorWindow();
+            IslandConrolsBuildingTouchButton senderButton = (IslandConrolsBuildingTouchButton)sender;
+            switch(senderButton.BuildingType)
             {
-                case "Scierie":
+                case BuildingType.Scierie:
                     //create building with BuildingType enum Scierie
+                    //this.Island.BuildingManager.createBuilding(senderButton.BuildingType);
                     Console.WriteLine("scierie creation");
                     break;
-                case "Mine":
+                case BuildingType.Mine:
                     //same ..
                     Console.WriteLine("Mine creation");
                     break;
@@ -96,6 +142,12 @@ namespace VerticalArchip3l
                     Console.WriteLine("Button content error : creation building");
                     break;
             }
+        }
+        private void IslandControlsDeleteBuildingSelection_ButtonTap(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.hideMinorWindow();
+            IslandConrolsBuildingTouchButton senderButton = (IslandConrolsBuildingTouchButton)sender;
+            //this.Island.BuildingManager.destroyBuilding(senderButton.BuildingType); //caution Building list empty (buttons manually added)
         }
     }
 }

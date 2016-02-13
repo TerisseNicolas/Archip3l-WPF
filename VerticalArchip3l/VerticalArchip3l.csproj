@@ -103,7 +103,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameWindow.cs" />
     <Compile Include="ActionHistoryManager.cs" />
-    <Compile Include="HeritedExistingClass.cs" />
+    <Compile Include="InheritedExistingClass.cs" />
     <Compile Include="Island.cs" />
     <Compile Include="IslandControls.cs" />
     <Compile Include="Disturbance.cs" />
