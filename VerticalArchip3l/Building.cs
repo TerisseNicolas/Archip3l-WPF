@@ -121,9 +121,9 @@ namespace VerticalArchip3l
         //    }
         //}
 
-        public bool changeProduction(Resource res, int value)
+        public bool changeProduction(ResourceType resourceType, int value)
         {
-            return this.ResourceManager.changeResourceProduction(res, value);
+            return this.ResourceManager.changeResourceProduction(resourceType, value);
         }
     }
     class BuildingConstructionEventArgs : EventArgs

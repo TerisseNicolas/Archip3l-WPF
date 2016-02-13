@@ -174,8 +174,17 @@ namespace VerticalArchip3l
             //To be removed
             Random random = new Random();
             this.Game.Scores.increaseScore(random.Next(1, 50));
-            this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], 75);
+            this.Game.ResourceManager.changeResourceProduction(ResourceType.Bois, 75);
 
+        }
+        ~PlayingGameWindow()
+        {
+            this.grid.Children.Clear();
+            this.MiddleCanvas.Children.Clear();
+            this.actionHistoryLabels.Clear();
+            this.ressourcesSituationLabels.Clear();
+            this.MainCanvas.Children.Clear();
+            this.actionsStackPanel.Children.Clear();
         }
 
         //Event functions=============================================================

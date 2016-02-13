@@ -18,6 +18,7 @@ namespace VerticalArchip3l
         public IslandControls IslandControls { get; private set; }
         public Canvas Canvas { get; private set; }
 
+        public event EventHandler<TransferResourceToIslandEventArgs> TransferResourceToIsland; 
 
         public Island(int id, Canvas canvas)
         {
@@ -25,6 +26,8 @@ namespace VerticalArchip3l
             this.Canvas = canvas;
             this.BuildingManager = new BuildingManager(this);
             this.ResourceManager = new ResourceManager();
+
+            //conection to resource reception from another island
             
             //Creation of Initial buildings
             //Creation of initial resources            
@@ -39,20 +42,26 @@ namespace VerticalArchip3l
             return this.BuildingManager.destroyBuilding(buildingType);
         }        
 
-        public void giveRessourceToIsland(ResourceType res, int quantity, Island islandDest)
+        public void giveRessourceToIsland(ResourceType resourceType, int quantity, Island islandDest)
         {
-            //ResourceManager rm = new ResourceManager();
-            //int quantityWithdrawn = rm.withdrawRessource(name, this, quantity);
-            ////we give to "island" the quantity withdrawn from the current island
-            //if (quantityWithdrawn != 0)
-            //{
-            //    rm.giveRessource(name, island, quantityWithdrawn);
-            //    System.Diagnostics.Debug.WriteLine("L'ile " + this.id.ToString() + " donne " + quantityWithdrawn.ToString() + " " + name + " à l'ile " + island.id.ToString());
-            //}
-            //else
-            //    System.Diagnostics.Debug.WriteLine("La ressource " + name + " n'est plus disponible sur l'ile " + island.id.ToString());
+            if(this.ResourceManager.changeResourceStock(resourceType, - quantity))
+            {
+                islandDest.ResourceManager.changeResourceStock(resourceType, quantity);
+                if(this.TransferResourceToIsland != null)
+                {
+                    this.TransferResourceToIsland(this, new TransferResourceToIslandEventArgs { Origin = this,
+                                                                                                Destination = islandDest,
+                                                                                                ResourceType = resourceType,
+                                                                                                Quantity = quantity });
+                }
+            }
         }
-
-
+    }
+    class TransferResourceToIslandEventArgs : EventArgs
+    {
+        public Island Origin;
+        public Island Destination;
+        public ResourceType ResourceType;
+        public int Quantity;
     }
 }

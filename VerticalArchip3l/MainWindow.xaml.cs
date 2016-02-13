@@ -36,6 +36,14 @@ namespace VerticalArchip3l
         }
         public void welcomeWindow()
         {
+            //Clean a possible previous game
+            this.WelcomeWindow = null;
+            this.GameWindow = null;
+            this.PlayingGameWindow = null;
+            this.ResultWindow = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             this.WelcomeWindow = new WelcomeWindow(this.Game, this);
         }
         public void newGameWindow()

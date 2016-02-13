@@ -4,23 +4,26 @@ namespace VerticalArchip3l
 {
     class Resource
     {
-        public string Name;
-        public int Stock;
+        public ResourceType ResourceType { get; private set;}
+        public string Name { get; private set; }
+        public int Stock { get; private set; }
         public int Production { get; private set; }
 
-        public Resource(string argName)
+        public Resource(ResourceType resourceType, string argName)
         {
+            this.ResourceType = resourceType;
             this.Name = argName;
             this.Stock = 0;
             this.Production = 0;
         }
-
-        public Resource(string argName, int quantity)
+        public Resource(ResourceType resourceType, string argName, int quantity) : this(resourceType, argName)
         {
-            this.Name = argName;
-            this.Stock = quantity;
-            this.Production = 0;
+            if(quantity > 0)
+            {
+                this.Stock = quantity;
+            }
         }
+
         public bool changeProduction(int value)
         {
             if(this.Production + value >= 0)
@@ -45,6 +48,14 @@ namespace VerticalArchip3l
             {
                 return false;
             }
+        }
+        public bool checkChangeProductionPossibility(int value)
+        {
+            return this.Production + value >= 0;
+        }
+        public bool checkChangeStockPossibility(int value)
+        {
+            return this.Stock + value >= 0;
         }
     }
 }

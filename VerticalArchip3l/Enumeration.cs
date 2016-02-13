@@ -19,6 +19,7 @@
         Or,
         Nourriture,
         Bois,
+        Metal,
         Pierre
     }
 }
