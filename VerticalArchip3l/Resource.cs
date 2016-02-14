@@ -23,6 +23,10 @@ namespace VerticalArchip3l
                 this.Stock = quantity;
             }
         }
+        public Resource(ResourceType resourceType, string argName, int quantity, int production) : this(resourceType, argName, quantity)
+        {
+            this.Production = production;
+        }
 
         public bool changeProduction(int value)
         {

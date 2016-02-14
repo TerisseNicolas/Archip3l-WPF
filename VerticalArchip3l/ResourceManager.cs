@@ -21,6 +21,26 @@ namespace VerticalArchip3l
             this.Resources.Add(new Resource(ResourceType.Metal, "Métal"));
             this.Resources.Add(new Resource(ResourceType.Nourriture, "Nourriture"));
         }
+        public bool addResource(ResourceType resourceType, string name, int quantity, int production)
+        {
+            bool flag = false;
+            foreach(Resource item in this.Resources)
+            {
+                if(item.ResourceType == resourceType)
+                {
+                    flag = true;
+                }
+            }
+            if(flag == true)
+            {
+                return false;
+            }
+            else
+            {
+                this.Resources.Add(new Resource(resourceType, name, quantity, production));
+                return true;
+            }
+        }
         public bool changeResourceProduction(ResourceType resourceType, int value)
         {
             Resource resource = this.getResource(resourceType);

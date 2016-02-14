@@ -35,7 +35,7 @@ namespace VerticalArchip3l
         {
            if(this.getBuilding(buildingType) == null)
            {
-                Building newBuilding = new Building(buildingType);
+                Building newBuilding = new Building(buildingType, this.Island);
                 this.BuildingList.Add(newBuilding);
                 newBuilding.BuildingConstructionStart += NewBuilding_BuildingConstructionStart;
                 newBuilding.BuildingConstructionEnd += NewBuilding_BuildingConstructionEnd;
