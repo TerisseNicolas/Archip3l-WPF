@@ -31,7 +31,7 @@ namespace VerticalArchip3l
         private List<Label> actionHistoryLabels;
         private List<Label> ressourcesSituationLabels;
 
-        private Canvas MainCanvas;
+        public Canvas MainCanvas;
         private TouchScrollViewer actionsScrollViewer;
         private StackPanel actionsStackPanel;
 
@@ -55,6 +55,7 @@ namespace VerticalArchip3l
             this.ressourcesSituationLabels = new List<Label>();
 
             show();
+            this.Game.start();
         }
 
         public void show()
@@ -119,7 +120,7 @@ namespace VerticalArchip3l
             //action scroll viewer
             this.actionsScrollViewer = new TouchScrollViewer();
             this.actionsScrollViewer.Height = 100;
-            this.actionsScrollViewer.Width = 500;
+            this.actionsScrollViewer.Width = 700;
             this.actionsScrollViewer.Background = Brushes.Fuchsia;
             this.actionsScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             this.actionsScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
@@ -130,13 +131,14 @@ namespace VerticalArchip3l
             this.actionsStackPanel.VerticalAlignment = VerticalAlignment.Top;
 
             this.actionsScrollViewer.Content = this.actionsStackPanel;
-            Canvas.SetRight(this.actionsScrollViewer, 500);
+            Canvas.SetRight(this.actionsScrollViewer, 400);
             this.MainCanvas.Children.Add(this.actionsScrollViewer);
 
             this.updateActionScrollViewer();
 
 
-            //Tests
+            //Tests*************************
+
             //UbiContextMenu contextMenu = new UbiContextMenu();
             //contextMenu.Placement = UbiContextMenu.PlacementMode.GestureCenter;
             ////contextMenu.Template = 
@@ -153,14 +155,37 @@ namespace VerticalArchip3l
             //lb.Items.Add(item2);
             //MainCanvas.Children.Add(lb);
 
+            TouchButton but = new TouchButton();
+            but.Content = "test disturbance";
+            but.ButtonTap += But_ButtonTap;
+            but.Width = 200;
+            but.Background = Brushes.Red;
+            Canvas.SetTop(but, 200);
+            this.MainCanvas.Children.Add(but);
+
+
+            //Test Ends**************************************************
+
+
+
+
             //IslandControls class test
             IslandControls IslandControls2 = new IslandControls(null, this.MainCanvas, 0, 0);
 
             //To be removed
             Random random = new Random();
             this.Game.Scores.increaseScore(random.Next(1, 50));
-            this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], 75);
+            this.Game.ResourceManager.changeResourceProduction(ResourceType.Bois, 75);
 
+        }
+        ~PlayingGameWindow()
+        {
+            this.grid.Children.Clear();
+            this.MiddleCanvas.Children.Clear();
+            this.actionHistoryLabels.Clear();
+            this.ressourcesSituationLabels.Clear();
+            this.MainCanvas.Children.Clear();
+            this.actionsStackPanel.Children.Clear();
         }
 
         //Event functions=============================================================
@@ -224,7 +249,6 @@ namespace VerticalArchip3l
                 this.ressourcesSituationLabels.Clear();
                 foreach (Resource item in this.Game.ResourceManager.Resources)
                 {
-                    //To be improved
                     string content = string.Format("{0}\t{1}\t{2}", item.Name.PadRight(20), item.Stock.ToString().PadRight(7), item.Production.ToString()).PadLeft(10);
                     this.ressourcesSituationLabels.Add(new Label { Content = content, FontSize = 20 });
                 }
@@ -247,15 +271,14 @@ namespace VerticalArchip3l
             foreach(Action item in this.Game.ActionManager.Actions)
             {
                 actionTouchButtonList.Add(new ActionTouchButton { Action = item });
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Width = 200;
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Background = Brushes.DarkGreen;
-                actionTouchButtonList[actionTouchButtonList.Count - 1].Content = item.Description;
-                //Issue here whith the the RoutedEventHandler action 3 then 2 then 1 sent
-                actionTouchButtonList[actionTouchButtonList.Count - 1].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[actionTouchButtonList.Count - 1].Action));
-                this.actionsStackPanel.Children.Add(actionTouchButtonList[actionTouchButtonList.Count - 1]);
+                int index = actionTouchButtonList.Count - 1;
+                actionTouchButtonList[index].Width = 200;
+                actionTouchButtonList[index].Background = Brushes.DarkGreen;
+                actionTouchButtonList[index].Content = item.Description;
+                actionTouchButtonList[index].ButtonTap += new RoutedEventHandler((sender, e) => actionButton_ButtonTap(sender, e, actionTouchButtonList[index].Action));
+                this.actionsStackPanel.Children.Add(actionTouchButtonList[index]);
             }
         }
-
         private void actionButton_ButtonTap(object sender, RoutedEventArgs e, Action action)
         {
             this.Game.ActionManager.Perform(action);
@@ -277,5 +300,12 @@ namespace VerticalArchip3l
         //    Random random = new Random();
         //    this.Game.ResourceManager.changeResourceProduction(this.Game.ResourceManager.Resources[1], random.Next(1, 100));
         //}
+
+        //Test functions
+        private void But_ButtonTap(object sender, RoutedEventArgs e)
+        {
+            DisturbanceRepartition distRep = new DisturbanceRepartition(this, this.Game, new Disturbance("Disturb 1", "Watch out!", null));
+            distRep.show();
+        }
     }
 }
